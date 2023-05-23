@@ -2,12 +2,14 @@ package poo.trabalhofinal.supertrunfo.classes;
 
 import javafx.scene.image.Image;
 import poo.trabalhofinal.supertrunfo.classes.cartas.Carta;
+import poo.trabalhofinal.supertrunfo.classes.cartas.Classificacao;
 import poo.trabalhofinal.supertrunfo.classes.cartas.Personagem;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
 
 public class Jogo {
     ArrayList<?> baralho;
@@ -17,14 +19,18 @@ public class Jogo {
     /**
      * Método construtor do jogo, buscamos no banco de dados as cartas usando o primeiro parâmetro e intânciamos os dois
      * jogadores.
+     *
      * @param jogo
      * @param jogador1
      * @param jogador2
      */
-    public Jogo(String jogo, String jogador1, String jogador2) throws SQLException {
+    public Jogo(String jogo, Jogador jogador1, Jogador jogador2) throws SQLException {
         this.baralho = buscaCartasDB(jogo);
         Collections.shuffle(baralho);
-        //jogador1 = new Jogador();
+        this.jogador1 = jogador1;
+        this.jogador2 = jogador2;
+
+        //TODO adicionar aos jogadores o baralho
     }
 
     private ArrayList<?> buscaCartasDB(String jogo) throws SQLException {
@@ -38,13 +44,13 @@ public class Jogo {
             query.setString(1, jogo);
             resultSet = query.executeQuery();
 
-            List<Personagem> cartas = new ArrayList<>();
-            if(jogo.equals("Personagem")) {
+            List<Carta> cartas = new ArrayList<>();
+            if (jogo.equals("Personagem")) {
                 while (resultSet.next()) {
                     Personagem personagem = new Personagem();
                     personagem.setNome(resultSet.getString("nome"));
                     personagem.setImagem(resultSet.getString("imagem"));
-                    personagem.setLetra(resultSet.getString("classificacao"));
+                    personagem.setClassificacao(resultSet.getString("classificacao"));
                     personagem.setSuperTrunfo(resultSet.getString("super_trunfo"));
                     personagem.setInteligencia(Integer.valueOf(resultSet.getString("atributo1")));
                     personagem.setForca(Integer.valueOf(resultSet.getString("atributo2")));
@@ -64,9 +70,115 @@ public class Jogo {
             //ResultSet insert = conexao.createStatement().executeQuery("INSERT INTO cartas values (2, 'Personagem', 'Juloia', 'imagem da juloia', true, 100, 30, 73, 2002, 1.70);");
         } catch (SQLException e) {
             throw new SQLException("Erro com banco de dados!");
+        } finally {
+            if (conexao != null)
+                conexao.close();
         }
 
         return null;
     }
+
+    public void addBaralho(ArrayList<?> baralho) {
+        this.baralho = baralho;
+    }
+
+    public void jogarPersonagem() {
+        Scanner sc = new Scanner(System.in);
+        int turno = 0;
+        while (jogador1.getCartas().size() > 0 && jogador2.getCartas().size() > 0) {
+
+            Personagem topoA = (Personagem) jogador1.getCartas().get(0);
+            Personagem topoB = (Personagem) jogador2.getCartas().get(0);
+
+            int escolha = 0;
+            boolean superTrunfo = false;
+
+            if (turno % 2 == 0) { //Turno jogador 1
+
+                if (topoA.isSuperTrunfo()) {
+                    //SuperTrunfo = vitória
+                    superTrunfo = true;
+                } else {
+                    escolha = sc.nextInt();
+                }
+                int compara = 0;
+
+                if (escolha == 1) {
+                    compara = topoA.comparaInteligencia(topoB);
+                } else if (escolha == 2) {
+                    compara = topoA.comparaForca(topoB);
+                } else if (escolha == 3) {
+                    compara = topoA.comparaCoragem(topoB);
+                } else if (escolha == 4) {
+                    compara = topoA.comparaAparicao(topoB);
+                } else if (escolha == 5) {
+                    compara = topoA.comparaAltura(topoB);
+                }
+
+                if (superTrunfo || compara == 1) { //VENCEU ROUND
+                    jogador1.addCarta(topoB);
+                    jogador1.moveTopo();
+                    jogador1.pontua(10);
+
+                    jogador2.pontua(-5);
+                    jogador2.removeTopo();
+                } else if (compara == -1) { //PERDEU
+                    jogador2.addCarta(topoA);
+                    jogador2.moveTopo();
+                    jogador2.pontua(10);
+
+                    jogador1.pontua(-10); //Perde mais ponto pois perdeu na propria rodada
+                    jogador1.removeTopo();
+                } else { //EMPATE
+                    jogador1.moveTopo();
+                    jogador2.moveTopo();
+                }
+
+            } else {
+                //Turno jogador 2
+                if (topoB.isSuperTrunfo()) {
+                    //SuperTrunfo = vitória
+                    superTrunfo = true;
+                } else {
+                    escolha = sc.nextInt();
+                }
+                int compara = 0;
+
+                if (escolha == 1) {
+                    compara = topoB.comparaInteligencia(topoA);
+                } else if (escolha == 2) {
+                    compara = topoB.comparaForca(topoA);
+                } else if (escolha == 3) {
+                    compara = topoB.comparaCoragem(topoA);
+                } else if (escolha == 4) {
+                    compara = topoB.comparaAparicao(topoA);
+                } else if (escolha == 5) {
+                    compara = topoB.comparaAltura(topoA);
+                }
+
+                if (superTrunfo || compara == 1) { //VENCEU ROUND
+                    jogador2.addCarta(topoA);
+                    jogador2.moveTopo();
+                    jogador2.pontua(10);
+
+                    jogador1.pontua(-5);
+                    jogador1.removeTopo();
+                } else if (compara == -1) { //PERDEU
+                    jogador1.addCarta(topoB);
+                    jogador1.moveTopo();
+                    jogador1.pontua(10);
+
+                    jogador2.pontua(-10); //Perde mais ponto pois perdeu na propria rodada
+                    jogador2.removeTopo();
+                } else { //EMPATE
+                    jogador1.moveTopo();
+                    jogador2.moveTopo();
+                }
+
+            }
+            turno++;
+        }
+    }
+
 
 }
