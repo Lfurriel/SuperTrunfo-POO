@@ -52,14 +52,14 @@ public class Jogador {
         return cartas;
     }
 
+    public void setCartas(List<Carta> cartas) {
+        this.cartas = cartas;
+    }
+
     public void addBaralho(ArrayList<Carta> cartas) {
         this.cartas = cartas;
     }
 
-
-    public void addCarta(Carta topoB) {
-        cartas.add(topoB);
-    }
 
     public void moveTopo() {
         Carta topo = cartas.remove(0);
@@ -70,7 +70,14 @@ public class Jogador {
         this.pontuacao += pontos;
     }
 
-    public void removeTopo() {
-        cartas.remove(0);
+
+    public void moveCartas(Jogador oponente, Carta seuTopo, Carta topoOponente) {
+        this.cartas.add(topoOponente);
+        this.cartas.remove(seuTopo);
+        this.cartas.add(seuTopo);
+
+        oponente.cartas.remove(topoOponente);
+
+        //TODO: corrigir erro Unable to evaluate the children renderer expression Method threw 'java.util.ConcurrentModificationException' exception.
     }
 }

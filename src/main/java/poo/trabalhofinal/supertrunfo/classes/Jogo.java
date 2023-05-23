@@ -1,8 +1,6 @@
 package poo.trabalhofinal.supertrunfo.classes;
 
-import javafx.scene.image.Image;
 import poo.trabalhofinal.supertrunfo.classes.cartas.Carta;
-import poo.trabalhofinal.supertrunfo.classes.cartas.Classificacao;
 import poo.trabalhofinal.supertrunfo.classes.cartas.Personagem;
 
 import java.sql.*;
@@ -30,7 +28,11 @@ public class Jogo {
         this.jogador1 = jogador1;
         this.jogador2 = jogador2;
 
-        //TODO adicionar aos jogadores o baralho
+        int tamanhoBaralho = baralho.size();
+        int metade = tamanhoBaralho / 2;
+
+        jogador1.setCartas((List<Carta>) baralho.subList(0, metade));
+        jogador2.setCartas((List<Carta>) baralho.subList(metade, tamanhoBaralho));
     }
 
     private ArrayList<?> buscaCartasDB(String jogo) throws SQLException {
@@ -85,7 +87,9 @@ public class Jogo {
     public void jogarPersonagem() {
         Scanner sc = new Scanner(System.in);
         int turno = 0;
-        while (jogador1.getCartas().size() > 0 && jogador2.getCartas().size() > 0) {
+        boolean continua = true;
+
+        while (continua) {
 
             Personagem topoA = (Personagem) jogador1.getCartas().get(0);
             Personagem topoB = (Personagem) jogador2.getCartas().get(0);
@@ -116,19 +120,15 @@ public class Jogo {
                 }
 
                 if (superTrunfo || compara == 1) { //VENCEU ROUND
-                    jogador1.addCarta(topoB);
-                    jogador1.moveTopo();
+                    jogador1.moveCartas(jogador2, topoA, topoB);
+
                     jogador1.pontua(10);
-
                     jogador2.pontua(-5);
-                    jogador2.removeTopo();
                 } else if (compara == -1) { //PERDEU
-                    jogador2.addCarta(topoA);
-                    jogador2.moveTopo();
-                    jogador2.pontua(10);
+                    jogador2.moveCartas(jogador1, topoA, topoB);
 
+                    jogador2.pontua(10);
                     jogador1.pontua(-10); //Perde mais ponto pois perdeu na propria rodada
-                    jogador1.removeTopo();
                 } else { //EMPATE
                     jogador1.moveTopo();
                     jogador2.moveTopo();
@@ -157,19 +157,15 @@ public class Jogo {
                 }
 
                 if (superTrunfo || compara == 1) { //VENCEU ROUND
-                    jogador2.addCarta(topoA);
-                    jogador2.moveTopo();
+                    jogador2.moveCartas(jogador1, topoA, topoB);
+
                     jogador2.pontua(10);
-
                     jogador1.pontua(-5);
-                    jogador1.removeTopo();
                 } else if (compara == -1) { //PERDEU
-                    jogador1.addCarta(topoB);
-                    jogador1.moveTopo();
-                    jogador1.pontua(10);
+                    jogador1.moveCartas(jogador2, topoA, topoB);
 
+                    jogador1.pontua(10);
                     jogador2.pontua(-10); //Perde mais ponto pois perdeu na propria rodada
-                    jogador2.removeTopo();
                 } else { //EMPATE
                     jogador1.moveTopo();
                     jogador2.moveTopo();
@@ -177,6 +173,8 @@ public class Jogo {
 
             }
             turno++;
+            if (jogador1.getCartas().size() == 0 || jogador2.getCartas().size() == 0)
+                continua = false;
         }
     }
 
