@@ -119,17 +119,17 @@ public class Jogo {
                     compara = topoA.comparaAltura(topoB);
                 }
 
-                if (superTrunfo || compara == 1) { //VENCEU ROUND
-                    jogador1.moveCartas(jogador2, topoA, topoB);
+                if (superTrunfo || compara == 1) { // VENCEU ROUND
+                    jogador1.moveCartas(jogador2);
 
                     jogador1.pontua(10);
                     jogador2.pontua(-5);
-                } else if (compara == -1) { //PERDEU
-                    jogador2.moveCartas(jogador1, topoA, topoB);
+                } else if (compara == -1) { // PERDEU ROUND
+                    //jogador2.moveCartas(jogador1);
 
                     jogador2.pontua(10);
-                    jogador1.pontua(-10); //Perde mais ponto pois perdeu na propria rodada
-                } else { //EMPATE
+                    jogador1.pontua(-10); // Perde mais ponto pois perdeu na própria rodada
+                } else { // EMPATE
                     jogador1.moveTopo();
                     jogador2.moveTopo();
                 }
@@ -157,12 +157,12 @@ public class Jogo {
                 }
 
                 if (superTrunfo || compara == 1) { //VENCEU ROUND
-                    jogador2.moveCartas(jogador1, topoA, topoB);
+                    //jogador2.moveCartas(jogador1);
 
                     jogador2.pontua(10);
                     jogador1.pontua(-5);
                 } else if (compara == -1) { //PERDEU
-                    jogador1.moveCartas(jogador2, topoA, topoB);
+                    //jogador1.moveCartas(jogador2);
 
                     jogador1.pontua(10);
                     jogador2.pontua(-10); //Perde mais ponto pois perdeu na propria rodada
@@ -170,7 +170,6 @@ public class Jogo {
                     jogador1.moveTopo();
                     jogador2.moveTopo();
                 }
-
             }
             turno++;
             if (jogador1.getCartas().size() == 0 || jogador2.getCartas().size() == 0)

@@ -70,14 +70,17 @@ public class Jogador {
         this.pontuacao += pontos;
     }
 
+    public void moveCartas(Jogador derrotado) {
+        List<Carta> cartasJogador1 = new ArrayList<>(this.cartas);
+        List<Carta> cartasJogador2 = new ArrayList<>(derrotado.cartas);
 
-    public void moveCartas(Jogador oponente, Carta seuTopo, Carta topoOponente) {
-        this.cartas.add(topoOponente);
-        this.cartas.remove(seuTopo);
-        this.cartas.add(seuTopo);
+        Carta cartaVencedora = cartasJogador1.remove(0);  // Remove a carta do topo do jogador1
+        Carta cartaDerrotada = cartasJogador2.remove(0);  // Remove a carta do topo do jogador2
 
-        oponente.cartas.remove(topoOponente);
+        cartasJogador1.add(cartaVencedora);  // Adiciona a carta vencedora no fim da lista do jogador1
+        cartasJogador1.add(cartaDerrotada);  // Adiciona a carta derrotada no fim da lista do jogador1
 
-        //TODO: corrigir erro Unable to evaluate the children renderer expression Method threw 'java.util.ConcurrentModificationException' exception.
+        this.cartas = cartasJogador1;  // Atualiza a lista de cartas do jogador1 com as modificações
+        derrotado.cartas = cartasJogador2;  // Atualiza a lista de cartas do jogador2 com as modificações
     }
 }
