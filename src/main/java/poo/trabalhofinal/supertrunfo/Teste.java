@@ -3,6 +3,7 @@ package poo.trabalhofinal.supertrunfo;
 import poo.trabalhofinal.supertrunfo.classes.Jogador;
 import poo.trabalhofinal.supertrunfo.classes.Jogo;
 import poo.trabalhofinal.supertrunfo.classes.cartas.Classificacao;
+import poo.trabalhofinal.supertrunfo.classes.cartas.Personagem;
 import poo.trabalhofinal.supertrunfo.classes.exceptions.UsuarioNaoEncontradoException;
 
 import java.sql.*;
@@ -13,9 +14,10 @@ public class Teste {
         Classificacao b = Classificacao.A2;
         System.out.println("a -> b: " + a.compareTo(b));
 
-        Jogo partida = null;
+        Jogo<Personagem> partida = null;
         try {
-            partida = new Jogo("Personagem", new Jogador("Lfurriel"), new Jogador("Lfurriel"));
+            partida = new Jogo<>("Personagem", new Jogador<>("Lfurriel"),
+                    new Jogador<>("Lfurriel"));
         } catch (UsuarioNaoEncontradoException e) {
             e.printStackTrace();
         }

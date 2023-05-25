@@ -9,10 +9,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-public class Jogo {
-    ArrayList<?> baralho;
-    Jogador jogador1;
-    Jogador jogador2;
+public class Jogo<T> {
+    ArrayList<T> baralho;
+    Jogador<T> jogador1;
+    Jogador<T> jogador2;
 
     /**
      * Método construtor do jogo, buscamos no banco de dados as cartas usando o primeiro parâmetro e intânciamos os dois
@@ -22,7 +22,7 @@ public class Jogo {
      * @param jogador1
      * @param jogador2
      */
-    public Jogo(String jogo, Jogador jogador1, Jogador jogador2) throws SQLException {
+    public Jogo(String jogo, Jogador<T> jogador1, Jogador<T> jogador2) throws SQLException {
         this.baralho = buscaCartasDB(jogo);
         Collections.shuffle(baralho);
         this.jogador1 = jogador1;
@@ -31,11 +31,11 @@ public class Jogo {
         int tamanhoBaralho = baralho.size();
         int metade = tamanhoBaralho / 2;
 
-        jogador1.setCartas((List<Carta>) baralho.subList(0, metade));
-        jogador2.setCartas((List<Carta>) baralho.subList(metade, tamanhoBaralho));
+        jogador1.setCartas(baralho.subList(0, metade));
+        jogador2.setCartas(baralho.subList(metade, tamanhoBaralho));
     }
 
-    private ArrayList<?> buscaCartasDB(String jogo) throws SQLException {
+    private ArrayList<T> buscaCartasDB(String jogo) throws SQLException {
         Connection conexao = null;
         PreparedStatement query;
         ResultSet resultSet = null;
@@ -46,7 +46,7 @@ public class Jogo {
             query.setString(1, jogo);
             resultSet = query.executeQuery();
 
-            List<Carta> cartas = new ArrayList<>();
+            ArrayList<T> cartas = new ArrayList<>();
             if (jogo.equals("Personagem")) {
                 while (resultSet.next()) {
                     Personagem personagem = new Personagem();
@@ -61,11 +61,11 @@ public class Jogo {
                     personagem.setAltura(Double.valueOf(resultSet.getString("atributo4")));
 
                     System.out.println(personagem);
-                    cartas.add(personagem);
+                    cartas.add((T) personagem);
                 }
 
                 System.out.println(cartas.size());
-                return (ArrayList<?>) cartas;
+                return cartas;
             } else if (jogo.equals("")) {
                 //TODO:
             }
@@ -80,7 +80,7 @@ public class Jogo {
         return null;
     }
 
-    public void addBaralho(ArrayList<?> baralho) {
+    public void addBaralho(ArrayList<T> baralho) {
         this.baralho = baralho;
     }
 
@@ -171,7 +171,7 @@ public class Jogo {
                     jogador2.moveTopo();
                 }
             }
-            turno++;
+            turno+=2;
             if (jogador1.getCartas().size() == 0 || jogador2.getCartas().size() == 0)
                 continua = false;
         }

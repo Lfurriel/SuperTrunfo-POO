@@ -7,10 +7,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Jogador {
+public class Jogador<T> {
     private String nome;
     private Integer pontuacao;
-    private List<Carta> cartas;
+    private List<T> cartas;
 
     public Jogador(String user) throws SQLException, UsuarioNaoEncontradoException {
 
@@ -48,21 +48,21 @@ public class Jogador {
         return pontuacao;
     }
 
-    public List<Carta> getCartas() {
+    public List<T> getCartas() {
         return cartas;
     }
 
-    public void setCartas(List<Carta> cartas) {
+    public void setCartas(List<T> cartas) {
         this.cartas = cartas;
     }
 
-    public void addBaralho(ArrayList<Carta> cartas) {
+    public void addBaralho(ArrayList<T> cartas) {
         this.cartas = cartas;
     }
 
 
     public void moveTopo() {
-        Carta topo = cartas.remove(0);
+        T topo = cartas.remove(0);
         cartas.add(topo);
     }
 
@@ -71,11 +71,11 @@ public class Jogador {
     }
 
     public void moveCartas(Jogador derrotado) {
-        List<Carta> cartasJogador1 = new ArrayList<>(this.cartas);
-        List<Carta> cartasJogador2 = new ArrayList<>(derrotado.cartas);
+        List<T> cartasJogador1 = new ArrayList<>(this.cartas);
+        List<T> cartasJogador2 = new ArrayList<>(derrotado.cartas);
 
-        Carta cartaVencedora = cartasJogador1.remove(0);  // Remove a carta do topo do jogador1
-        Carta cartaDerrotada = cartasJogador2.remove(0);  // Remove a carta do topo do jogador2
+        T cartaVencedora = cartasJogador1.remove(0);  // Remove a carta do topo do jogador1
+        T cartaDerrotada = cartasJogador2.remove(0);  // Remove a carta do topo do jogador2
 
         cartasJogador1.add(cartaVencedora);  // Adiciona a carta vencedora no fim da lista do jogador1
         cartasJogador1.add(cartaDerrotada);  // Adiciona a carta derrotada no fim da lista do jogador1
