@@ -1,9 +1,6 @@
 package poo.trabalhofinal.supertrunfo.classes;
 
-import poo.trabalhofinal.supertrunfo.classes.cartas.Carta;
-import poo.trabalhofinal.supertrunfo.classes.exceptions.UsuarioNaoEncontradoException;
 
-import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,31 +9,7 @@ public class Jogador<T> {
     private Integer pontuacao;
     private List<T> cartas;
 
-    public Jogador(String user) throws SQLException, UsuarioNaoEncontradoException {
-
-        Connection conexao = null;
-        PreparedStatement query;
-        ResultSet resultSet = null;
-
-        try {
-            conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/DataLake", "postgres", "FurriSenha");
-            query = conexao.prepareStatement("SELECT * FROM jogadores WHERE usuario = ?");
-            query.setString(1, user);
-            resultSet = query.executeQuery();
-            if (resultSet.next()) {
-                this.nome = resultSet.getString("usuario");
-                this.pontuacao = Integer.parseInt(resultSet.getString("pontuacao"));
-            } else {
-                throw new UsuarioNaoEncontradoException("Usuário " + user + " não encontrado!");
-            }
-
-            //ResultSet insert = conexao.createStatement().executeQuery("INSERT INTO cartas values (2, 'Personagem', 'Juloia', 'imagem da juloia', true, 100, 30, 73, 2002, 1.70);");
-        } catch (SQLException e) {
-            throw new SQLException("Erro com banco de dados!");
-        } finally {
-            if (conexao != null)
-                conexao.close();
-        }
+    public Jogador() {
 
     }
 
@@ -44,8 +17,16 @@ public class Jogador<T> {
         return nome;
     }
 
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
     public Integer getPontuacao() {
         return pontuacao;
+    }
+
+    public void setPontuacao(Integer pontuacao) {
+        this.pontuacao = pontuacao;
     }
 
     public List<T> getCartas() {

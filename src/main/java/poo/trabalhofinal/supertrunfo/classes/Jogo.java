@@ -2,6 +2,11 @@ package poo.trabalhofinal.supertrunfo.classes;
 
 import poo.trabalhofinal.supertrunfo.classes.cartas.Carta;
 import poo.trabalhofinal.supertrunfo.classes.cartas.Personagem;
+import poo.trabalhofinal.supertrunfo.classes.exceptions.UsuarioNaoEncontradoException;
+import poo.trabalhofinal.supertrunfo.classes.interfaces.CartasRepository;
+import poo.trabalhofinal.supertrunfo.classes.interfaces.CartasRepositoryImpl;
+import poo.trabalhofinal.supertrunfo.classes.interfaces.JogadoresRepository;
+import poo.trabalhofinal.supertrunfo.classes.interfaces.JogadoresRepositoryImpl;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -14,77 +19,49 @@ public class Jogo<T> {
     Jogador<T> jogador1;
     Jogador<T> jogador2;
 
-    /**
-     * Método construtor do jogo, buscamos no banco de dados as cartas usando o primeiro parâmetro e intânciamos os dois
-     * jogadores.
-     *
-     * @param jogo
-     * @param jogador1
-     * @param jogador2
-     */
-    public Jogo(String jogo, Jogador<T> jogador1, Jogador<T> jogador2) throws SQLException {
-        this.baralho = buscaCartasDB(jogo);
+    JogadoresRepository<T> jogadoresRepository;
+    CartasRepository<T> cartasRepository;
+
+
+    public Jogo(String jogo, String usuarioA, String senhaA, String usuarioB, String senhaB) throws SQLException, UsuarioNaoEncontradoException {
+        this.cartasRepository = new CartasRepositoryImpl<>();
+        this.jogadoresRepository = new JogadoresRepositoryImpl<>();
+
+        this.baralho = cartasRepository.buscaCartas(jogo);
         Collections.shuffle(baralho);
-        this.jogador1 = jogador1;
-        this.jogador2 = jogador2;
+
+
+        this.jogador1 = jogadoresRepository.buscaJogador(usuarioA, senhaA);
+        this.jogador2 = jogadoresRepository.buscaJogador(usuarioB, senhaB);
 
         int tamanhoBaralho = baralho.size();
         int metade = tamanhoBaralho / 2;
 
-        jogador1.setCartas(baralho.subList(0, metade));
-        jogador2.setCartas(baralho.subList(metade, tamanhoBaralho));
+        this.jogador1.setCartas(baralho.subList(0, metade));
+        this.jogador2.setCartas(baralho.subList(metade, tamanhoBaralho));
     }
 
-    private ArrayList<T> buscaCartasDB(String jogo) throws SQLException {
-        Connection conexao = null;
-        PreparedStatement query;
-        ResultSet resultSet = null;
+    public ArrayList<T> getBaralho() {
+        return baralho;
+    }
 
-        try {
-            conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/DataLake", "postgres", "FurriSenha");
-            query = conexao.prepareStatement("SELECT * FROM cartas WHERE tipo = ?");
-            query.setString(1, jogo);
-            resultSet = query.executeQuery();
+    public Jogador<T> getJogador1() {
+        return jogador1;
+    }
 
-            ArrayList<T> cartas = new ArrayList<>();
-            if (jogo.equals("Personagem")) {
-                while (resultSet.next()) {
-                    Personagem personagem = new Personagem();
-                    personagem.setNome(resultSet.getString("nome"));
-                    personagem.setImagem(resultSet.getString("imagem"));
-                    personagem.setClassificacao(resultSet.getString("classificacao"));
-                    personagem.setSuperTrunfo(resultSet.getString("super_trunfo"));
-                    personagem.setInteligencia(Integer.valueOf(resultSet.getString("atributo1")));
-                    personagem.setForca(Integer.valueOf(resultSet.getString("atributo2")));
-                    personagem.setCoragem(Integer.valueOf(resultSet.getString("atributo3")));
-                    personagem.setPrimeiraAparicao(Integer.valueOf(resultSet.getString("atributo4")));
-                    personagem.setAltura(Double.valueOf(resultSet.getString("atributo4")));
-
-                    System.out.println(personagem);
-                    cartas.add((T) personagem);
-                }
-
-                System.out.println(cartas.size());
-                return cartas;
-            } else if (jogo.equals("")) {
-                //TODO:
-            }
-            //ResultSet insert = conexao.createStatement().executeQuery("INSERT INTO cartas values (2, 'Personagem', 'Juloia', 'imagem da juloia', true, 100, 30, 73, 2002, 1.70);");
-        } catch (SQLException e) {
-            throw new SQLException("Erro com banco de dados!");
-        } finally {
-            if (conexao != null)
-                conexao.close();
-        }
-
-        return null;
+    public Jogador<T> getJogador2() {
+        return jogador2;
     }
 
     public void addBaralho(ArrayList<T> baralho) {
         this.baralho = baralho;
     }
 
-    public void jogarPersonagem() {
+    /**
+     *
+     * @return retorna o vencedor da partida
+     */
+    public Jogador<T> jogarPersonagem() {
         Scanner sc = new Scanner(System.in);
         int turno = 0;
         boolean continua = true;
@@ -175,7 +152,7 @@ public class Jogo<T> {
             if (jogador1.getCartas().size() == 0 || jogador2.getCartas().size() == 0)
                 continua = false;
         }
+
+        return jogador1.getCartas().size() > 0 ? jogador1 : jogador2;
     }
-
-
 }

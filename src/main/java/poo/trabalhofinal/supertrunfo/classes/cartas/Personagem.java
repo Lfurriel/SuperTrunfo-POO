@@ -2,11 +2,11 @@ package poo.trabalhofinal.supertrunfo.classes.cartas;
 
 
 public class Personagem extends Carta {
-    private Integer inteligencia;
-    private Integer forca;
-    private Integer coragem;
-    private Integer primeiraAparicao;
-    private Double altura;
+    private Integer inteligencia; //Atributo1
+    private Integer forca; //Atributo2
+    private Integer coragem; //Atributo3
+    private Integer primeiraAparicao; //Atributo4
+    private Double altura; //Atributo5
 
     public Personagem () {
     }
