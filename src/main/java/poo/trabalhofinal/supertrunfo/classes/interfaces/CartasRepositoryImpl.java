@@ -55,18 +55,19 @@ public class CartasRepositoryImpl<T> implements CartasRepository {
                 }
 
             } else if (jogo.equals("LinguagensProgramacao")) {
-                LinguagensProgramacao linguagem = new LinguagensProgramacao();
-                linguagem.setNome(resultSet.getString("nome"));
-                linguagem.setImagem(resultSet.getString("imagem"));
-                linguagem.setClassificacao(resultSet.getString("classificacao"));
-                linguagem.setSuperTrunfo(resultSet.getString("super_trunfo"));
-                linguagem.setEscritabilidade(resultSet.getInt("atributo1"));
-                linguagem.setLegibilidade(resultSet.getInt("atributo2"));
-                linguagem.setConfiabilidade(resultSet.getInt("atributo3"));
-                linguagem.setCusto(resultSet.getInt("atributo4"));
-                linguagem.setSalarioSenior(resultSet.getDouble("atributo5"));
-
-                cartas.add((T) linguagem);
+                while (resultSet.next()) {
+                    LinguagensProgramacao linguagem = new LinguagensProgramacao();
+                    linguagem.setNome(resultSet.getString("nome"));
+                    linguagem.setImagem(resultSet.getString("imagem"));
+                    linguagem.setClassificacao(resultSet.getString("classificacao"));
+                    linguagem.setSuperTrunfo(resultSet.getString("super_trunfo"));
+                    linguagem.setEscritabilidade(resultSet.getInt("atributo1"));
+                    linguagem.setLegibilidade(resultSet.getInt("atributo2"));
+                    linguagem.setConfiabilidade(resultSet.getInt("atributo3"));
+                    linguagem.setCusto(resultSet.getInt("atributo4"));
+                    linguagem.setSalarioSenior(resultSet.getDouble("atributo5"));
+                    cartas.add((T) linguagem);
+                }
             } else {
                 throw new JogoException("Jogo " + jogo + " não existe!");
             }
