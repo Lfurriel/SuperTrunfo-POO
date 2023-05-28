@@ -8,7 +8,7 @@ import java.sql.*;
 public class JogadoresRepositoryImpl<T> implements JogadoresRepository {
 
     @Override
-    public Jogador<T> buscaJogador(String usuario, String senha) throws SQLException, UsuarioNaoEncontradoException {
+    public final Jogador<T> buscaJogador(String usuario, String senha) throws SQLException, UsuarioNaoEncontradoException {
         Connection conexao = null;
         PreparedStatement query;
         ResultSet resultSet = null;
@@ -19,8 +19,10 @@ public class JogadoresRepositoryImpl<T> implements JogadoresRepository {
             query = conexao.prepareStatement("SELECT * FROM jogadores WHERE usuario = ?");
             query.setString(1, usuario);
             resultSet = query.executeQuery();
+
             if (resultSet.next()) {
-                jogador.setNome(resultSet.getString("usuario"));
+                String nome = resultSet.getString("usuario");
+                jogador.setNome(nome);
                 jogador.setPontuacao(resultSet.getInt("pontuacao"));
                 //TODO: Adicionar mais campos do jogador, incluindo senha
 
@@ -31,7 +33,7 @@ public class JogadoresRepositoryImpl<T> implements JogadoresRepository {
 
         } catch (SQLException e) {
             if(conexao == null)
-                throw new SQLException("Erro com banco de dados!");
+                throw new SQLException("Erro ao conectar com banco!");
             else
                 throw new SQLException("Erro ao buscar jogador " + usuario);
         } finally {
@@ -41,7 +43,7 @@ public class JogadoresRepositoryImpl<T> implements JogadoresRepository {
     }
 
     @Override
-    public void insereNovoJogador(Jogador novoJogador) throws SQLException {
+    public final void insereNovoJogador(Jogador novoJogador) throws SQLException {
         Connection conexao = null;
         PreparedStatement query;
 
@@ -54,7 +56,7 @@ public class JogadoresRepositoryImpl<T> implements JogadoresRepository {
 
         } catch (SQLException e) {
             if(conexao == null)
-                throw new SQLException("Erro com banco de dados!");
+                throw new SQLException("Erro ao conectar com banco!");
             else
                 throw new SQLException("Erro ao criar jogador!");
         } finally {
@@ -64,7 +66,7 @@ public class JogadoresRepositoryImpl<T> implements JogadoresRepository {
     }
 
     @Override
-    public void updateJogadores(Jogador jogadorA, Jogador jogadorB) throws SQLException {
+    public final void updateJogadores(Jogador jogadorA, Jogador jogadorB) throws SQLException {
         Connection conexao = null;
         PreparedStatement query;
 
@@ -85,7 +87,7 @@ public class JogadoresRepositoryImpl<T> implements JogadoresRepository {
 
         } catch (SQLException e) {
             if(conexao == null)
-                throw new SQLException("Erro com banco de dados!");
+                throw new SQLException("Erro ao conectar com banco!");
             else
                 throw new SQLException("Erro ao atualizar jogadores!");
         } finally {

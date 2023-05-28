@@ -48,6 +48,7 @@ public class Teste {
         novoPersonagem.setAltura(2.4);
 
         CartasRepositoryImpl<Personagem> cartasRepository = new CartasRepositoryImpl<Personagem>();
+
         cartasRepository.insereNovaCarta(novoPersonagem);*/
 
         /* //TESTE NOVO JOGADOR E UPDATE
@@ -59,6 +60,7 @@ public class Teste {
 
         jogador.setPontuacao(999);
         jogadoresRepository.updateJogadores(jogador, jogador);*/
+
 
     }
 }

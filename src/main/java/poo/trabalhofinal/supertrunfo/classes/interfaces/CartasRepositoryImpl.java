@@ -1,13 +1,16 @@
 package poo.trabalhofinal.supertrunfo.classes.interfaces;
 
+import poo.trabalhofinal.supertrunfo.classes.cartas.Gato;
+import poo.trabalhofinal.supertrunfo.classes.cartas.LinguagensProgramacao;
 import poo.trabalhofinal.supertrunfo.classes.cartas.Personagem;
+import poo.trabalhofinal.supertrunfo.classes.exceptions.JogoException;
 
 import java.sql.*;
 import java.util.ArrayList;
 
 public class CartasRepositoryImpl<T> implements CartasRepository {
     @Override
-    public ArrayList<T> buscaCartas(String jogo) throws SQLException {
+    public final ArrayList<T> buscaCartas(String jogo) throws SQLException, JogoException {
         Connection conexao = null;
         PreparedStatement query;
         ResultSet resultSet = null;
@@ -32,30 +35,56 @@ public class CartasRepositoryImpl<T> implements CartasRepository {
                     personagem.setPrimeiraAparicao(Integer.valueOf(resultSet.getString("atributo4")));
                     personagem.setAltura(Double.valueOf(resultSet.getString("atributo4")));
 
-                    System.out.println(personagem);
                     cartas.add((T) personagem);
                 }
 
-                System.out.println(cartas.size());
-                return cartas;
-            } else if (jogo.equals("")) {
-                //TODO:
+            } else if (jogo.equals("Gato")) {
+                while (resultSet.next()) {
+                    Gato gato = new Gato();
+                    gato.setNome(resultSet.getString("nome"));
+                    gato.setImagem(resultSet.getString("imagem"));
+                    gato.setClassificacao(resultSet.getString("classificacao"));
+                    gato.setSuperTrunfo(resultSet.getString("super_trunfo"));
+                    gato.setAgilidade(resultSet.getInt("atributo1"));
+                    gato.setFofura(resultSet.getInt("atributo2"));
+                    gato.setTempoDeVida(resultSet.getInt("atributo3"));
+                    gato.setAgressividade(resultSet.getInt("atributo4"));
+                    gato.setPeso(resultSet.getDouble("atributo5"));
+
+                    cartas.add((T) gato);
+                }
+
+            } else if (jogo.equals("LinguagensProgramacao")) {
+                LinguagensProgramacao linguagem = new LinguagensProgramacao();
+                linguagem.setNome(resultSet.getString("nome"));
+                linguagem.setImagem(resultSet.getString("imagem"));
+                linguagem.setClassificacao(resultSet.getString("classificacao"));
+                linguagem.setSuperTrunfo(resultSet.getString("super_trunfo"));
+                linguagem.setEscritabilidade(resultSet.getInt("atributo1"));
+                linguagem.setLegibilidade(resultSet.getInt("atributo2"));
+                linguagem.setConfiabilidade(resultSet.getInt("atributo3"));
+                linguagem.setCusto(resultSet.getInt("atributo4"));
+                linguagem.setSalarioSenior(resultSet.getDouble("atributo5"));
+
+                cartas.add((T) linguagem);
+            } else {
+                throw new JogoException("Jogo " + jogo + " não existe!");
             }
+
+            return cartas;
         } catch (SQLException e) {
             if (conexao == null)
-                throw new SQLException("Erro com banco de dados!");
+                throw new SQLException("Erro ao conectar com banco!");
             else
                 throw new SQLException("Erro ao buscar cartas!");
         } finally {
             if (conexao != null)
                 conexao.close();
         }
-
-        return null; //TODO: Return null por enquanto que não tem os demais baralhos
     }
 
     @Override
-    public void insereNovaCarta(Personagem novaCarta) throws SQLException {
+    public final void insereNovaCarta(Personagem novaCarta) throws SQLException {
         Connection conexao = null;
         PreparedStatement query;
 
@@ -76,11 +105,9 @@ public class CartasRepositoryImpl<T> implements CartasRepository {
             query.executeUpdate();
         } catch (SQLException e) {
             if (conexao == null)
-                throw new SQLException("Erro com banco de dados!");
+                throw new SQLException("Erro ao conectar com banco!");
             else
                 throw new SQLException("Erro ao cadastrar nova carta!");
-
-
         }
     }
 }
