@@ -33,7 +33,7 @@ public class CartasRepositoryImpl<T> implements CartasRepository {
                     personagem.setForca(Integer.valueOf(resultSet.getString("atributo2")));
                     personagem.setCoragem(Integer.valueOf(resultSet.getString("atributo3")));
                     personagem.setPrimeiraAparicao(Integer.valueOf(resultSet.getString("atributo4")));
-                    personagem.setAltura(Double.valueOf(resultSet.getString("atributo4")));
+                    personagem.setAltura(resultSet.getDouble("atributo5"));
 
                     cartas.add((T) personagem);
                 }
@@ -92,6 +92,7 @@ public class CartasRepositoryImpl<T> implements CartasRepository {
         try {
             conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/DataLake", "postgres", "FurriSenha");
             query = conexao.prepareStatement("INSERT INTO cartas VALUES (nextval('cartas_id_seq'), ?, ?, ?, ?, ?,?, ?, ?, ?, ?)");
+            // id, tipo, nome, imagem, super trunfo, inteligência, força, coragem, primeira aparição, altura, classificação
             query.setString(1, "Personagem");
             query.setString(2, novaCarta.getNome());
             query.setString(3, novaCarta.getImagem());
@@ -109,6 +110,73 @@ public class CartasRepositoryImpl<T> implements CartasRepository {
                 throw new SQLException("Erro ao conectar com banco!");
             else
                 throw new SQLException("Erro ao cadastrar nova carta!");
+        } finally {
+            if (conexao != null)
+                conexao.close();
+        }
+    }
+
+    @Override
+    public final void insereNovaCarta(Gato novaCarta) throws SQLException {
+        Connection conexao = null;
+        PreparedStatement query;
+
+        try {
+            conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/DataLake", "postgres", "FurriSenha");
+            query = conexao.prepareStatement("INSERT INTO cartas VALUES (nextval('cartas_id_seq'), ?, ?, ?, ?, ?,?, ?, ?, ?, ?)");
+            // id, tipo, nome, imagem, super trunfo, agilidade, fofura, tempo de vida, agressividade, peso, classificação
+            query.setString(1, "Gato");
+            query.setString(2, novaCarta.getNome());
+            query.setString(3, novaCarta.getImagem());
+            query.setBoolean(4, novaCarta.isSuperTrunfo());
+            query.setInt(5, novaCarta.getAgilidade());
+            query.setInt(6, novaCarta.getFofura());
+            query.setInt(7, novaCarta.getTempoDeVida());
+            query.setInt(8, novaCarta.getAgressividade());
+            query.setDouble(9, novaCarta.getPeso());
+            query.setString(10, String.valueOf(novaCarta.getClassificacao()));
+
+            query.executeUpdate();
+        } catch (SQLException e) {
+            if (conexao == null)
+                throw new SQLException("Erro ao conectar com banco!");
+            else
+                throw new SQLException("Erro ao cadastrar nova carta!");
+        } finally {
+            if (conexao != null)
+                conexao.close();
+        }
+    }
+
+    @Override
+    public final void insereNovaCarta(LinguagensProgramacao novaCarta) throws SQLException {
+        Connection conexao = null;
+        PreparedStatement query;
+
+        try {
+            conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/DataLake", "postgres", "FurriSenha");
+            query = conexao.prepareStatement("INSERT INTO cartas VALUES (nextval('cartas_id_seq'), ?, ?, ?, ?, ?,?, ?, ?, ?, ?)");
+            // id, tipo, nome, imagem, super trunfo, escritabilidade, legibilidade, confiabilidade, custo, salario senior, classificação
+            query.setString(1, "LinguagensProgramacao");
+            query.setString(2, novaCarta.getNome());
+            query.setString(3, novaCarta.getImagem());
+            query.setBoolean(4, novaCarta.isSuperTrunfo());
+            query.setInt(5, novaCarta.getEscritabilidade());
+            query.setInt(6, novaCarta.getLegibilidade());
+            query.setInt(7, novaCarta.getConfiabilidade());
+            query.setInt(8, novaCarta.getCusto());
+            query.setDouble(9, novaCarta.getSalarioSenior());
+            query.setString(10, String.valueOf(novaCarta.getClassificacao()));
+
+            query.executeUpdate();
+        } catch (SQLException e) {
+            if (conexao == null)
+                throw new SQLException("Erro ao conectar com banco!");
+            else
+                throw new SQLException("Erro ao cadastrar nova carta!");
+        } finally {
+            if (conexao != null)
+                conexao.close();
         }
     }
 }
