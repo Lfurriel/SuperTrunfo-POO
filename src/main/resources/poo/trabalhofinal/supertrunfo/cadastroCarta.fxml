@@ -1,14 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="poo.trabalhofinal.supertrunfo.CadastroCarta"
-            prefHeight="400.0" prefWidth="600.0">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poo.trabalhofinal.supertrunfo.gui.controllers.CadastroCartaController">
+    <AnchorPane fx:id="pane" prefHeight="720.0" prefWidth="1280.0">
+        <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true">
+            <Image url="@gui/addCartas.jpg" />
+        </ImageView>
+        <Button fx:id="adicionar" layoutX="494.0" layoutY="515.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="254.0" style="-fx-background-color: transparent;" text="Adicionar">
+            <font>
+                <Font name="Ubuntu Bold" size="28.0" />
+            </font>
+        </Button>
+        <TextField fx:id="nome" layoutX="269.0" layoutY="244.0" prefHeight="43.0" prefWidth="326.0" promptText="Nome" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Ubuntu" size="24.0" />
+            </font>
+        </TextField>
+        <Label fx:id="alerta" alignment="CENTER" contentDisplay="CENTER" layoutX="319.0" layoutY="124.0" prefHeight="16.0" prefWidth="575.0" textAlignment="CENTER" textFill="#f20b0b">
+            <font>
+                <Font name="Ubuntu" size="18.0" />
+            </font>
+        </Label>
+      <TextField fx:id="caracteristica1" layoutX="269.0" layoutY="345.0" prefHeight="43.0" prefWidth="326.0" promptText="Nome" style="-fx-background-color: transparent;">
+         <font>
+            <Font name="Ubuntu" size="24.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="caracteristica2" layoutX="269.0" layoutY="441.0" prefHeight="43.0" prefWidth="326.0" promptText="Nome" style="-fx-background-color: transparent;">
+         <font>
+            <Font name="Ubuntu" size="24.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="classificacao" layoutX="458.0" layoutY="182.0" prefHeight="43.0" prefWidth="326.0" promptText="Classificação" style="-fx-background-color: transparent;">
+         <font>
+            <Font name="Ubuntu" size="24.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="caracteristica3" layoutX="658.0" layoutY="244.0" prefHeight="43.0" prefWidth="326.0" promptText="Nome" style="-fx-background-color: transparent;">
+         <font>
+            <Font name="Ubuntu" size="24.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="caracteristica4" layoutX="658.0" layoutY="345.0" prefHeight="43.0" prefWidth="326.0" promptText="Nome" style="-fx-background-color: transparent;">
+         <font>
+            <Font name="Ubuntu" size="24.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="caracteristica5" layoutX="658.0" layoutY="441.0" prefHeight="43.0" prefWidth="326.0" promptText="Nome" style="-fx-background-color: transparent;">
+         <font>
+            <Font name="Ubuntu" size="24.0" />
+         </font>
+      </TextField>
 
-</AnchorPane>
+    </AnchorPane>
+</Pane>
