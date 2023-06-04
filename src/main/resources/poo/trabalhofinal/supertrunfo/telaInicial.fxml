@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-
+<?import javafx.scene.text.*?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <AnchorPane prefHeight="720.0" prefWidth="1280.0">
-         <children>
-            <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true">
-               <image>
-                  <Image url="@gui/fundo.jpg" />
-               </image>
-            </ImageView>
-         </children>
-      </AnchorPane>
-   </children>
+   <AnchorPane fx:id="pane" prefHeight="720.0" prefWidth="1280.0">
+      <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true">
+         <Image url="@gui/fundo.jpg" />
+      </ImageView>
+      <Button fx:id="botao" layoutX="1.0" layoutY="3.0" mnemonicParsing="false" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: transparent;" text="Pressione um tecla..." textFill="#c37da5">
+         <font>
+            <Font name="Ubuntu" size="48.0" />
+         </font>
+      </Button>
+   </AnchorPane>
 </Pane>
