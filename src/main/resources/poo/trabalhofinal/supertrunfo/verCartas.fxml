@@ -58,7 +58,7 @@
          </font>
       </Label>
       <Button fx:id="proximo" layoutX="867.0" layoutY="513.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="67.0" style="-fx-background-color: transparent;" />
-      <Label id="alerta" fx:id="classificacao1" alignment="CENTER" layoutX="292.0" layoutY="167.0" prefHeight="29.0" prefWidth="648.0" textAlignment="CENTER" textFill="RED">
+      <Label id="alerta" fx:id="alerta" alignment="CENTER" layoutX="292.0" layoutY="167.0" prefHeight="29.0" prefWidth="648.0" textAlignment="CENTER" textFill="RED">
          <font>
             <Font name="Ubuntu Bold" size="24.0" />
          </font>

@@ -66,56 +66,86 @@ public class VerCartasController implements Initializable {
             query = conexao.prepareStatement("SELECT * FROM cartas WHERE tipo = ?");
             query.setString(1, Arrays.toString(jogo));
             resultSet = query.executeQuery();
-            nome.setText(resultSet.getString("nome"));
-            caminhoImagem = resultSet.getString("imagem");
-            Image img = new Image("file:" + caminhoImagem);
-            imagem.setImage(img);
-            classificacao.setText(resultSet.getString("classificacao"));
-            tipo.setText(resultSet.getString("super_trunfo"));
-            caracteristica1.setText(resultSet.getString("atributo1"));
-            caracteristica2.setText(resultSet.getString("atributo2"));
-            caracteristica3.setText(resultSet.getString("atributo3"));
-            caracteristica4.setText(resultSet.getString("atributo4"));
-            caracteristica5.setText(String.valueOf(resultSet.getDouble("atributo5")));
+            if (resultSet.next()) {
+                nome.setText(resultSet.getString("nome"));
+                caminhoImagem = resultSet.getString("imagem");
+                Image img = new Image("file:" + caminhoImagem);
+                imagem.setImage(img);
+                classificacao.setText(resultSet.getString("classificacao"));
+                tipo.setText(resultSet.getString("super_trunfo"));
+                caracteristica1.setText(resultSet.getString("atributo1"));
+                caracteristica2.setText(resultSet.getString("atributo2"));
+                caracteristica3.setText(resultSet.getString("atributo3"));
+                caracteristica4.setText(resultSet.getString("atributo4"));
+                caracteristica5.setText(String.valueOf(resultSet.getDouble("atributo5")));
+            } else {
+                alerta.setText("Não há cartas.");
+            }
 
-//            while (resultSet.next()) {
-//                nome.setText(resultSet.getString("nome"));
-//                caminhoImagem = resultSet.getString("imagem");
-//                Image img = new Image("file:" + caminhoImagem);
-//                imagem.setImage(img);
-//                classificacao.setText(resultSet.getString("classificacao"));
-//                tipo.setText(resultSet.getString("super_trunfo"));
-//                caracteristica1.setText(resultSet.getString("atributo1"));
-//                caracteristica2.setText(resultSet.getString("atributo2"));
-//                caracteristica3.setText(resultSet.getString("atributo3"));
-//                caracteristica4.setText(resultSet.getString("atributo4"));
-//                caracteristica5.setText(String.valueOf(resultSet.getDouble("atributo5")));
-//            }
-        } catch (SQLException e) {
-            if (conexao == null)
-                alerta.setText("Erro ao conectar com banco!");
-            else
-                alerta.setText("Erro ao buscar cartas!");
-        } finally {
-            if (conexao != null) {
-                try {
-                    conexao.close();
-                } catch (SQLException e) {
-                    alerta.setText(e.getMessage());
+            ResultSet finalResultSet = resultSet;
+            proximo.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    try {
+                        if (finalResultSet.next()) {
+                            i++;
+                            nome.setText(finalResultSet.getString("nome"));
+                            caminhoImagem = finalResultSet.getString("imagem");
+                            Image img = new Image("file:" + caminhoImagem);
+                            imagem.setImage(img);
+                            classificacao.setText(finalResultSet.getString("classificacao"));
+                            tipo.setText(finalResultSet.getString("super_trunfo"));
+                            caracteristica1.setText(finalResultSet.getString("atributo1"));
+                            caracteristica2.setText(finalResultSet.getString("atributo2"));
+                            caracteristica3.setText(finalResultSet.getString("atributo3"));
+                            caracteristica4.setText(finalResultSet.getString("atributo4"));
+                            caracteristica5.setText(String.valueOf(finalResultSet.getDouble("atributo5")));
+                        } else {
+                            alerta.setText("Fim do conjunto de cartas.");
+                        }
+                    } catch (SQLException e) {
+                        alerta.setText("Erro ao buscar a próxima carta: " + e.getMessage());
+                    }
                 }
-            }
-        }
-        proximo.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
+            });
 
-            }
-        });
-        sair.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                DBUtils.changeScene(event, "menu.fxml", "MENU");
-            }
-        });
+            ResultSet finalResultSet1 = resultSet;
+            anterior.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    try {
+                        if (i > 0) {
+                            if (finalResultSet1.previous()) {
+                                i--;
+                                nome.setText(finalResultSet1.getString("nome"));
+                                caminhoImagem = finalResultSet1.getString("imagem");
+                                Image img = new Image("file:" + caminhoImagem);
+                                imagem.setImage(img);
+                                classificacao.setText(finalResultSet1.getString("classificacao"));
+                                tipo.setText(finalResultSet1.getString("super_trunfo"));
+                                caracteristica1.setText(finalResultSet1.getString("atributo1"));
+                                caracteristica2.setText(finalResultSet1.getString("atributo2"));
+                                caracteristica3.setText(finalResultSet1.getString("atributo3"));
+                                caracteristica4.setText(finalResultSet1.getString("atributo4"));
+                                caracteristica5.setText(String.valueOf(finalResultSet1.getDouble("atributo5")));
+                            }
+                        } else {
+                            alerta.setText("Primeira carta do conjunto.");
+                        }
+                    } catch (SQLException e) {
+                        alerta.setText("Erro ao buscar a carta anterior: " + e.getMessage());
+                    }
+                }
+            });
+
+            sair.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    DBUtils.changeScene(event, "menu.fxml", "MENU");
+                }
+            });
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
