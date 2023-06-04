@@ -95,4 +95,9 @@ public class LinguagensProgramacao extends Carta {
         else
             return this.getClassificacao().compareTo(oponente.getClassificacao());
     }
+
+    @Override
+    public String toString() {
+        return "Lingaguem de Programação";
+    }
 }

@@ -40,14 +40,20 @@ public class OpcaoController implements Initializable {
         gatos.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                DBUtils.changeScene(event, "login.fxml", "LOGIN");
+                if(cadastro)
+                    DBUtils.changeScene(event, "cadastroCarta.fxml", "NOVA CARTA", "Gato");
+                else
+                    DBUtils.changeScene(event, "login.fxml", "LOGIN");
             }
         });
 
         linguagemProg.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                DBUtils.changeScene(event, "login.fxml", "LOGIN");
+                if(cadastro)
+                    DBUtils.changeScene(event, "cadastroCarta.fxml", "NOVA CARTA", "Linguagens de Programação");
+                else
+                    DBUtils.changeScene(event, "login.fxml", "LOGIN");
             }
         });
     }

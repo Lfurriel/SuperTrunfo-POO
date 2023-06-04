@@ -8,7 +8,10 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import poo.trabalhofinal.supertrunfo.HelloApplication;
+import poo.trabalhofinal.supertrunfo.classes.Jogo;
+import poo.trabalhofinal.supertrunfo.classes.cartas.Personagem;
 import poo.trabalhofinal.supertrunfo.gui.controllers.CadastroCartaController;
+import poo.trabalhofinal.supertrunfo.gui.controllers.JogoController;
 import poo.trabalhofinal.supertrunfo.gui.controllers.MenuController;
 import poo.trabalhofinal.supertrunfo.gui.controllers.OpcaoController;
 
@@ -16,6 +19,8 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class DBUtils {
+
+
 
     /**
      * Método de mudança de cena
@@ -63,6 +68,8 @@ public class DBUtils {
         stage.setScene(new Scene(root, 1280, 720));
         stage.show();
     }
+
+
     public static void changeScene(ActionEvent event, String fxmlFile, String title, boolean cadastro) {
 
         Parent root = null;

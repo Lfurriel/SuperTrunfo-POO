@@ -91,4 +91,9 @@ public class Gato extends Carta{
         else
             return this.getClassificacao().compareTo(topoOponente.getClassificacao());
     }
+
+    @Override
+    public String toString() {
+        return "Gato";
+    }
 }

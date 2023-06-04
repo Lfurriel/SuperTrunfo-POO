@@ -100,4 +100,9 @@ public class Personagem extends Carta {
             return this.getClassificacao().compareTo(topoOponente.getClassificacao());
         }
     }
+
+    @Override
+    public String toString() {
+        return "Personagem";
+    }
 }
