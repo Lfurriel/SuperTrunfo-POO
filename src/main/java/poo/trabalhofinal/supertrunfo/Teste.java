@@ -4,6 +4,7 @@ import poo.trabalhofinal.supertrunfo.classes.Jogador;
 import poo.trabalhofinal.supertrunfo.classes.Jogo;
 import poo.trabalhofinal.supertrunfo.classes.cartas.Classificacao;
 import poo.trabalhofinal.supertrunfo.classes.cartas.Personagem;
+import poo.trabalhofinal.supertrunfo.classes.exceptions.JogoException;
 import poo.trabalhofinal.supertrunfo.classes.exceptions.UsuarioNaoEncontradoException;
 import poo.trabalhofinal.supertrunfo.classes.interfaces.CartasRepository;
 import poo.trabalhofinal.supertrunfo.classes.interfaces.CartasRepositoryImpl;
@@ -18,13 +19,15 @@ public class Teste {
         Classificacao b = Classificacao.A2;
         System.out.println("a -> b: " + a.compareTo(b));
 
-        /* //TESTE DE UMA PARTIDA
+       /*  //TESTE DE UMA PARTIDA
 
         Jogo<Personagem> partida = null;
         try {
             partida = new Jogo<>("Personagem", "Lfurriel", "senhaA", "Julia", "senhaB");
         } catch (UsuarioNaoEncontradoException e) {
             e.printStackTrace();
+        } catch (JogoException e) {
+            throw new RuntimeException(e);
         }
 
 
@@ -34,7 +37,7 @@ public class Teste {
 
         partida.jogarPersonagem();*/
 
-        /* //TESTE DE CRIAÇÂO DE NOVO PERSONAGEM
+        //TESTE DE CRIAÇÂO DE NOVO PERSONAGEM
         Personagem novoPersonagem = new Personagem();
         novoPersonagem.setNome("Teste");
         novoPersonagem.setImagem("Imagem");
@@ -49,7 +52,7 @@ public class Teste {
 
         CartasRepositoryImpl<Personagem> cartasRepository = new CartasRepositoryImpl<Personagem>();
 
-        cartasRepository.insereNovaCarta(novoPersonagem);*/
+        cartasRepository.insereNovaCarta(novoPersonagem);
 
         /* //TESTE NOVO JOGADOR E UPDATE
         Jogador<Personagem> jogador = new Jogador<>();

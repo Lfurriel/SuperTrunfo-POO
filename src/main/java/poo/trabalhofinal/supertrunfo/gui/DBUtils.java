@@ -1,4 +1,4 @@
-package poo.trabalhofinal.supertrunfo;
+package poo.trabalhofinal.supertrunfo.gui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -6,6 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import poo.trabalhofinal.supertrunfo.HelloApplication;
 
 import java.io.IOException;
 import java.util.Objects;
