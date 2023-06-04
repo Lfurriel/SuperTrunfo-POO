@@ -50,7 +50,7 @@
             <Font name="Ubuntu Bold" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="alerta1" alignment="CENTER" layoutX="164.0" layoutY="169.0" prefHeight="28.0" prefWidth="331.0" textAlignment="CENTER" textFill="#ff4d4d">
+      <Label fx:id="alerta1" alignment="CENTER" layoutX="143.0" layoutY="169.0" prefHeight="28.0" prefWidth="353.0" textAlignment="CENTER" textFill="#ff4d4d">
          <font>
             <Font name="Ubuntu" size="18.0" />
          </font>
