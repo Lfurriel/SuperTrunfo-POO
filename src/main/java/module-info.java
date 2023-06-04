@@ -5,6 +5,7 @@ module com.example.supertrunfo {
 
 
     opens poo.trabalhofinal.supertrunfo to javafx.fxml;
+    opens poo.trabalhofinal.supertrunfo.gui.controllers to javafx.fxml;
     exports poo.trabalhofinal.supertrunfo;
     exports poo.trabalhofinal.supertrunfo.gui.controllers;
     exports poo.trabalhofinal.supertrunfo.classes.cartas;

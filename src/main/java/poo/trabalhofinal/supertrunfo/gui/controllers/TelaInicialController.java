@@ -16,15 +16,14 @@ import java.util.ResourceBundle;
 
 public class TelaInicialController implements Initializable {
 
-    @FXML
-    private Button botao;
+    public AnchorPane pane;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        botao.setOnAction(new EventHandler<ActionEvent>() {
+        pane.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(ActionEvent event) {
-                System.out.println("oioi");
+            public void handle(MouseEvent event) {
+                System.out.println("pane");
             }
         });
     }
