@@ -10,6 +10,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import poo.trabalhofinal.supertrunfo.gui.DBUtils;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,8 +24,9 @@ public class TelaInicialController implements Initializable {
         pane.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                System.out.println("pane");
+                DBUtils.changeScene(event, "menu.fxml", "MENU", true);
             }
         });
+
     }
 }
