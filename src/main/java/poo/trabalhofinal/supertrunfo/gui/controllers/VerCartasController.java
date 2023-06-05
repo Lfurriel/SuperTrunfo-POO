@@ -83,6 +83,7 @@ public class VerCartasController implements Initializable {
         trunfo.setVisible(carta.isSuperTrunfo());
         if (carta instanceof Personagem) {
             //TODO: pegar  os labels depois
+            //todo
         }
     }
 }
