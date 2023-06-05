@@ -44,6 +44,16 @@ public class VerCartasController implements Initializable {
     @FXML
     public Label caracteristica5;
     @FXML
+    public Label c1;
+    @FXML
+    public Label c2;
+    @FXML
+    public Label c3;
+    @FXML
+    public Label c4;
+    @FXML
+    public Label c5;
+    @FXML
     public Label tipo;
     @FXML
     public Button sair;
@@ -78,12 +88,47 @@ public class VerCartasController implements Initializable {
     private void mostrarCartas(Carta carta) {
         nome.setText(carta.getNome());
         classificacao.setText(String.valueOf(carta.getClassificacao()));
-        //TODO:: fazer o label para cada coisa (nome atributo)
         imagem.setImage(new Image(carta.getImagem()));
         trunfo.setVisible(carta.isSuperTrunfo());
         if (carta instanceof Personagem) {
-            //TODO: pegar  os labels depois
-            //todo
+            tipo.setText("Personagem");
+            c1.setText("Inteligência:");
+            c2.setText("Força:");
+            c3.setText("Coragem:");
+            c4.setText("Primeira aparição:");
+            c5.setText("Altura:");
+            nome.setText(carta.getNome());
+            caracteristica1.setText(String.valueOf(((Personagem) carta).getInteligencia()));
+            caracteristica2.setText(String.valueOf(((Personagem) carta).getForca()));
+            caracteristica3.setText(String.valueOf(((Personagem) carta).getCoragem()));
+            caracteristica4.setText(String.valueOf(((Personagem) carta).getPrimeiraAparicao()));
+            caracteristica5.setText(String.valueOf(((Personagem) carta).getAltura()));
+        } else if (carta instanceof Gato) {
+            tipo.setText("Gato");
+            c1.setText("Agilidade:");
+            c2.setText("Fofura:");
+            c3.setText("Tempo de vida:");
+            c4.setText("Agressividade:");
+            c5.setText("Peso:");
+            nome.setText(carta.getNome());
+            caracteristica1.setText(String.valueOf(((Gato) carta).getAgilidade()));
+            caracteristica2.setText(String.valueOf(((Gato) carta).getFofura()));
+            caracteristica3.setText(String.valueOf(((Gato) carta).getTempoDeVida()));
+            caracteristica4.setText(String.valueOf(((Gato) carta).getAgressividade()));
+            caracteristica5.setText(String.valueOf(((Gato) carta).getPeso()));
+        } else {
+            tipo.setText("Linguagem de programação");
+            c1.setText("Escritabilidade:");
+            c2.setText("Legibilidade:");
+            c3.setText("Confiabilidade:");
+            c4.setText("Custo:");
+            c5.setText("Salário Sênior:");
+            nome.setText(carta.getNome());
+            caracteristica1.setText(String.valueOf(((LinguagensProgramacao) carta).getEscritabilidade()));
+            caracteristica2.setText(String.valueOf(((LinguagensProgramacao) carta).getLegibilidade()));
+            caracteristica3.setText(String.valueOf(((LinguagensProgramacao) carta).getConfiabilidade()));
+            caracteristica4.setText(String.valueOf(((LinguagensProgramacao) carta).getCusto()));
+            caracteristica5.setText(String.valueOf(((LinguagensProgramacao) carta).getSalarioSenior()));
         }
     }
 }
