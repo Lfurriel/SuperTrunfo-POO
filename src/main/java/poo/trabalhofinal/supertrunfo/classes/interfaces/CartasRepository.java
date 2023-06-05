@@ -1,5 +1,5 @@
 package poo.trabalhofinal.supertrunfo.classes.interfaces;
-
+import poo.trabalhofinal.supertrunfo.classes.cartas.Carta;
 import poo.trabalhofinal.supertrunfo.classes.cartas.Gato;
 import poo.trabalhofinal.supertrunfo.classes.cartas.LinguagensProgramacao;
 import poo.trabalhofinal.supertrunfo.classes.cartas.Personagem;
@@ -15,4 +15,6 @@ public interface CartasRepository<T> {
     void insereNovaCarta(Personagem novaCarta) throws SQLException;
     void insereNovaCarta(Gato novaCarta) throws SQLException;
     void insereNovaCarta(LinguagensProgramacao novaCarta) throws SQLException;
+
+    ArrayList<Carta> buscaTodasCartas() throws SQLException;
 }

@@ -24,7 +24,7 @@ public class JogadoresRepositoryImpl<T> implements JogadoresRepository {
                 String nome = resultSet.getString("usuario");
                 jogador.setNome(nome);
                 jogador.setPontuacao(resultSet.getInt("pontuacao"));
-                //TODO: Adicionar mais campos do jogador, incluindo senha
+                jogador.setSenha(resultSet.getString("senha"));
 
                 return jogador;
             } else {

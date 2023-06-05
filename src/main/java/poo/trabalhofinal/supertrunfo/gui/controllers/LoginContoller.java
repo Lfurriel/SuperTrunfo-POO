@@ -13,9 +13,11 @@ import poo.trabalhofinal.supertrunfo.classes.Jogo;
 import poo.trabalhofinal.supertrunfo.classes.cartas.Gato;
 import poo.trabalhofinal.supertrunfo.classes.cartas.LinguagensProgramacao;
 import poo.trabalhofinal.supertrunfo.classes.cartas.Personagem;
+import poo.trabalhofinal.supertrunfo.classes.exceptions.InformacaoInvalidaException;
 import poo.trabalhofinal.supertrunfo.classes.exceptions.UsuarioNaoEncontradoException;
 import poo.trabalhofinal.supertrunfo.classes.interfaces.JogadoresRepository;
 import poo.trabalhofinal.supertrunfo.classes.interfaces.JogadoresRepositoryImpl;
+import poo.trabalhofinal.supertrunfo.gui.DBUtils;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -38,60 +40,72 @@ public class LoginContoller implements Initializable {
     public Label alerta1;
     @FXML
     public Label alerta2;
-    String tipo;
-
-    //TODO: crie dois boolenas jogador1Logado e jogador2Logado = false, ao logar seta eles como true
+    private String tipo;
+    private boolean jogadorLogado1 = false;
+    private boolean jogadorLogado2 = false;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         login1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                if(nome1.getText().equals("") || senha1.getText().equals("")) {
-                    alerta1.setText("Todos os campos devem ser preenchidos.");
-                } else {
-                    //TODO faça JogadoresRepository<T> repository = new JogadoresRepositoryImpl<>();
-                    if(tipo.equals("Personagem")) {
-                        JogadoresRepositoryImpl<Personagem> jogador = new JogadoresRepositoryImpl<>(); //TODO não é jogador, e sim repository, com o repository busca um Jogador jogador
-                        try {
-                            jogador.buscaJogador(nome1.getText(), senha1.getText());
-                        } catch (SQLException | UsuarioNaoEncontradoException e) {
-                            alerta1.setText(e.getMessage());
-                        }
-                    } else if (tipo.equals("Gato")) {
-                        JogadoresRepositoryImpl<Gato> jogador = new JogadoresRepositoryImpl<>(); //TODO não é jogador, e sim repository, com o repository busca um Jogador jogador
-                        try {
-                            jogador.buscaJogador(nome1.getText(), senha1.getText());
-                        } catch (SQLException | UsuarioNaoEncontradoException e) {
-                            alerta1.setText(e.getMessage());
-                        }
-                    } else {
-                        JogadoresRepositoryImpl<LinguagensProgramacao> jogador = new JogadoresRepositoryImpl<>(); //TODO não é jogador, e sim repository, com o repository busca um Jogador jogador
-                        try {
-                            jogador.buscaJogador(nome1.getText(), senha1.getText());
-                        } catch (SQLException | UsuarioNaoEncontradoException e) {
-                            alerta1.setText(e.getMessage());
-                        }
-                    }
-
+                try {
+                    validaPreenchidoJogador1();
+                    JogadoresRepository<?> jogadoresRepository;
+                    if (tipo.equals("Personagem"))
+                        jogadoresRepository = new JogadoresRepositoryImpl<Personagem>();
+                    else if (tipo.equals("Gato"))
+                        jogadoresRepository = new JogadoresRepositoryImpl<Gato>();
+                    else
+                        jogadoresRepository = new JogadoresRepositoryImpl<LinguagensProgramacao>();
+                    Jogador<?> jogador1 = jogadoresRepository.buscaJogador(nome1.getText(), senha1.getText());
+                    //TODO: criar um static jogo em DBUtils e set jogados1
+                    jogadorLogado1 = true;
+                    irParaJogo(event);
+                } catch (InformacaoInvalidaException | SQLException | UsuarioNaoEncontradoException e) {
+                    alerta1.setText(e.getMessage());
                 }
+
             }
         });
 
         login2.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                if (nome2.getText().equals("") || senha2.getText().equals("")) {
-                    alerta2.setText("Todos os campos devem ser preenchidos.");
-                } else {
-
+                try {
+                    validaPreenchidoJogador2();
+                    JogadoresRepository<?> jogadoresRepository;
+                    if (tipo.equals("Personagem"))
+                        jogadoresRepository = new JogadoresRepositoryImpl<Personagem>();
+                    else if (tipo.equals("Gato"))
+                        jogadoresRepository = new JogadoresRepositoryImpl<Gato>();
+                    else
+                        jogadoresRepository = new JogadoresRepositoryImpl<LinguagensProgramacao>();
+                    Jogador<?> jogador2 = jogadoresRepository.buscaJogador(nome2.getText(), senha2.getText());
+                    //TODO: criar um static jogo em DBUtils e set jogados2
+                    jogadorLogado2 = true;
+                    irParaJogo(event);
+                } catch (InformacaoInvalidaException | SQLException | UsuarioNaoEncontradoException e) {
+                    alerta2.setText(e.getMessage());
                 }
+
             }
         });
-
-        /*TODO: com as váriaveis de jogadorLogado, faça um método que é chamado depois de clicar em ambos os login1 e 2
-        *  e caso ambos os jogadores estiverem logados DBUtils.changescene...*/
     }
 
+    private void irParaJogo(ActionEvent event) {
+        if (jogadorLogado1 && jogadorLogado2)
+            DBUtils.changeScene(event, "telaJogo.fxml", "JOGO");
+    }
+
+    private void validaPreenchidoJogador1() throws InformacaoInvalidaException {
+        if (nome1.getText().equals("") || senha1.getText().equals(""))
+            throw new InformacaoInvalidaException("Jogador 1, preencha todos os campos");
+    }
+
+    private void validaPreenchidoJogador2() throws InformacaoInvalidaException {
+        if (nome2.getText().equals("") || senha2.getText().equals(""))
+            throw new InformacaoInvalidaException("Jogador 2, preencha todos os campos");
+    }
 
 }

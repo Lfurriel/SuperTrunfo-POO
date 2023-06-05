@@ -6,11 +6,17 @@ import java.util.List;
 
 public class Jogador<T> {
     private String nome;
+    private String senha;
     private Integer pontuacao;
     private List<T> cartas;
 
     public Jogador() {
+    }
 
+    public Jogador(String nome, String senha) {
+        this.nome = nome;
+        this.senha = senha;
+        //TODO: criptografar a senha -> chama da util
     }
 
     public String getNome() {
@@ -19,6 +25,14 @@ public class Jogador<T> {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public Integer getPontuacao() {

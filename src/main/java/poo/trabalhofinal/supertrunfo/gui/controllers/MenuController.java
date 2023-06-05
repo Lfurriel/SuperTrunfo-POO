@@ -45,8 +45,8 @@ public class MenuController implements Initializable {
         novaCarta.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                DBUtils.changeScene(event, "opcao.fxml", "OPÇÕES");
-            } //TODO, faltou informaar que é cadastro, passar true no último parâmetro
+                DBUtils.changeScene(event, "opcao.fxml", "OPÇÕES", true);
+            }
         });
 
         verCartas.setOnAction(new EventHandler<ActionEvent>() {

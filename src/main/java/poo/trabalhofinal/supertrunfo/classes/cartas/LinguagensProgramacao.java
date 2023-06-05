@@ -11,6 +11,16 @@ public class LinguagensProgramacao extends Carta {
     public LinguagensProgramacao() {
     }
 
+    public LinguagensProgramacao(String nome, String imagem, boolean superTrunfo, Classificacao classificacao, Integer escritabilidade,
+                                 Integer legibilidade, Integer confiabilidade, Integer custo, Double salarioSenior) {
+        super(nome, imagem, superTrunfo, classificacao);
+        this.escritabilidade = escritabilidade;
+        this.legibilidade = legibilidade;
+        this.confiabilidade = confiabilidade;
+        this.custo = custo;
+        this.salarioSenior = salarioSenior;
+    }
+
     public Integer getEscritabilidade() {
         return escritabilidade;
     }

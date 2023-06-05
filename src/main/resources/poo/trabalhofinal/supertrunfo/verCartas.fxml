@@ -16,7 +16,10 @@
                 <Font name="Ubuntu Bold" size="28.0" />
             </font>
         </Button>
-      <ImageView fx:id="imagem" fitHeight="168.0" fitWidth="237.0" layoutX="265.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imagem" fitHeight="168.0" fitWidth="237.0" layoutX="265.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@gui/menu.jpg" />
+         </image></ImageView>
       <Label fx:id="classificacao" layoutX="269.0" layoutY="204.0" prefHeight="29.0" prefWidth="210.0">
          <font>
             <Font name="Ubuntu Bold" size="24.0" />
@@ -63,6 +66,11 @@
             <Font name="Ubuntu Bold" size="24.0" />
          </font>
       </Label>
+      <ImageView fx:id="trunfo" fitHeight="54.0" fitWidth="67.0" layoutX="424.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@gui/fundo.jpg" />
+         </image>
+      </ImageView>
 
     </AnchorPane>
 </Pane>
