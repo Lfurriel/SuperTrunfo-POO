@@ -31,7 +31,7 @@ public class MenuController implements Initializable {
         jogar.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                DBUtils.changeScene(event, "opcao.fxml", "OPÇÕES");
+                DBUtils.changeScene(event, "opcao.fxml", "OPÇÕES", false);
             }
         });
 
