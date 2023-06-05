@@ -63,7 +63,7 @@ public class VerCartasController implements Initializable {
 
         try {
             conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/DataLake", "postgres", "FurriSenha");
-            query = conexao.prepareStatement("SELECT * FROM cartas WHERE tipo = ?"); //TODO não irá funcionar, só tira o filtro do WHERE tipo = ?
+            query = conexao.prepareStatement("SELECT * FROM cartas WHERE tipo = ?"); //TODO usa o CartasRepository, falta criar um método de buscaTodasCartas
             query.setString(1, Arrays.toString(jogo));
             resultSet = query.executeQuery();
             if (resultSet.next()) {
