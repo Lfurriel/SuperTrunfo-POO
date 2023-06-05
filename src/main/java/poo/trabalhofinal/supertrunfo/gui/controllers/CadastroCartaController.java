@@ -39,7 +39,7 @@ public class CadastroCartaController implements Initializable {
             caracteristica3.setPromptText("Coragem");
             caracteristica4.setPromptText("Primeira aparição");
             caracteristica5.setPromptText("Altura");
-            this.tipo = "Personagem";
+            this.tipo = "Personagem"; //TODO: this.tipo = tipo, não é melhor?
         } else if (tipo.equals("Gato")) {
             caracteristica1.setPromptText("Agilidade");
             caracteristica2.setPromptText("Fofura");
@@ -64,7 +64,7 @@ public class CadastroCartaController implements Initializable {
             public void handle(ActionEvent event) {
                 if (nome.getText().equals("") || classificacao.getText().equals("") || caracteristica1.getText().equals("")
                 || caracteristica2.getText().equals("") || caracteristica3.getText().equals("") || caracteristica4.getText().equals("")
-                || caracteristica5.getText().equals("")) {
+                || caracteristica5.getText().equals("")) { //TODO talvez fazer um método pra essas validação, muito feio esse monte de ||
                     nome.setText("");
                     classificacao.setText("");
                     caracteristica1.setText("");

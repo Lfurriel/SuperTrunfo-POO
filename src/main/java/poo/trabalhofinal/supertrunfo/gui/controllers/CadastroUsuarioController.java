@@ -29,7 +29,7 @@ public class CadastroUsuarioController implements Initializable {
                 if(nome.getText().equals("") || senha.getText().equals("")) {
                     alerta.setText("Todos os campos devem ser preenchidos.");
                 } else {
-
+                    //TODO: no jogadorrepository ta o cadastro de usário, lembrando que vamos ter que adicionar a coluna 'senha' no banco
                 }
             }
         });

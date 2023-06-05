@@ -14,6 +14,7 @@ import poo.trabalhofinal.supertrunfo.classes.cartas.Gato;
 import poo.trabalhofinal.supertrunfo.classes.cartas.LinguagensProgramacao;
 import poo.trabalhofinal.supertrunfo.classes.cartas.Personagem;
 import poo.trabalhofinal.supertrunfo.classes.exceptions.UsuarioNaoEncontradoException;
+import poo.trabalhofinal.supertrunfo.classes.interfaces.JogadoresRepository;
 import poo.trabalhofinal.supertrunfo.classes.interfaces.JogadoresRepositoryImpl;
 
 import java.net.URL;
@@ -39,6 +40,8 @@ public class LoginContoller implements Initializable {
     public Label alerta2;
     String tipo;
 
+    //TODO: crie dois boolenas jogador1Logado e jogador2Logado = false, ao logar seta eles como true
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         login1.setOnAction(new EventHandler<ActionEvent>() {
@@ -47,22 +50,23 @@ public class LoginContoller implements Initializable {
                 if(nome1.getText().equals("") || senha1.getText().equals("")) {
                     alerta1.setText("Todos os campos devem ser preenchidos.");
                 } else {
+                    //TODO faça JogadoresRepository<T> repository = new JogadoresRepositoryImpl<>();
                     if(tipo.equals("Personagem")) {
-                        JogadoresRepositoryImpl<Personagem> jogador = new JogadoresRepositoryImpl<>();
+                        JogadoresRepositoryImpl<Personagem> jogador = new JogadoresRepositoryImpl<>(); //TODO não é jogador, e sim repository, com o repository busca um Jogador jogador
                         try {
                             jogador.buscaJogador(nome1.getText(), senha1.getText());
                         } catch (SQLException | UsuarioNaoEncontradoException e) {
                             alerta1.setText(e.getMessage());
                         }
                     } else if (tipo.equals("Gato")) {
-                        JogadoresRepositoryImpl<Gato> jogador = new JogadoresRepositoryImpl<>();
+                        JogadoresRepositoryImpl<Gato> jogador = new JogadoresRepositoryImpl<>(); //TODO não é jogador, e sim repository, com o repository busca um Jogador jogador
                         try {
                             jogador.buscaJogador(nome1.getText(), senha1.getText());
                         } catch (SQLException | UsuarioNaoEncontradoException e) {
                             alerta1.setText(e.getMessage());
                         }
                     } else {
-                        JogadoresRepositoryImpl<LinguagensProgramacao> jogador = new JogadoresRepositoryImpl<>();
+                        JogadoresRepositoryImpl<LinguagensProgramacao> jogador = new JogadoresRepositoryImpl<>(); //TODO não é jogador, e sim repository, com o repository busca um Jogador jogador
                         try {
                             jogador.buscaJogador(nome1.getText(), senha1.getText());
                         } catch (SQLException | UsuarioNaoEncontradoException e) {
@@ -84,6 +88,9 @@ public class LoginContoller implements Initializable {
                 }
             }
         });
+
+        /*TODO: com as váriaveis de jogadorLogado, faça um método que é chamado depois de clicar em ambos os login1 e 2
+        *  e caso ambos os jogadores estiverem logados DBUtils.changescene...*/
     }
 
 

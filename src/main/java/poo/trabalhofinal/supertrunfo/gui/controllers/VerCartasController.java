@@ -63,7 +63,7 @@ public class VerCartasController implements Initializable {
 
         try {
             conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/DataLake", "postgres", "FurriSenha");
-            query = conexao.prepareStatement("SELECT * FROM cartas WHERE tipo = ?");
+            query = conexao.prepareStatement("SELECT * FROM cartas WHERE tipo = ?"); //TODO não irá funcionar, só tira o filtro do WHERE tipo = ?
             query.setString(1, Arrays.toString(jogo));
             resultSet = query.executeQuery();
             if (resultSet.next()) {
@@ -91,7 +91,7 @@ public class VerCartasController implements Initializable {
                             i++;
                             nome.setText(finalResultSet.getString("nome"));
                             caminhoImagem = finalResultSet.getString("imagem");
-                            Image img = new Image("file:" + caminhoImagem);
+                            Image img = new Image("file:" + caminhoImagem); //TODO sem "file: +" só a url da imahem
                             imagem.setImage(img);
                             classificacao.setText(finalResultSet.getString("classificacao"));
                             tipo.setText(finalResultSet.getString("super_trunfo"));
@@ -119,7 +119,7 @@ public class VerCartasController implements Initializable {
                                 i--;
                                 nome.setText(finalResultSet1.getString("nome"));
                                 caminhoImagem = finalResultSet1.getString("imagem");
-                                Image img = new Image("file:" + caminhoImagem);
+                                Image img = new Image("file:" + caminhoImagem); //TODO sem "file: +" só a url da imahem
                                 imagem.setImage(img);
                                 classificacao.setText(finalResultSet1.getString("classificacao"));
                                 tipo.setText(finalResultSet1.getString("super_trunfo"));
