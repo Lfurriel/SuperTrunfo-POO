@@ -11,6 +11,16 @@ public class LinguagensProgramacao extends Carta {
     public LinguagensProgramacao() {
     }
 
+    public LinguagensProgramacao(String nome, String imagem, boolean superTrunfo, Classificacao classificacao, Integer escritabilidade,
+                                 Integer legibilidade, Integer confiabilidade, Integer custo, Double salarioSenior) {
+        super(nome, imagem, superTrunfo, classificacao);
+        this.escritabilidade = escritabilidade;
+        this.legibilidade = legibilidade;
+        this.confiabilidade = confiabilidade;
+        this.custo = custo;
+        this.salarioSenior = salarioSenior;
+    }
+
     public Integer getEscritabilidade() {
         return escritabilidade;
     }
@@ -94,5 +104,10 @@ public class LinguagensProgramacao extends Carta {
             return -1;
         else
             return this.getClassificacao().compareTo(oponente.getClassificacao());
+    }
+
+    @Override
+    public String toString() {
+        return "Lingaguem de Programação";
     }
 }

@@ -7,6 +7,19 @@ public class Gato extends Carta{
     private Integer agressividade; //0 a 100
     private Double peso; //em kg
 
+    public Gato(String nome, String imagem, boolean superTrunfo, Classificacao classificacao, Integer agilidade,
+                Integer fofura, Integer tempoDeVida, Integer agressividade, Double peso) {
+        super(nome, imagem, superTrunfo, classificacao);
+        this.agilidade = agilidade;
+        this.fofura = fofura;
+        this.tempoDeVida = tempoDeVida;
+        this.agressividade = agressividade;
+        this.peso = peso;
+    }
+
+    public Gato(){
+    }
+
     public Integer getAgilidade() {
         return agilidade;
     }
@@ -90,5 +103,10 @@ public class Gato extends Carta{
             return -1;
         else
             return this.getClassificacao().compareTo(topoOponente.getClassificacao());
+    }
+
+    @Override
+    public String toString() {
+        return "Gato";
     }
 }

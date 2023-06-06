@@ -11,6 +11,16 @@ public class Personagem extends Carta {
     public Personagem () {
     }
 
+    public Personagem(String nome, String imagem, boolean superTrunfo, Classificacao classificacao, Integer inteligencia,
+                      Integer forca, Integer coragem, Integer primeiraAparicao, Double altura) {
+        super(nome, imagem, superTrunfo, classificacao);
+        this.inteligencia = inteligencia;
+        this.forca = forca;
+        this.coragem = coragem;
+        this.primeiraAparicao = primeiraAparicao;
+        this.altura = altura;
+    }
+
     public Integer getInteligencia() {
         return inteligencia;
     }
@@ -99,5 +109,10 @@ public class Personagem extends Carta {
         } else {
             return this.getClassificacao().compareTo(topoOponente.getClassificacao());
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Personagem";
     }
 }

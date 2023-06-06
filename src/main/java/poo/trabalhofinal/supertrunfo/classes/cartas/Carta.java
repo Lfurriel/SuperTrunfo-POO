@@ -10,6 +10,13 @@ public abstract class Carta {
     public Carta() {
     }
 
+    public Carta(String nome, String imagem, boolean superTrunfo, Classificacao classificacao) {
+        this.nome = nome;
+        this.imagem = imagem;
+        this.superTrunfo = superTrunfo;
+        this.classificacao = classificacao;
+    }
+
     public String getNome() {
         return nome;
     }

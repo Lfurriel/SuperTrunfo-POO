@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poo.trabalhofinal.supertrunfo.gui.controllers.JogoController">
+    <AnchorPane fx:id="pane" prefHeight="720.0" prefWidth="1280.0">
+        <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true">
+            <Image url="@gui/jogo.jpg" />
+        </ImageView>
+        <Label layoutX="286.0" layoutY="102.0" prefHeight="28.0" prefWidth="84.0" text="Usuário 1" textFill="#4aff72">
+            <font>
+                <Font name="Ubuntu Bold" size="18.0" />
+            </font>
+        </Label>
+        <Label layoutX="901.0" layoutY="102.0" prefHeight="28.0" prefWidth="84.0" text="Usuário 2" textFill="#fc2fd9">
+            <font>
+                <Font name="Ubuntu Bold" size="18.0" />
+            </font>
+        </Label>
+        <Label fx:id="alerta1" alignment="CENTER" layoutX="186.0" layoutY="169.0" prefHeight="28.0" prefWidth="302.0" textAlignment="CENTER" textFill="#ff4d4d">
+            <font>
+                <Font name="Ubuntu" size="18.0" />
+            </font>
+        </Label>
+        <Label fx:id="alerta2" contentDisplay="CENTER" layoutX="809.0" layoutY="169.0" prefHeight="28.0" prefWidth="302.0" textAlignment="CENTER" textFill="#ff4d4d">
+            <font>
+                <Font name="Ubuntu" size="18.0" />
+            </font>
+        </Label>
+
+    </AnchorPane>
+</Pane>
