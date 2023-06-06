@@ -77,6 +77,30 @@ public class VerCartasController implements Initializable {
             alerta.setText(e.getMessage());
         }
 
+        proximo.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                if (cartas != null && cartas.size() > 0 && i + 1 < cartas.size())
+                    mostrarCartas(cartas.get(++i));
+                else if (cartas != null && i + 1 >= cartas.size())
+                    alerta.setText("Não tem carta anterior");
+                else
+                    alerta.setText("Erro ao buscar cartas");
+            }
+        });
+
+        anterior.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                if (cartas != null && cartas.size() > 0 && i - 1 >= 0)
+                    mostrarCartas(cartas.get(--i));
+                else if (cartas != null && i - 1 < 0)
+                    alerta.setText("Não tem carta anterior");
+                else
+                    alerta.setText("Erro ao buscar cartas");
+            }
+        });
+
         sair.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {

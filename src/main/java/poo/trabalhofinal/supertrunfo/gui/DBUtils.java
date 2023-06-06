@@ -52,7 +52,9 @@ public class DBUtils {
         Parent root = null;
 
         try {
-            FXMLLoader loader = FXMLLoader.load(Objects.requireNonNull(HelloApplication.class.getResource(fxmlFile)));
+            //FXMLLoader loader = FXMLLoader.load(Objects.requireNonNull(HelloApplication.class.getResource(fxmlFile)));
+            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource(fxmlFile));
+
             root = loader.load();
             CadastroCartaController cadastroCarta = loader.getController();
             cadastroCarta.setDados(tipo);
@@ -74,9 +76,8 @@ public class DBUtils {
 
         Parent root = null;
 
-
             try {
-                FXMLLoader loader = FXMLLoader.load(Objects.requireNonNull(HelloApplication.class.getResource(fxmlFile)));
+                FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource(fxmlFile));
                 root = loader.load();
                 if(cadastro) {
                     OpcaoController opcaoController = loader.getController();
