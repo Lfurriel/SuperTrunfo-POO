@@ -33,11 +33,10 @@ public class DBUtils {
         Parent root = null;
 
         try {
-            root = FXMLLoader.load(Objects.requireNonNull(HelloApplication.class.getResource(fxmlFile)));
-        } catch (IOException e) {
-            e.printStackTrace();
+            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource(fxmlFile));
+            root = loader.load();
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

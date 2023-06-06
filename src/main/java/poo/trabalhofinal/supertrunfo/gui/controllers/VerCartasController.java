@@ -65,6 +65,7 @@ public class VerCartasController implements Initializable {
     public Label alerta;
 
     private static int i = 0;
+
     private ArrayList<Carta> cartas;
 
     @Override

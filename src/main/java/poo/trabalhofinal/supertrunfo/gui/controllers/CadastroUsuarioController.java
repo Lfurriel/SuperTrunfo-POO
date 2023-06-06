@@ -4,17 +4,12 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import poo.trabalhofinal.supertrunfo.classes.Jogador;
-import poo.trabalhofinal.supertrunfo.classes.cartas.Gato;
-import poo.trabalhofinal.supertrunfo.classes.cartas.LinguagensProgramacao;
-import poo.trabalhofinal.supertrunfo.classes.cartas.Personagem;
 import poo.trabalhofinal.supertrunfo.classes.exceptions.InformacaoInvalidaException;
 import poo.trabalhofinal.supertrunfo.classes.interfaces.JogadoresRepository;
 import poo.trabalhofinal.supertrunfo.classes.interfaces.JogadoresRepositoryImpl;
+import poo.trabalhofinal.supertrunfo.gui.DBUtils;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -38,14 +33,13 @@ public class CadastroUsuarioController implements Initializable {
             public void handle(ActionEvent event) {
                 try {
                     validaPreenchidos();
-                    JogadoresRepository<?> jogadoresRepository;
-                    if (tipo.equals("Personagem"))
-                        jogadoresRepository = new JogadoresRepositoryImpl<Personagem>();
-                    else if (tipo.equals("Gato"))
-                        jogadoresRepository = new JogadoresRepositoryImpl<Gato>();
-                    else
-                        jogadoresRepository = new JogadoresRepositoryImpl<LinguagensProgramacao>();
+                    JogadoresRepository<?> jogadoresRepository = new JogadoresRepositoryImpl<>();
                     jogadoresRepository.insereNovoJogador(new Jogador<>(nome.getText(), senha.getText()));
+                    Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+                    alerta.setTitle("CADASTRO DE JOGADOR");
+                    alerta.setContentText("Jogador cadastrado com sucesso");
+                    alerta.showAndWait();
+                    DBUtils.changeScene(event, "menu.fxml", "MENU");
                 } catch (InformacaoInvalidaException | SQLException e) {
                     alerta.setText(e.getMessage());
                 }
