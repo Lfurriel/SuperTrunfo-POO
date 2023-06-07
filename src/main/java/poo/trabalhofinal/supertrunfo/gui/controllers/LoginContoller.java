@@ -4,16 +4,14 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import poo.trabalhofinal.supertrunfo.classes.Jogador;
 import poo.trabalhofinal.supertrunfo.classes.Jogo;
 import poo.trabalhofinal.supertrunfo.classes.cartas.Gato;
 import poo.trabalhofinal.supertrunfo.classes.cartas.LinguagensProgramacao;
 import poo.trabalhofinal.supertrunfo.classes.cartas.Personagem;
 import poo.trabalhofinal.supertrunfo.classes.exceptions.InformacaoInvalidaException;
+import poo.trabalhofinal.supertrunfo.classes.exceptions.JogoException;
 import poo.trabalhofinal.supertrunfo.classes.exceptions.UsuarioNaoEncontradoException;
 import poo.trabalhofinal.supertrunfo.classes.interfaces.JogadoresRepository;
 import poo.trabalhofinal.supertrunfo.classes.interfaces.JogadoresRepositoryImpl;
@@ -43,6 +41,8 @@ public class LoginContoller implements Initializable {
     private String tipo;
     private boolean jogadorLogado1 = false;
     private boolean jogadorLogado2 = false;
+    private Jogador<?> jogador1;
+    private Jogador<?> jogador2;
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
@@ -62,8 +62,7 @@ public class LoginContoller implements Initializable {
                         jogadoresRepository = new JogadoresRepositoryImpl<Gato>();
                     else
                         jogadoresRepository = new JogadoresRepositoryImpl<LinguagensProgramacao>();
-                    Jogador<?> jogador1 = jogadoresRepository.buscaJogador(nome1.getText(), senha1.getText());
-                    //TODO: criar um static jogo em DBUtils e set jogados1
+                    jogador1 = jogadoresRepository.buscaJogador(nome1.getText(), senha1.getText());
 
                     validaJogador2();
 
@@ -94,8 +93,7 @@ public class LoginContoller implements Initializable {
                         jogadoresRepository = new JogadoresRepositoryImpl<Gato>();
                     else
                         jogadoresRepository = new JogadoresRepositoryImpl<LinguagensProgramacao>();
-                    Jogador<?> jogador2 = jogadoresRepository.buscaJogador(nome2.getText(), senha2.getText());
-                    //TODO: criar um static jogo em DBUtils e set jogados2
+                    jogador2 = jogadoresRepository.buscaJogador(nome2.getText(), senha2.getText());
 
                     validaJogador1();
 
@@ -125,8 +123,17 @@ public class LoginContoller implements Initializable {
     }
 
     private void irParaJogo(ActionEvent event) {
-        if (jogadorLogado1 && jogadorLogado2)
-            DBUtils.changeScene(event, "telaJogo.fxml", "JOGO");
+        if (jogadorLogado1 && jogadorLogado2) {
+            try {
+                DBUtils.iniciaJogo(jogador1, jogador2, tipo);
+                DBUtils.changeScene(event, "telaJogo.fxml", "JOGO");
+            } catch (SQLException | JogoException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText(e.getMessage());
+                alert.setTitle("ERRO");
+                alert.showAndWait();
+            }
+        }
     }
 
     private void validaPreenchidoJogador1() throws InformacaoInvalidaException {

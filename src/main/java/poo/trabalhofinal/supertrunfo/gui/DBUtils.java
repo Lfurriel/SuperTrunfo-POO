@@ -8,17 +8,24 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import poo.trabalhofinal.supertrunfo.HelloApplication;
+import poo.trabalhofinal.supertrunfo.classes.Jogador;
 import poo.trabalhofinal.supertrunfo.classes.Jogo;
-import poo.trabalhofinal.supertrunfo.classes.cartas.Personagem;
+import poo.trabalhofinal.supertrunfo.classes.exceptions.JogoException;
 import poo.trabalhofinal.supertrunfo.gui.controllers.*;
 
 import java.io.IOException;
-import java.util.Objects;
+import java.sql.SQLException;
 
 public class DBUtils {
+    private static Jogo jogo;
 
+    public static <T> void iniciaJogo(Jogador<?> jogadorA, Jogador<?> jogadorB, String tipo) throws SQLException, JogoException {
+        jogo = new Jogo(jogadorA, jogadorB, tipo);
+    }
 
-
+    public static Jogo getJogo() {
+        return jogo;
+    }
     /**
      * Método de mudança de cena
      * @param event Botão pressionado

@@ -21,6 +21,21 @@ public class Jogo<T> {
     private Jogador<T> jogador1;
     private Jogador<T> jogador2;
 
+    public Jogo(Jogador<T> jogadorA, Jogador<T> jogadorB, String tipo) throws SQLException, JogoException {
+        jogador1 = jogadorA;
+        jogador2 = jogadorB;
+
+        CartasRepository<T> cartasRepository = new CartasRepositoryImpl<>();
+
+        this.baralho = cartasRepository.buscaCartas(tipo);
+        Collections.shuffle(baralho);
+
+        int tamanhoBaralho = baralho.size();
+        int metade = tamanhoBaralho / 2;
+
+        this.jogador1.setCartas(baralho.subList(0, metade));
+        this.jogador2.setCartas(baralho.subList(metade, tamanhoBaralho));
+    }
     public Jogo(String jogo, String usuarioA, String senhaA, String usuarioB, String senhaB) throws SQLException, UsuarioNaoEncontradoException, JogoException {
         CartasRepository<T> cartasRepository = new CartasRepositoryImpl<>();
         JogadoresRepository<T> jogadoresRepository = new JogadoresRepositoryImpl<>();

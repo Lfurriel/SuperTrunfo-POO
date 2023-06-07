@@ -74,7 +74,6 @@ public class CadastroCartaController implements Initializable {
                 try {
                     validaPreenchidos();
                     validaValores();
-//todo: arrumar esse if e else aqui -> Fazer igual os outros (CadastroUsuarioController)
                     if (tipo.equals("Personagem")) {
                         CartasRepository<Personagem> cartasRepository = new CartasRepositoryImpl<Personagem>();
                         cartasRepository.insereNovaCarta(new Personagem(nome.getText(), image.getText(), false, Util.stringToClassificacao(classificacao.getText()),
