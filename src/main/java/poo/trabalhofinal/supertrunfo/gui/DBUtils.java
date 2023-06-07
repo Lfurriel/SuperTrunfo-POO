@@ -70,7 +70,6 @@ public class DBUtils {
         stage.show();
     }
 
-
     public static void changeScene(ActionEvent event, String fxmlFile, String title, boolean cadastro) {
 
         Parent root = null;
