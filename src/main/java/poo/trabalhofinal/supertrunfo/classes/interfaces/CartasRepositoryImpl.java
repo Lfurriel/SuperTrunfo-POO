@@ -191,14 +191,14 @@ public class CartasRepositoryImpl<T> implements CartasRepository {
 
         try {
             conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/DataLake", "postgres", "FurriSenha");
-            query = conexao.prepareStatement("SELECT * FROM cartas");
+            query = conexao.prepareStatement("SELECT * FROM cartas ORDER BY id");
             resultSet = query.executeQuery();
             String tipo;
             while(resultSet.next()) {
                 tipo = resultSet.getString("tipo");
                 if(tipo.equals("Personagem")) {
                     Personagem personagem = new Personagem();
-                    personagem.setNome(resultSet.getString("nome"));
+                    personagem.setNome(resultSet.getString("nome").toUpperCase());
                     personagem.setImagem(resultSet.getString("imagem"));
                     personagem.setClassificacao(resultSet.getString("classificacao"));
                     personagem.setSuperTrunfo(resultSet.getString("super_trunfo"));
@@ -211,7 +211,7 @@ public class CartasRepositoryImpl<T> implements CartasRepository {
                     cartas.add(personagem);
                 } else if (tipo.equals("Gato")) {
                     Gato gato = new Gato();
-                    gato.setNome(resultSet.getString("nome"));
+                    gato.setNome(resultSet.getString("nome").toUpperCase());
                     gato.setImagem(resultSet.getString("imagem"));
                     gato.setClassificacao(resultSet.getString("classificacao"));
                     gato.setSuperTrunfo(resultSet.getString("super_trunfo"));
@@ -224,7 +224,7 @@ public class CartasRepositoryImpl<T> implements CartasRepository {
                     cartas.add(gato);
                 } else {
                     LinguagensProgramacao linguagem = new LinguagensProgramacao();
-                    linguagem.setNome(resultSet.getString("nome"));
+                    linguagem.setNome(resultSet.getString("nome").toUpperCase());
                     linguagem.setImagem(resultSet.getString("imagem"));
                     linguagem.setClassificacao(resultSet.getString("classificacao"));
                     linguagem.setSuperTrunfo(resultSet.getString("super_trunfo"));

@@ -22,6 +22,7 @@ import java.net.URL;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.ResourceBundle;
 
 public class VerCartasController implements Initializable {
@@ -84,7 +85,7 @@ public class VerCartasController implements Initializable {
                 if (cartas != null && cartas.size() > 0 && i + 1 < cartas.size())
                     mostrarCartas(cartas.get(++i));
                 else if (cartas != null && i + 1 >= cartas.size())
-                    alerta.setText("Não tem carta anterior");
+                    alerta.setText("Não tem carta posterior");
                 else
                     alerta.setText("Erro ao buscar cartas");
             }
@@ -111,9 +112,15 @@ public class VerCartasController implements Initializable {
     }
 
     private void mostrarCartas(Carta carta) {
-        nome.setText(carta.getNome());
+        alerta.setText("");
+        String nomeCarta = carta.getNome().toUpperCase();
+        nome.setText(nomeCarta);
         classificacao.setText(String.valueOf(carta.getClassificacao()));
-        imagem.setImage(new Image(carta.getImagem()));
+        try {
+            imagem.setImage(new Image(carta.getImagem()));
+        } catch (Exception e) {
+            alerta.setText("Erro ao carregar imagem");
+        }
         trunfo.setVisible(carta.isSuperTrunfo());
         if (carta instanceof Personagem) {
             tipo.setText("Personagem");
