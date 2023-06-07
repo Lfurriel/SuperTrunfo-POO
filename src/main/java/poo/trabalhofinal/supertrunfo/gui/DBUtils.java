@@ -18,14 +18,21 @@ import java.sql.SQLException;
 
 public class DBUtils {
     private static Jogo jogo;
+    private static String tipoJogo;
 
     public static <T> void iniciaJogo(Jogador<?> jogadorA, Jogador<?> jogadorB, String tipo) throws SQLException, JogoException {
         jogo = new Jogo(jogadorA, jogadorB, tipo);
+        tipoJogo = tipo;
     }
 
     public static Jogo getJogo() {
         return jogo;
     }
+
+    public static String getTipoJogo() {
+        return tipoJogo;
+    }
+
     /**
      * Método de mudança de cena
      * @param event Botão pressionado
