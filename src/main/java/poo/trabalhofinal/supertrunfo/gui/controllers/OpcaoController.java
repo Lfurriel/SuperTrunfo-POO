@@ -31,9 +31,9 @@ public class OpcaoController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 if (cadastro)
-                    DBUtils.changeScene(event, "cadastroCarta.fxml", "NOVA CARTA", "Personagem");
+                    DBUtils.changeScene(event, "cadastroCarta.fxml", "NOVA CARTA", "Personagem", true);
                 else
-                    DBUtils.changeScene(event, "login.fxml", "LOGIN");
+                    DBUtils.changeScene(event, "login.fxml", "LOGIN",  "Personagem", false);
             }
         });
 
@@ -41,9 +41,9 @@ public class OpcaoController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 if(cadastro)
-                    DBUtils.changeScene(event, "cadastroCarta.fxml", "NOVA CARTA", "Gato");
+                    DBUtils.changeScene(event, "cadastroCarta.fxml", "NOVA CARTA", "Gato", true);
                 else
-                    DBUtils.changeScene(event, "login.fxml", "LOGIN");
+                    DBUtils.changeScene(event, "login.fxml", "LOGIN", "Gato", false);
             }
         });
 
@@ -51,9 +51,9 @@ public class OpcaoController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 if(cadastro)
-                    DBUtils.changeScene(event, "cadastroCarta.fxml", "NOVA CARTA", "Linguagens de Programação");
+                    DBUtils.changeScene(event, "cadastroCarta.fxml", "NOVA CARTA", "Linguagens de Programação", true);
                 else
-                    DBUtils.changeScene(event, "login.fxml", "LOGIN");
+                    DBUtils.changeScene(event, "login.fxml", "LOGIN", "Linguagens de Programação", false);
             }
         });
     }

@@ -24,8 +24,6 @@ public class CadastroUsuarioController implements Initializable {
     public Button cadastrar;
     @FXML
     public Label alerta;
-    private String tipo;
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         cadastrar.setOnAction(new EventHandler<ActionEvent>() {

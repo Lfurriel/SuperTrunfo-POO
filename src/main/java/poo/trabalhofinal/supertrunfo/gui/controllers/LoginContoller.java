@@ -44,6 +44,10 @@ public class LoginContoller implements Initializable {
     private boolean jogadorLogado1 = false;
     private boolean jogadorLogado2 = false;
 
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         login1.setOnAction(new EventHandler<ActionEvent>() {
@@ -60,7 +64,15 @@ public class LoginContoller implements Initializable {
                         jogadoresRepository = new JogadoresRepositoryImpl<LinguagensProgramacao>();
                     Jogador<?> jogador1 = jogadoresRepository.buscaJogador(nome1.getText(), senha1.getText());
                     //TODO: criar um static jogo em DBUtils e set jogados1
+
+                    validaJogador2();
+
                     jogadorLogado1 = true;
+                    login1.setDisable(true);
+                    nome1.setDisable(true);
+                    senha1.setDisable(true);
+                    alerta1.setText("JOGADOR 1 LOGADO");
+
                     irParaJogo(event);
                 } catch (InformacaoInvalidaException | SQLException | UsuarioNaoEncontradoException e) {
                     alerta1.setText(e.getMessage());
@@ -74,6 +86,7 @@ public class LoginContoller implements Initializable {
             public void handle(ActionEvent event) {
                 try {
                     validaPreenchidoJogador2();
+
                     JogadoresRepository<?> jogadoresRepository;
                     if (tipo.equals("Personagem"))
                         jogadoresRepository = new JogadoresRepositoryImpl<Personagem>();
@@ -83,7 +96,15 @@ public class LoginContoller implements Initializable {
                         jogadoresRepository = new JogadoresRepositoryImpl<LinguagensProgramacao>();
                     Jogador<?> jogador2 = jogadoresRepository.buscaJogador(nome2.getText(), senha2.getText());
                     //TODO: criar um static jogo em DBUtils e set jogados2
+
+                    validaJogador1();
+
                     jogadorLogado2 = true;
+                    login2.setDisable(true);
+                    nome2.setDisable(true);
+                    senha2.setDisable(true);
+                    alerta2.setText("JOGADOR 2 LOGADO");
+
                     irParaJogo(event);
                 } catch (InformacaoInvalidaException | SQLException | UsuarioNaoEncontradoException e) {
                     alerta2.setText(e.getMessage());
@@ -91,6 +112,16 @@ public class LoginContoller implements Initializable {
 
             }
         });
+    }
+
+    private void validaJogador1() throws InformacaoInvalidaException {
+        if (jogadorLogado1 && nome1.getText().equals(nome2.getText()))
+            throw new InformacaoInvalidaException("Você não pode jogar contra si mesmo");
+    }
+
+    private void validaJogador2() throws InformacaoInvalidaException {
+        if (jogadorLogado2 && nome2.getText().equals(nome1.getText()))
+            throw new InformacaoInvalidaException("Você não pode jogar contra si mesmo");
     }
 
     private void irParaJogo(ActionEvent event) {

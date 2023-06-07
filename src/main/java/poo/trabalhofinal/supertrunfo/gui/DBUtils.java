@@ -10,10 +10,7 @@ import javafx.stage.Stage;
 import poo.trabalhofinal.supertrunfo.HelloApplication;
 import poo.trabalhofinal.supertrunfo.classes.Jogo;
 import poo.trabalhofinal.supertrunfo.classes.cartas.Personagem;
-import poo.trabalhofinal.supertrunfo.gui.controllers.CadastroCartaController;
-import poo.trabalhofinal.supertrunfo.gui.controllers.JogoController;
-import poo.trabalhofinal.supertrunfo.gui.controllers.MenuController;
-import poo.trabalhofinal.supertrunfo.gui.controllers.OpcaoController;
+import poo.trabalhofinal.supertrunfo.gui.controllers.*;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -46,7 +43,7 @@ public class DBUtils {
         stage.show();
     }
 
-    public static void changeScene(ActionEvent event, String fxmlFile, String title, String tipo) {
+    public static void changeScene(ActionEvent event, String fxmlFile, String title, String tipo, boolean cadastro) {
 
         Parent root = null;
 
@@ -55,8 +52,13 @@ public class DBUtils {
             FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource(fxmlFile));
 
             root = loader.load();
-            CadastroCartaController cadastroCarta = loader.getController();
-            cadastroCarta.setDados(tipo);
+            if(cadastro) {
+                CadastroCartaController cadastroCarta = loader.getController();
+                cadastroCarta.setDados(tipo);
+            } else {
+                LoginContoller loginContoller = loader.getController();
+                loginContoller.setTipo(tipo);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         } catch (Exception e) {

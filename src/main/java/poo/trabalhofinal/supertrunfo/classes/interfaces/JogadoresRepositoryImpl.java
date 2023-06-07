@@ -26,6 +26,8 @@ public class JogadoresRepositoryImpl<T> implements JogadoresRepository {
                 jogador.setPontuacao(resultSet.getInt("pontuacao"));
                 jogador.setSenha(resultSet.getString("senha"));
 
+                //TODO: decodificar a senha bonita que vc ta a 5 meses ja pra fazer essa porra e então validar se ta correto
+
                 return jogador;
             } else {
                 throw new UsuarioNaoEncontradoException("Usuário " + usuario + " não encontrado!");
