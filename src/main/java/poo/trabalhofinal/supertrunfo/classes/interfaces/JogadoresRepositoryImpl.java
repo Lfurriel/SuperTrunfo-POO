@@ -49,14 +49,17 @@ public class JogadoresRepositoryImpl<T> implements JogadoresRepository {
 
         try {
             conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/DataLake", "postgres", "FurriSenha");
-            query = conexao.prepareStatement("INSERT INTO jogadores VALUES (nextval('jogadores_id_seq'), ?, ?)");
+            query = conexao.prepareStatement("INSERT INTO jogadores VALUES (nextval('jogadores_id_seq'), ?, ?, ?)");
             query.setString(1, novoJogador.getNome());
             query.setInt(2, 0);
+            query.setString(3, novoJogador.getSenha());
             query.executeUpdate();
 
         } catch (SQLException e) {
             if(conexao == null)
                 throw new SQLException("Erro ao conectar com banco!");
+            else if (e.getMessage().contains("duplicate key"))
+                throw new SQLException("Jogador já existe");
             else
                 throw new SQLException("Erro ao criar jogador!");
         } finally {
