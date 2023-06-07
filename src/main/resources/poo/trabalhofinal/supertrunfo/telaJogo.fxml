@@ -5,9 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0"
-      xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="poo.trabalhofinal.supertrunfo.gui.controllers.JogoController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poo.trabalhofinal.supertrunfo.gui.controllers.JogoController">
     <AnchorPane prefHeight="720.0" prefWidth="1280.0">
         <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true">
             <Image url="@gui/jogo.jpg" />
@@ -29,186 +27,187 @@
         </Label>
         <ImageView fx:id="imagemA" fitHeight="200.0" fitWidth="250.0" layoutX="238.0" layoutY="210.0"
                    pickOnBounds="true" preserveRatio="true">
-            <Image url=""/>
+            <Image url="@gui/jogo.jpg"/>
         </ImageView>
-      <Label fx:id="classificacaoA" alignment="CENTER" layoutX="142.0" layoutY="141.0" prefHeight="28.0" prefWidth="51.0" text="A2" textAlignment="CENTER" textFill="#ff764d">
-         <font>
-            <Font name="Ubuntu Bold" size="18.0" />
-         </font>
-      </Label>
-      <Label fx:id="qtdCartasA" alignment="CENTER" layoutX="470.0" layoutY="141.0" prefHeight="28.0" prefWidth="51.0" text="23" textAlignment="CENTER">
-         <font>
-            <Font name="Ubuntu Bold" size="18.0" />
-         </font>
-      </Label>
-      <Button fx:id="b_caracteristicaA1" layoutX="197.0" layoutY="414.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="284.0" style="-fx-background-color: #ebd8d8;" textFill="#ebd8d8">
-         <font>
-            <Font name="Ubuntu Bold" size="18.0" />
-         </font>
-      </Button>
-      <Label fx:id="valorA1" alignment="CENTER_RIGHT" layoutX="413.0" layoutY="417.0" prefHeight="28.0" prefWidth="51.0" text="90" textAlignment="CENTER">
-         <font>
-            <Font name="Ubuntu Bold" size="18.0" />
-         </font>
-      </Label>
-      <Label fx:id="caracteristicaA1" layoutX="213.0" layoutY="417.0" prefHeight="28.0" prefWidth="220.0" text="Escritabilidade:" textAlignment="CENTER">
-         <font>
-            <Font name="Ubuntu Bold" size="18.0" />
-         </font>
-      </Label>
-      <Button fx:id="b_caracteristicaA2" layoutX="196.0" layoutY="454.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="284.0" style="-fx-background-color: #ebd8d8;" textFill="#ebd8d8">
-         <font>
-            <Font name="Ubuntu Bold" size="18.0" />
-         </font>
-      </Button>
-      <Label fx:id="valorA2" alignment="CENTER_RIGHT" layoutX="412.0" layoutY="457.0" prefHeight="28.0" prefWidth="51.0" text="90" textAlignment="CENTER">
-         <font>
-            <Font name="Ubuntu Bold" size="18.0" />
-         </font>
-      </Label>
-      <Label fx:id="caracteristicaA2" layoutX="212.0" layoutY="457.0" prefHeight="28.0" prefWidth="220.0" text="Legibilidade:" textAlignment="CENTER">
-         <font>
-            <Font name="Ubuntu Bold" size="18.0" />
-         </font>
-      </Label>
-      <Button fx:id="b_caracteristicaA3" layoutX="196.0" layoutY="494.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="284.0" style="-fx-background-color: #ebd8d8;" textFill="#ebd8d8">
-         <font>
-            <Font name="Ubuntu Bold" size="18.0" />
-         </font>
-      </Button>
-      <Label fx:id="valorA3" alignment="CENTER_RIGHT" layoutX="412.0" layoutY="497.0" prefHeight="28.0" prefWidth="51.0" text="120" textAlignment="CENTER">
-         <font>
-            <Font name="Ubuntu Bold" size="18.0" />
-         </font>
-      </Label>
-      <Label fx:id="caracteristicaA3" layoutX="212.0" layoutY="497.0" prefHeight="28.0" prefWidth="220.0" text="Tempo de vida:" textAlignment="CENTER">
-         <font>
-            <Font name="Ubuntu Bold" size="18.0" />
-         </font>
-      </Label>
-      <Button fx:id="b_caracteristicaA4" layoutX="196.0" layoutY="534.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="284.0" style="-fx-background-color: #ebd8d8;" textFill="#ebd8d8">
-         <font>
-            <Font name="Ubuntu Bold" size="18.0" />
-         </font>
-      </Button>
-      <Label fx:id="valorA4" alignment="CENTER_RIGHT" layoutX="412.0" layoutY="537.0" prefHeight="28.0" prefWidth="51.0" text="2012" textAlignment="CENTER">
-         <font>
-            <Font name="Ubuntu Bold" size="18.0" />
-         </font>
-      </Label>
-      <Label fx:id="caracteristicaA4" layoutX="212.0" layoutY="537.0" prefHeight="28.0" prefWidth="220.0" text="Primeira apariçao:" textAlignment="CENTER">
-         <font>
-            <Font name="Ubuntu Bold" size="18.0" />
-         </font>
-      </Label>
-      <Button fx:id="b_caracteristicaA5" layoutX="196.0" layoutY="574.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="284.0" style="-fx-background-color: #ebd8d8;" textFill="#ebd8d8">
-         <font>
-            <Font name="Ubuntu Bold" size="18.0" />
-         </font>
-      </Button>
-      <Label fx:id="valorA5" alignment="CENTER_RIGHT" layoutX="333.0" layoutY="577.0" prefHeight="28.0" prefWidth="130.0" text="R$ 130000,00" textAlignment="CENTER">
-         <font>
-            <Font name="Ubuntu Bold" size="18.0" />
-         </font>
-      </Label>
-      <Label fx:id="caracteristicaA5" layoutX="212.0" layoutY="577.0" prefHeight="28.0" prefWidth="220.0" text="Salario senior:" textAlignment="CENTER">
-         <font>
-            <Font name="Ubuntu Bold" size="18.0" />
-         </font>
-      </Label>
+        <Label fx:id="classificacaoA" alignment="CENTER" layoutX="142.0" layoutY="141.0" prefHeight="28.0" prefWidth="51.0" text="A2" textAlignment="CENTER" textFill="#ff764d">
+            <font>
+                <Font name="Ubuntu Bold" size="18.0" />
+            </font>
+        </Label>
+        <Label fx:id="qtdCartasA" alignment="CENTER" layoutX="470.0" layoutY="141.0" prefHeight="28.0" prefWidth="51.0" text="23" textAlignment="CENTER">
+            <font>
+                <Font name="Ubuntu Bold" size="18.0" />
+            </font>
+        </Label>
+        <Button fx:id="b_caracteristicaA1" layoutX="197.0" layoutY="414.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="284.0" style="-fx-background-color: #ebd8d8;" textFill="#ebd8d8">
+            <font>
+                <Font name="Ubuntu Bold" size="18.0" />
+            </font>
+        </Button>
+        <Label fx:id="valorA1" alignment="CENTER_RIGHT" layoutX="413.0" layoutY="417.0" prefHeight="28.0" prefWidth="51.0" text="90" textAlignment="CENTER">
+            <font>
+                <Font name="Ubuntu Bold" size="18.0" />
+            </font>
+        </Label>
+        <Label fx:id="caracteristicaA1" layoutX="213.0" layoutY="417.0" prefHeight="28.0" prefWidth="220.0" text="Escritabilidade:" textAlignment="CENTER">
+            <font>
+                <Font name="Ubuntu Bold" size="18.0" />
+            </font>
+        </Label>
+        <Button fx:id="b_caracteristicaA2" layoutX="196.0" layoutY="454.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="284.0" style="-fx-background-color: #ebd8d8;" textFill="#ebd8d8">
+            <font>
+                <Font name="Ubuntu Bold" size="18.0" />
+            </font>
+        </Button>
+        <Label fx:id="valorA2" alignment="CENTER_RIGHT" layoutX="412.0" layoutY="457.0" prefHeight="28.0" prefWidth="51.0" text="90" textAlignment="CENTER">
+            <font>
+                <Font name="Ubuntu Bold" size="18.0" />
+            </font>
+        </Label>
+        <Label fx:id="caracteristicaA2" layoutX="212.0" layoutY="457.0" prefHeight="28.0" prefWidth="220.0" text="Legibilidade:" textAlignment="CENTER">
+            <font>
+                <Font name="Ubuntu Bold" size="18.0" />
+            </font>
+        </Label>
+        <Button fx:id="b_caracteristicaA3" layoutX="196.0" layoutY="494.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="284.0" style="-fx-background-color: #ebd8d8;" textFill="#ebd8d8">
+            <font>
+                <Font name="Ubuntu Bold" size="18.0" />
+            </font>
+        </Button>
+        <Label fx:id="valorA3" alignment="CENTER_RIGHT" layoutX="412.0" layoutY="497.0" prefHeight="28.0" prefWidth="51.0" text="120" textAlignment="CENTER">
+            <font>
+                <Font name="Ubuntu Bold" size="18.0" />
+            </font>
+        </Label>
+        <Label fx:id="caracteristicaA3" layoutX="212.0" layoutY="497.0" prefHeight="28.0" prefWidth="220.0" text="Tempo de vida:" textAlignment="CENTER">
+            <font>
+                <Font name="Ubuntu Bold" size="18.0" />
+            </font>
+        </Label>
+        <Button fx:id="b_caracteristicaA4" layoutX="196.0" layoutY="534.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="284.0" style="-fx-background-color: #ebd8d8;" textFill="#ebd8d8">
+            <font>
+                <Font name="Ubuntu Bold" size="18.0" />
+            </font>
+        </Button>
+        <Label fx:id="valorA4" alignment="CENTER_RIGHT" layoutX="412.0" layoutY="537.0" prefHeight="28.0" prefWidth="51.0" text="2012" textAlignment="CENTER">
+            <font>
+                <Font name="Ubuntu Bold" size="18.0" />
+            </font>
+        </Label>
+        <Label fx:id="caracteristicaA4" layoutX="212.0" layoutY="537.0" prefHeight="28.0" prefWidth="220.0" text="Primeira apariçao:" textAlignment="CENTER">
+            <font>
+                <Font name="Ubuntu Bold" size="18.0" />
+            </font>
+        </Label>
+        <Button fx:id="b_caracteristicaA5" layoutX="196.0" layoutY="574.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="284.0" style="-fx-background-color: #ebd8d8;" textFill="#ebd8d8">
+            <font>
+                <Font name="Ubuntu Bold" size="18.0" />
+            </font>
+        </Button>
+        <Label fx:id="valorA5" alignment="CENTER_RIGHT" layoutX="333.0" layoutY="577.0" prefHeight="28.0" prefWidth="130.0" text="R$ 130000,00" textAlignment="CENTER">
+            <font>
+                <Font name="Ubuntu Bold" size="18.0" />
+            </font>
+        </Label>
+        <Label fx:id="caracteristicaA5" layoutX="212.0" layoutY="577.0" prefHeight="28.0" prefWidth="220.0" text="Salario senior:" textAlignment="CENTER">
+            <font>
+                <Font name="Ubuntu Bold" size="18.0" />
+            </font>
+        </Label>
         <ImageView fx:id="imagemB" fitHeight="200.0" fitWidth="250.0" layoutX="859.0" layoutY="210.0"
                    pickOnBounds="true" preserveRatio="true">
-            <Image url=""/>
+            <Image url="@gui/jogo.jpg"/>
         </ImageView>
-      <Label fx:id="classificacaoB" alignment="CENTER" layoutX="763.0" layoutY="141.0" prefHeight="28.0" prefWidth="51.0" text="A2" textAlignment="CENTER" textFill="#ff764d">
-         <font>
-            <Font name="Ubuntu Bold" size="18.0" />
-         </font>
-      </Label>
-      <Label fx:id="qtdCartasB" alignment="CENTER" layoutX="1091.0" layoutY="141.0" prefHeight="28.0" prefWidth="51.0" text="23" textAlignment="CENTER">
-         <font>
-            <Font name="Ubuntu Bold" size="18.0" />
-         </font>
-      </Label>
-      <Button fx:id="b_caracteristicaB1" layoutX="818.0" layoutY="414.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="284.0" style="-fx-background-color: #ebd8d8;" textFill="#ebd8d8">
-         <font>
-            <Font name="Ubuntu Bold" size="18.0" />
-         </font>
-      </Button>
-      <Label fx:id="valorB1" alignment="CENTER_RIGHT" layoutX="1034.0" layoutY="417.0" prefHeight="28.0" prefWidth="51.0" text="90" textAlignment="CENTER">
-         <font>
-            <Font name="Ubuntu Bold" size="18.0" />
-         </font>
-      </Label>
-      <Label fx:id="caracteristicaB1" layoutX="834.0" layoutY="417.0" prefHeight="28.0" prefWidth="220.0" text="Escritabilidade:" textAlignment="CENTER">
-         <font>
-            <Font name="Ubuntu Bold" size="18.0" />
-         </font>
-      </Label>
-      <Button fx:id="b_caracteristicaB2" layoutX="817.0" layoutY="454.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="284.0" style="-fx-background-color: #ebd8d8;" textFill="#ebd8d8">
-         <font>
-            <Font name="Ubuntu Bold" size="18.0" />
-         </font>
-      </Button>
-      <Label fx:id="valorB2" alignment="CENTER_RIGHT" layoutX="1033.0" layoutY="457.0" prefHeight="28.0" prefWidth="51.0" text="90" textAlignment="CENTER">
-         <font>
-            <Font name="Ubuntu Bold" size="18.0" />
-         </font>
-      </Label>
-      <Label fx:id="caracteristicaB2" layoutX="833.0" layoutY="457.0" prefHeight="28.0" prefWidth="220.0" text="Legibilidade:" textAlignment="CENTER">
-         <font>
-            <Font name="Ubuntu Bold" size="18.0" />
-         </font>
-      </Label>
-      <Button fx:id="b_caracteristicaB3" layoutX="817.0" layoutY="494.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="284.0" style="-fx-background-color: #ebd8d8;" textFill="#ebd8d8">
-         <font>
-            <Font name="Ubuntu Bold" size="18.0" />
-         </font>
-      </Button>
-      <Label fx:id="valorB3" alignment="CENTER_RIGHT" layoutX="1033.0" layoutY="497.0" prefHeight="28.0" prefWidth="51.0" text="120" textAlignment="CENTER">
-         <font>
-            <Font name="Ubuntu Bold" size="18.0" />
-         </font>
-      </Label>
-      <Label fx:id="caracteristicaB3" layoutX="833.0" layoutY="497.0" prefHeight="28.0" prefWidth="220.0" text="Tempo de vida:" textAlignment="CENTER">
-         <font>
-            <Font name="Ubuntu Bold" size="18.0" />
-         </font>
-      </Label>
-      <Button fx:id="b_caracteristicaB4" layoutX="817.0" layoutY="534.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="284.0" style="-fx-background-color: #ebd8d8;" textFill="#ebd8d8">
-         <font>
-            <Font name="Ubuntu Bold" size="18.0" />
-         </font>
-      </Button>
-      <Label fx:id="valorB4" alignment="CENTER_RIGHT" layoutX="1033.0" layoutY="537.0" prefHeight="28.0" prefWidth="51.0" text="2012" textAlignment="CENTER">
-         <font>
-            <Font name="Ubuntu Bold" size="18.0" />
-         </font>
-      </Label>
-      <Label fx:id="caracteristicaB4" layoutX="833.0" layoutY="537.0" prefHeight="28.0" prefWidth="220.0" text="Primeira apariçao:" textAlignment="CENTER">
-         <font>
-            <Font name="Ubuntu Bold" size="18.0" />
-         </font>
-      </Label>
-      <Button fx:id="b_caracteristicaB5" layoutX="817.0" layoutY="574.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="284.0" style="-fx-background-color: #ebd8d8;" textFill="#ebd8d8">
-         <font>
-            <Font name="Ubuntu Bold" size="18.0" />
-         </font>
-      </Button>
-      <Label fx:id="valorB5" alignment="CENTER_RIGHT" layoutX="954.0" layoutY="577.0" prefHeight="28.0" prefWidth="130.0" text="R$ 130000,00" textAlignment="CENTER">
-         <font>
-            <Font name="Ubuntu Bold" size="18.0" />
-         </font>
-      </Label>
-      <Label fx:id="caracteristicaB5" layoutX="833.0" layoutY="577.0" prefHeight="28.0" prefWidth="220.0" text="Salario senior:" textAlignment="CENTER">
-         <font>
-            <Font name="Ubuntu Bold" size="18.0" />
-         </font>
-      </Label>
-      <Label fx:id="nomeB" alignment="CENTER" layoutX="868.0" layoutY="169.0" prefHeight="28.0" prefWidth="173.0" text="FADA MADRINHA" textAlignment="CENTER">
-         <font>
-            <Font name="Ubuntu Bold" size="18.0" />
-         </font>
-      </Label>
+        <Label fx:id="classificacaoB" alignment="CENTER" layoutX="763.0" layoutY="141.0" prefHeight="28.0" prefWidth="51.0" text="A2" textAlignment="CENTER" textFill="#ff764d">
+            <font>
+                <Font name="Ubuntu Bold" size="18.0" />
+            </font>
+        </Label>
+        <Label fx:id="qtdCartasB" alignment="CENTER" layoutX="1091.0" layoutY="141.0" prefHeight="28.0" prefWidth="51.0" text="23" textAlignment="CENTER">
+            <font>
+                <Font name="Ubuntu Bold" size="18.0" />
+            </font>
+        </Label>
+        <Button fx:id="b_caracteristicaB1" layoutX="818.0" layoutY="414.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="284.0" style="-fx-background-color: #ebd8d8;" textFill="#ebd8d8">
+            <font>
+                <Font name="Ubuntu Bold" size="18.0" />
+            </font>
+        </Button>
+        <Label fx:id="valorB1" alignment="CENTER_RIGHT" layoutX="1034.0" layoutY="417.0" prefHeight="28.0" prefWidth="51.0" text="90" textAlignment="CENTER">
+            <font>
+                <Font name="Ubuntu Bold" size="18.0" />
+            </font>
+        </Label>
+        <Label fx:id="caracteristicaB1" layoutX="834.0" layoutY="417.0" prefHeight="28.0" prefWidth="220.0" text="Escritabilidade:" textAlignment="CENTER">
+            <font>
+                <Font name="Ubuntu Bold" size="18.0" />
+            </font>
+        </Label>
+        <Button fx:id="b_caracteristicaB2" layoutX="817.0" layoutY="454.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="284.0" style="-fx-background-color: #ebd8d8;" textFill="#ebd8d8">
+            <font>
+                <Font name="Ubuntu Bold" size="18.0" />
+            </font>
+        </Button>
+        <Label fx:id="valorB2" alignment="CENTER_RIGHT" layoutX="1033.0" layoutY="457.0" prefHeight="28.0" prefWidth="51.0" text="90" textAlignment="CENTER">
+            <font>
+                <Font name="Ubuntu Bold" size="18.0" />
+            </font>
+        </Label>
+        <Label fx:id="caracteristicaB2" layoutX="833.0" layoutY="457.0" prefHeight="28.0" prefWidth="220.0" text="Legibilidade:" textAlignment="CENTER">
+            <font>
+                <Font name="Ubuntu Bold" size="18.0" />
+            </font>
+        </Label>
+        <Button fx:id="b_caracteristicaB3" layoutX="817.0" layoutY="494.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="284.0" style="-fx-background-color: #ebd8d8;" textFill="#ebd8d8">
+            <font>
+                <Font name="Ubuntu Bold" size="18.0" />
+            </font>
+        </Button>
+        <Label fx:id="valorB3" alignment="CENTER_RIGHT" layoutX="1033.0" layoutY="497.0" prefHeight="28.0" prefWidth="51.0" text="120" textAlignment="CENTER">
+            <font>
+                <Font name="Ubuntu Bold" size="18.0" />
+            </font>
+        </Label>
+        <Label fx:id="caracteristicaB3" layoutX="833.0" layoutY="497.0" prefHeight="28.0" prefWidth="220.0" text="Tempo de vida:" textAlignment="CENTER">
+            <font>
+                <Font name="Ubuntu Bold" size="18.0" />
+            </font>
+        </Label>
+        <Button fx:id="b_caracteristicaB4" layoutX="817.0" layoutY="534.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="284.0" style="-fx-background-color: #ebd8d8;" textFill="#ebd8d8">
+            <font>
+                <Font name="Ubuntu Bold" size="18.0" />
+            </font>
+        </Button>
+        <Label fx:id="valorB4" alignment="CENTER_RIGHT" layoutX="1033.0" layoutY="537.0" prefHeight="28.0" prefWidth="51.0" text="2012" textAlignment="CENTER">
+            <font>
+                <Font name="Ubuntu Bold" size="18.0" />
+            </font>
+        </Label>
+        <Label fx:id="caracteristicaB4" layoutX="833.0" layoutY="537.0" prefHeight="28.0" prefWidth="220.0" text="Primeira apariçao:" textAlignment="CENTER">
+            <font>
+                <Font name="Ubuntu Bold" size="18.0" />
+            </font>
+        </Label>
+        <Button fx:id="b_caracteristicaB5" layoutX="817.0" layoutY="574.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="284.0" style="-fx-background-color: #ebd8d8;" textFill="#ebd8d8">
+            <font>
+                <Font name="Ubuntu Bold" size="18.0" />
+            </font>
+        </Button>
+        <Label fx:id="valorB5" alignment="CENTER_RIGHT" layoutX="954.0" layoutY="577.0" prefHeight="28.0" prefWidth="130.0" text="R$ 130000,00" textAlignment="CENTER">
+            <font>
+                <Font name="Ubuntu Bold" size="18.0" />
+            </font>
+        </Label>
+        <Label fx:id="caracteristicaB5" layoutX="833.0" layoutY="577.0" prefHeight="28.0" prefWidth="220.0" text="Salario senior:" textAlignment="CENTER">
+            <font>
+                <Font name="Ubuntu Bold" size="18.0" />
+            </font>
+        </Label>
+        <Label fx:id="nomeB" alignment="CENTER" layoutX="868.0" layoutY="169.0" prefHeight="28.0" prefWidth="173.0" text="FADA MADRINHA" textAlignment="CENTER">
+            <font>
+                <Font name="Ubuntu Bold" size="18.0" />
+            </font>
+        </Label>
+
     </AnchorPane>
 </Pane>
