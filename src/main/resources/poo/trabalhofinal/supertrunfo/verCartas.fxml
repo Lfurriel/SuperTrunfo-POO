@@ -17,7 +17,7 @@
             </font>
         </Button>
         <ImageView fx:id="imagem" fitHeight="250.0" fitWidth="259.0" layoutX="274.0" layoutY="243.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="nome" alignment="CENTER" layoutX="274.0" layoutY="210.0" prefHeight="35.0" prefWidth="259.0">
+      <Label fx:id="nome" alignment="CENTER" layoutX="274.0" layoutY="196.0" prefHeight="35.0" prefWidth="259.0">
          <font>
             <Font name="Ubuntu Bold" size="24.0" />
          </font>
