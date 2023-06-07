@@ -10,12 +10,12 @@
         <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true">
             <Image url="@gui/addCartas.jpg" />
         </ImageView>
-        <Button fx:id="adicionar" layoutX="494.0" layoutY="515.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="254.0" style="-fx-background-color: transparent;" text="Adicionar">
+        <Button fx:id="adicionar" layoutX="470.0" layoutY="506.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="254.0" style="-fx-background-color: transparent;" text="Adicionar">
             <font>
                 <Font name="Ubuntu Bold" size="28.0" />
             </font>
         </Button>
-        <TextField fx:id="nome" layoutX="269.0" layoutY="244.0" prefHeight="43.0" prefWidth="326.0" promptText="Nome" style="-fx-background-color: transparent;">
+        <TextField fx:id="nome" layoutX="269.0" layoutY="295.0" prefHeight="43.0" prefWidth="326.0" promptText="Nome" style="-fx-background-color: transparent;">
             <font>
                 <Font name="Ubuntu" size="24.0" />
             </font>
@@ -25,36 +25,42 @@
                 <Font name="Ubuntu" size="18.0" />
             </font>
         </Label>
-      <TextField fx:id="caracteristica1" layoutX="269.0" layoutY="345.0" prefHeight="43.0" prefWidth="326.0" promptText="Nome" style="-fx-background-color: transparent;">
+      <TextField fx:id="caracteristica1" layoutX="269.0" layoutY="441.0" prefHeight="43.0" prefWidth="326.0" promptText="Característica1" style="-fx-background-color: transparent;">
          <font>
             <Font name="Ubuntu" size="24.0" />
          </font>
       </TextField>
-      <TextField fx:id="caracteristica2" layoutX="269.0" layoutY="441.0" prefHeight="43.0" prefWidth="326.0" promptText="Nome" style="-fx-background-color: transparent;">
+      <TextField fx:id="caracteristica2" layoutX="640.0" layoutY="217.0" prefHeight="43.0" prefWidth="326.0" promptText="Característica2" style="-fx-background-color: transparent;">
          <font>
             <Font name="Ubuntu" size="24.0" />
          </font>
       </TextField>
-      <TextField fx:id="classificacao" layoutX="458.0" layoutY="182.0" prefHeight="43.0" prefWidth="326.0" promptText="Classificação" style="-fx-background-color: transparent;">
+      <TextField fx:id="classificacao" layoutX="269.0" layoutY="219.0" prefHeight="43.0" prefWidth="326.0" promptText="Classificação" style="-fx-background-color: transparent;">
          <font>
             <Font name="Ubuntu" size="24.0" />
          </font>
       </TextField>
-      <TextField fx:id="caracteristica3" layoutX="658.0" layoutY="244.0" prefHeight="43.0" prefWidth="326.0" promptText="Nome" style="-fx-background-color: transparent;">
+      <TextField fx:id="caracteristica3" layoutX="640.0" layoutY="292.0" prefHeight="43.0" prefWidth="326.0" promptText="Característica3" style="-fx-background-color: transparent;">
          <font>
             <Font name="Ubuntu" size="24.0" />
          </font>
       </TextField>
-      <TextField fx:id="caracteristica4" layoutX="658.0" layoutY="345.0" prefHeight="43.0" prefWidth="326.0" promptText="Nome" style="-fx-background-color: transparent;">
+      <TextField fx:id="caracteristica4" layoutX="640.0" layoutY="368.0" prefHeight="43.0" prefWidth="326.0" promptText="Característica4" style="-fx-background-color: transparent;">
          <font>
             <Font name="Ubuntu" size="24.0" />
          </font>
       </TextField>
-      <TextField fx:id="caracteristica5" layoutX="658.0" layoutY="441.0" prefHeight="43.0" prefWidth="326.0" promptText="Nome" style="-fx-background-color: transparent;">
+      <TextField fx:id="caracteristica5" layoutX="640.0" layoutY="441.0" prefHeight="43.0" prefWidth="326.0" promptText="Característica5" style="-fx-background-color: transparent;">
          <font>
             <Font name="Ubuntu" size="24.0" />
          </font>
       </TextField>
+      <TextField fx:id="imagem" layoutX="269.0" layoutY="371.0" prefHeight="43.0" prefWidth="326.0" promptText="Caminho da imagem" style="-fx-background-color: transparent;">
+         <font>
+            <Font name="Ubuntu" size="24.0" />
+         </font>
+      </TextField>
+      <Button fx:id="voltar" layoutX="253.0" layoutY="105.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="52.0" style="-fx-background-color: transparent;" />
 
     </AnchorPane>
 </Pane>

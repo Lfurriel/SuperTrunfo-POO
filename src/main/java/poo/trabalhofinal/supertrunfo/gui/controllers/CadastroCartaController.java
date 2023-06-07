@@ -42,6 +42,8 @@ public class CadastroCartaController implements Initializable {
     @FXML
     public Button adicionar;
     String tipo;
+    //todo: fazer botão voltar
+    //todo: url imagem
 
     public void setDados(String tipo) {
         this.tipo = tipo;
