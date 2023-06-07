@@ -307,6 +307,7 @@ public class Jogo<T> {
                 } else {
                     escolha = sc.nextInt();
                 }
+
                 int compara = 0;
 
                 if (escolha == 1) {
