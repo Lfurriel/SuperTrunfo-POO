@@ -117,8 +117,13 @@ public class JogoController implements Initializable {
     //-------------------------------------
     @FXML
     public Label turno;
+    @FXML
+    public ImageView fundo;
 
-    //TODO: pendente botão e imagem do super_trunfo
+    //private final Image fundoA = new Image("D:\\IdeaProjects\\SuperTrunfo\\src\\main\\resources\\poo\\trabalhofinal\\supertrunfo\\gui\\fundo.jpg");
+    //private final Image fundoB = new Image("D:\\IdeaProjects\\SuperTrunfo\\src\\main\\resources\\poo\\trabalhofinal\\supertrunfo\\gui\\menu.jpg");
+
+    //TODO: ver se é possível mudar a imagem de fundo dependendo do turno
 
     private static final String tipo = DBUtils.getTipoJogo();
     private static final Jogo jogo = DBUtils.getJogo();
@@ -536,8 +541,9 @@ public class JogoController implements Initializable {
 
     private void setTurno() {
         rodada++;
-        turno.setText("Turno: " + rodada);
         if (rodada % 2 == 1) {
+            //fundo.setImage(fundoA);
+            turno.setText("Turno: " + rodada + " - " + jogo.getJogadorA().getNome());
             //Habilitando botões do jogador A
             b_caracteristicaA1.setDisable(false);
             b_caracteristicaA2.setDisable(false);
@@ -553,6 +559,8 @@ public class JogoController implements Initializable {
             b_caracteristicaB5.setDisable(true);
             b_superB.setDisable(true);
         } else {
+            //fundo.setImage(fundoB);
+            turno.setText("Turno: " + rodada + " - " + jogo.getJogadorB().getNome());
             //Desabilitando botões do jogador A
             b_caracteristicaA1.setDisable(true);
             b_caracteristicaA2.setDisable(true);
@@ -657,25 +665,26 @@ public class JogoController implements Initializable {
     }
 
     private void verificaVencedor(ActionEvent event, Jogador vencedor) {
-        //Informa quem venceu o truno
-        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-        if (vencedor != null) {
-            alerta.setTitle("Vencedor");
-            alerta.setContentText("Vencedor: " + vencedor.getNome() + "!");
-        } else {
-            alerta.setTitle("Empate");
-            alerta.setContentText("Essa rodada empatou!");
-        }
-
-        alerta.showAndWait();
 
         if (jogo.getJogadorA().getCartas().size() == 0) {
             DBUtils.setJogadores(jogo.getJogadorB(), jogo.getJogadorA());
-            DBUtils.changeScene(event, "vencedor.fxml", "MENU");
+            DBUtils.changeScene(event, "vencedor.fxml", "VENCEDOR");
         } else if (jogo.getJogadorB().getCartas().size() == 0) {
             DBUtils.setJogadores(jogo.getJogadorA(), jogo.getJogadorB());
-            DBUtils.changeScene(event, "vencedor.fxml", "MENU");
+            DBUtils.changeScene(event, "vencedor.fxml", "VENCEDOR");
         } else {
+            //Informa quem venceu o truno
+            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+            if (vencedor != null) {
+                alerta.setTitle("Vencedor");
+                alerta.setContentText("Vencedor: " + vencedor.getNome() + "!");
+            } else {
+                alerta.setTitle("Empate");
+                alerta.setContentText("Essa rodada empatou!");
+            }
+
+            alerta.showAndWait();
+
             pegaTopo();
             mostrarCartaA();
             mostrarCartaB();

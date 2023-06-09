@@ -18,7 +18,7 @@ public class CartasRepositoryImpl<T> implements CartasRepository {
 
         try {
             conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/DataLake", "postgres", "FurriSenha");
-            query = conexao.prepareStatement("SELECT * FROM cartas WHERE tipo = ? LIMIT 2");
+            query = conexao.prepareStatement("SELECT * FROM cartas WHERE tipo = ?");
             query.setString(1, jogo);
             resultSet = query.executeQuery();
 

@@ -15,6 +15,7 @@ import poo.trabalhofinal.supertrunfo.classes.exceptions.InformacaoInvalidaExcept
 import poo.trabalhofinal.supertrunfo.classes.interfaces.CartasRepository;
 import poo.trabalhofinal.supertrunfo.classes.interfaces.CartasRepositoryImpl;
 import poo.trabalhofinal.supertrunfo.classes.utils.Util;
+import poo.trabalhofinal.supertrunfo.gui.DBUtils;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -35,15 +36,17 @@ public class CadastroCartaController implements Initializable {
     public TextField caracteristica4;
     @FXML
     public TextField caracteristica5;
+
     @FXML
-    public TextField image;
+    public TextField imagem;
     @FXML
     public Label alerta;
     @FXML
     public Button adicionar;
+    @FXML
+    public Button voltar;
     String tipo;
     //todo: fazer botão voltar
-    //todo: url imagem
 
     public void setDados(String tipo) {
         this.tipo = tipo;
@@ -78,17 +81,17 @@ public class CadastroCartaController implements Initializable {
                     validaValores();
                     if (tipo.equals("Personagem")) {
                         CartasRepository<Personagem> cartasRepository = new CartasRepositoryImpl<Personagem>();
-                        cartasRepository.insereNovaCarta(new Personagem(nome.getText(), image.getText(), false, Util.stringToClassificacao(classificacao.getText()),
+                        cartasRepository.insereNovaCarta(new Personagem(nome.getText(), imagem.getText(), false, Util.stringToClassificacao(classificacao.getText()),
                                 Integer.parseInt(caracteristica1.getText()), Integer.parseInt(caracteristica2.getText()), Integer.parseInt(caracteristica3.getText()),
                                 Integer.parseInt(caracteristica4.getText()), Double.parseDouble(caracteristica5.getText())));
                     } else if (tipo.equals("Gato")) {
                         CartasRepository<Gato> cartasRepository = new CartasRepositoryImpl<Gato>();
-                        cartasRepository.insereNovaCarta(new Gato(nome.getText(), image.getText(), false, Util.stringToClassificacao(classificacao.getText()),
+                        cartasRepository.insereNovaCarta(new Gato(nome.getText(), imagem.getText(), false, Util.stringToClassificacao(classificacao.getText()),
                                 Integer.parseInt(caracteristica1.getText()), Integer.parseInt(caracteristica2.getText()), Integer.parseInt(caracteristica3.getText()),
                                 Integer.parseInt(caracteristica4.getText()), Double.parseDouble(caracteristica5.getText())));
                     } else {
                         CartasRepository<LinguagensProgramacao> cartasRepository = new CartasRepositoryImpl<LinguagensProgramacao>();
-                        cartasRepository.insereNovaCarta(new LinguagensProgramacao(nome.getText(), image.getText(), false, Util.stringToClassificacao(classificacao.getText()),
+                        cartasRepository.insereNovaCarta(new LinguagensProgramacao(nome.getText(), imagem.getText(), false, Util.stringToClassificacao(classificacao.getText()),
                                 Integer.parseInt(caracteristica1.getText()), Integer.parseInt(caracteristica2.getText()), Integer.parseInt(caracteristica3.getText()),
                                 Integer.parseInt(caracteristica4.getText()), Double.parseDouble(caracteristica5.getText())));
                     }
@@ -102,6 +105,13 @@ public class CadastroCartaController implements Initializable {
                     caracteristica5.setText("");
                     alerta.setText(e.getMessage());
                 }
+            }
+        });
+
+        voltar.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                DBUtils.changeScene(event, "menu.fxml", "MENU");
             }
         });
     }

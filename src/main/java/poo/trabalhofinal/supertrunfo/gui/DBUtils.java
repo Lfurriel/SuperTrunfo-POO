@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import poo.trabalhofinal.supertrunfo.HelloApplication;
@@ -17,6 +18,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 public class DBUtils {
+
+    private static Image icon = new Image("https://ajuda.growgames.com.br/attachments/token/EzaE2p10cvOcRwmxq9RJ9c1MP/?name=super_trunfo.png");
     private static Jogo jogo;
     private static String tipoJogo;
 
@@ -65,11 +68,7 @@ public class DBUtils {
             e.printStackTrace();
         }
 
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setTitle(title);
-        stage.setResizable(false);
-        stage.setScene(new Scene(root, 1280, 720));
-        stage.show();
+        createStage(title, root, event);
     }
 
     public static void changeScene(ActionEvent event, String fxmlFile, String title, String tipo, boolean cadastro) {
@@ -94,11 +93,7 @@ public class DBUtils {
             System.out.println(e.getMessage());
         }
 
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setTitle(title);
-        stage.setResizable(false);
-        stage.setScene(new Scene(root, 1280, 720));
-        stage.show();
+        createStage(title, root, event);
     }
 
     public static void changeScene(ActionEvent event, String fxmlFile, String title, boolean cadastro) {
@@ -117,12 +112,7 @@ public class DBUtils {
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setTitle(title);
-        stage.setResizable(false);
-        stage.setScene(new Scene(root, 1280, 720));
-        stage.show();
+        createStage(title, root, event);
     }
 
     public static void changeScene(MouseEvent event, String fxmlFile, String title) {
@@ -138,9 +128,22 @@ public class DBUtils {
             System.out.println(e.getMessage());
         }
 
+        createStage(title, root, event);
+    }
+
+    private static void createStage(String title, Parent root, ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle(title);
         stage.setResizable(false);
+        stage.getIcons().add(icon);
+        stage.setScene(new Scene(root, 1280, 720));
+        stage.show();
+    }
+    private static void createStage(String title, Parent root, MouseEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle(title);
+        stage.setResizable(false);
+        stage.getIcons().add(icon);
         stage.setScene(new Scene(root, 1280, 720));
         stage.show();
     }

@@ -15,7 +15,7 @@ public class HelloApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("telaInicial.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1280, 720);
         stage.setResizable(false);
-//        stage.getIcons().add(new Image("https://img.freepik.com/vetores-premium/desenho-para-colorir-desenho-de-gato-lendo-livro-de-desenho-de-personagens_51194-266.jpg?w=2000"));
+        stage.getIcons().add(new Image("https://ajuda.growgames.com.br/attachments/token/EzaE2p10cvOcRwmxq9RJ9c1MP/?name=super_trunfo.png"));
         stage.setTitle("SUPER TRUNFO");
         stage.setScene(scene);
         stage.show();
