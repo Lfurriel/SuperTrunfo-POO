@@ -26,7 +26,7 @@
             </font>
         </Label>
         <ImageView fx:id="imagemA" fitHeight="190.0" fitWidth="190.0" layoutX="235.0" layoutY="197.0" pickOnBounds="true" smooth="false">
-            <Image url="@gui/jogo.jpg" />
+            <Image url="@gui/jogoA.jpg" />
         </ImageView>
         <Label fx:id="classificacaoA" alignment="CENTER" layoutX="142.0" layoutY="141.0" prefHeight="28.0" prefWidth="51.0" text="A2" textAlignment="CENTER" textFill="#ff764d">
             <font>
@@ -109,7 +109,7 @@
             </font>
         </Label>
         <ImageView fx:id="imagemB" fitHeight="190.0" fitWidth="190.0" layoutX="868.0" layoutY="197.0" pickOnBounds="true">
-            <Image url="@gui/jogo.jpg" />
+            <Image url="@gui/jogoA.jpg" />
         </ImageView>
         <Label fx:id="classificacaoB" alignment="CENTER" layoutX="763.0" layoutY="141.0" prefHeight="28.0" prefWidth="51.0" text="A2" textAlignment="CENTER" textFill="#ff764d">
             <font>

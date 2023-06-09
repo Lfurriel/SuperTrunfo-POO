@@ -19,6 +19,8 @@ public class MenuController implements Initializable {
     public Button novaCarta;
     @FXML
     public Button verCartas;
+    @FXML
+    public Button regras;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -50,4 +52,5 @@ public class MenuController implements Initializable {
             }
         });
     }
+    //todo: fazer botão pdf
 }

@@ -30,6 +30,7 @@
             <Font name="Ubuntu Bold" size="28.0" />
          </font>
       </Button>
+      <Button fx:id="regras" layoutX="840.0" layoutY="154.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="53.0" style="-fx-background-color: transparent;" />
 
     </AnchorPane>
 </Pane>
