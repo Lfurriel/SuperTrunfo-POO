@@ -51,9 +51,9 @@ public class OpcaoController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 if(cadastro)
-                    DBUtils.changeScene(event, "cadastroCarta.fxml", "NOVA CARTA", "Linguagens de Programação", true);
+                    DBUtils.changeScene(event, "cadastroCarta.fxml", "NOVA CARTA", "LinguagensProgramacao", true);
                 else
-                    DBUtils.changeScene(event, "login.fxml", "LOGIN", "Linguagens de Programação", false);
+                    DBUtils.changeScene(event, "login.fxml", "LOGIN", "LinguagensProgramacao", false);
             }
         });
     }

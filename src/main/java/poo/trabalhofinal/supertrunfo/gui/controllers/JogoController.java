@@ -1,20 +1,24 @@
 package poo.trabalhofinal.supertrunfo.gui.controllers;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import poo.trabalhofinal.supertrunfo.classes.Jogador;
+import poo.trabalhofinal.supertrunfo.classes.cartas.Classificacao;
 import poo.trabalhofinal.supertrunfo.classes.Jogo;
-import poo.trabalhofinal.supertrunfo.classes.cartas.Carta;
-import poo.trabalhofinal.supertrunfo.classes.cartas.Gato;
-import poo.trabalhofinal.supertrunfo.classes.cartas.LinguagensProgramacao;
-import poo.trabalhofinal.supertrunfo.classes.cartas.Personagem;
+import poo.trabalhofinal.supertrunfo.classes.cartas.*;
 import poo.trabalhofinal.supertrunfo.gui.DBUtils;
+
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
 
 public class JogoController implements Initializable {
 
@@ -59,6 +63,10 @@ public class JogoController implements Initializable {
     public Label valorA5;
     @FXML
     public Button b_caracteristicaA5;
+    @FXML
+    public Button b_superA;
+    @FXML
+    public ImageView superA;
     //-------------------------------------
 
     //JOGADOR B ---------------------------
@@ -102,14 +110,21 @@ public class JogoController implements Initializable {
     public Label valorB5;
     @FXML
     public Button b_caracteristicaB5;
+    @FXML
+    public Button b_superB;
+    @FXML
+    public ImageView superB;
     //-------------------------------------
+    @FXML
+    public Label turno;
 
     //TODO: pendente botão e imagem do super_trunfo
 
     private static final String tipo = DBUtils.getTipoJogo();
-    private static Jogo jogo = DBUtils.getJogo();
+    private static final Jogo jogo = DBUtils.getJogo();
     private Carta topoA;
     private Carta topoB;
+    private int rodada = 0;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -117,7 +132,283 @@ public class JogoController implements Initializable {
         pegaTopo();
         mostrarCartaA();
         mostrarCartaB();
+        setTurno();
 
+        //Botões de A
+        b_superA.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                if (topoB.getClassificacao().compareTo(Classificacao.A5) < 0) {
+                    //Jogar A vence o turno
+                    jogo.getJogadorA().pontua(10);
+                    jogo.getJogadorB().pontua(-5);
+
+                    jogo.getJogadorA().moveCartas(jogo.getJogadorB());
+
+                    verificaVencedor(event, jogo.getJogadorA());
+                } else {
+                    //Jogar B vence o turno
+                    jogo.getJogadorA().pontua(-10);
+                    jogo.getJogadorB().pontua(10);
+
+                    jogo.getJogadorB().moveCartas(jogo.getJogadorA());
+
+                    verificaVencedor(event, jogo.getJogadorB());
+                }
+            }
+        });
+
+        b_caracteristicaA1.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Jogador vencedor = vencedorRodadaC1();
+                if (vencedor == null) {
+                    jogo.getJogadorA().moveTopo();
+                    jogo.getJogadorB().moveTopo();
+                } else if (vencedor == jogo.getJogadorA()) {
+                    jogo.getJogadorA().pontua(10);
+                    jogo.getJogadorB().pontua(-5);
+
+                    jogo.getJogadorA().moveCartas(jogo.getJogadorB());
+                } else {
+                    jogo.getJogadorA().pontua(-10);
+                    jogo.getJogadorB().pontua(10);
+
+                    jogo.getJogadorB().moveCartas(jogo.getJogadorA());
+                }
+                verificaVencedor(event, vencedor);
+            }
+        });
+
+        b_caracteristicaA2.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Jogador vencedor = vencedorRodadaC2();
+                if (vencedor == null) {
+                    jogo.getJogadorA().moveTopo();
+                    jogo.getJogadorB().moveTopo();
+
+                } else if (vencedor == jogo.getJogadorA()) {
+                    jogo.getJogadorA().pontua(10);
+                    jogo.getJogadorB().pontua(-5);
+
+                    jogo.getJogadorA().moveCartas(jogo.getJogadorB());
+                } else {
+                    jogo.getJogadorA().pontua(-10);
+                    jogo.getJogadorB().pontua(10);
+
+                    jogo.getJogadorB().moveCartas(jogo.getJogadorA());
+                }
+                verificaVencedor(event, vencedor);
+            }
+        });
+
+        b_caracteristicaA3.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Jogador vencedor = vencedorRodadaC3();
+                if (vencedor == null) {
+                    jogo.getJogadorA().moveTopo();
+                    jogo.getJogadorB().moveTopo();
+
+                } else if (vencedor == jogo.getJogadorA()) {
+                    jogo.getJogadorA().pontua(10);
+                    jogo.getJogadorB().pontua(-5);
+
+                    jogo.getJogadorA().moveCartas(jogo.getJogadorB());
+                } else {
+                    jogo.getJogadorA().pontua(-10);
+                    jogo.getJogadorB().pontua(10);
+
+                    jogo.getJogadorB().moveCartas(jogo.getJogadorA());
+                }
+                verificaVencedor(event, vencedor);
+            }
+        });
+
+        b_caracteristicaA4.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Jogador vencedor = vencedorRodadaC4();
+                if (vencedor == null) {
+                    jogo.getJogadorA().moveTopo();
+                    jogo.getJogadorB().moveTopo();
+
+                } else if (vencedor == jogo.getJogadorA()) {
+                    jogo.getJogadorA().pontua(10);
+                    jogo.getJogadorB().pontua(-5);
+
+                    jogo.getJogadorA().moveCartas(jogo.getJogadorB());
+                } else {
+                    jogo.getJogadorA().pontua(-10);
+                    jogo.getJogadorB().pontua(10);
+
+                    jogo.getJogadorB().moveCartas(jogo.getJogadorA());
+                }
+                verificaVencedor(event, vencedor);
+            }
+        });
+
+        b_caracteristicaA5.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Jogador vencedor = vencedorRodadaC5();
+                if (vencedor == null) {
+                    jogo.getJogadorA().moveTopo();
+                    jogo.getJogadorB().moveTopo();
+
+                } else if (vencedor == jogo.getJogadorA()) {
+                    jogo.getJogadorA().pontua(10);
+                    jogo.getJogadorB().pontua(-5);
+
+                    jogo.getJogadorA().moveCartas(jogo.getJogadorB());
+                } else {
+                    jogo.getJogadorA().pontua(-10);
+                    jogo.getJogadorB().pontua(10);
+
+                    jogo.getJogadorB().moveCartas(jogo.getJogadorA());
+                }
+                verificaVencedor(event, vencedor);
+            }
+        });
+
+        b_superB.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                if (topoA.getClassificacao().compareTo(Classificacao.A5) < 0) {
+                    //Jogar B vence o turno
+                    jogo.getJogadorA().pontua(-5);
+                    jogo.getJogadorB().pontua(10);
+
+                    jogo.getJogadorB().moveCartas(jogo.getJogadorA());
+
+                    verificaVencedor(event, jogo.getJogadorB());
+                } else {
+                    //Jogar A vence o turno
+                    jogo.getJogadorA().pontua(10);
+                    jogo.getJogadorB().pontua(-10);
+
+                    jogo.getJogadorA().moveCartas(jogo.getJogadorB());
+
+                    verificaVencedor(event, jogo.getJogadorA());
+                }
+            }
+        });
+
+        b_caracteristicaB1.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Jogador vencedor = vencedorRodadaC1();
+                if (vencedor == null) {
+                    jogo.getJogadorA().moveTopo();
+                    jogo.getJogadorB().moveTopo();
+
+                } else if (vencedor == jogo.getJogadorA()) {
+                    jogo.getJogadorA().pontua(10);
+                    jogo.getJogadorB().pontua(-10);
+
+                    jogo.getJogadorA().moveCartas(jogo.getJogadorB());
+                } else {
+                    jogo.getJogadorA().pontua(-5);
+                    jogo.getJogadorB().pontua(10);
+
+                    jogo.getJogadorB().moveCartas(jogo.getJogadorA());
+                }
+                verificaVencedor(event, vencedor);
+            }
+        });
+
+        b_caracteristicaB2.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Jogador vencedor = vencedorRodadaC2();
+                if (vencedor == null) {
+                    jogo.getJogadorA().moveTopo();
+                    jogo.getJogadorB().moveTopo();
+
+                } else if (vencedor == jogo.getJogadorA()) {
+                    jogo.getJogadorA().pontua(10);
+                    jogo.getJogadorB().pontua(-10);
+
+                    jogo.getJogadorA().moveCartas(jogo.getJogadorB());
+                } else {
+                    jogo.getJogadorA().pontua(-5);
+                    jogo.getJogadorB().pontua(10);
+
+                    jogo.getJogadorB().moveCartas(jogo.getJogadorA());
+                }
+                verificaVencedor(event, vencedor);
+            }
+        });
+
+        b_caracteristicaB3.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Jogador vencedor = vencedorRodadaC3();
+                if (vencedor == null) {
+                    jogo.getJogadorA().moveTopo();
+                    jogo.getJogadorB().moveTopo();
+
+                } else if (vencedor == jogo.getJogadorA()) {
+                    jogo.getJogadorA().pontua(10);
+                    jogo.getJogadorB().pontua(-10);
+
+                    jogo.getJogadorA().moveCartas(jogo.getJogadorB());
+                } else {
+                    jogo.getJogadorA().pontua(-5);
+                    jogo.getJogadorB().pontua(10);
+
+                    jogo.getJogadorB().moveCartas(jogo.getJogadorA());
+                }
+                verificaVencedor(event, vencedor);
+            }
+        });
+
+        b_caracteristicaB4.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Jogador vencedor = vencedorRodadaC4();
+                if (vencedor == null) {
+                    jogo.getJogadorA().moveTopo();
+                    jogo.getJogadorB().moveTopo();
+
+                } else if (vencedor == jogo.getJogadorA()) {
+                    jogo.getJogadorA().pontua(10);
+                    jogo.getJogadorB().pontua(-10);
+
+                    jogo.getJogadorA().moveCartas(jogo.getJogadorB());
+                } else {
+                    jogo.getJogadorA().pontua(-5);
+                    jogo.getJogadorB().pontua(10);
+
+                    jogo.getJogadorB().moveCartas(jogo.getJogadorA());
+                }
+                verificaVencedor(event, vencedor);
+            }
+        });
+
+        b_caracteristicaB5.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Jogador vencedor = vencedorRodadaC5();
+                if (vencedor == null) {
+                    jogo.getJogadorA().moveTopo();
+                    jogo.getJogadorB().moveTopo();
+
+                } else if (vencedor == jogo.getJogadorA()) {
+                    jogo.getJogadorA().pontua(10);
+                    jogo.getJogadorB().pontua(-10);
+
+                    jogo.getJogadorA().moveCartas(jogo.getJogadorB());
+                } else {
+                    jogo.getJogadorA().pontua(-5);
+                    jogo.getJogadorB().pontua(10);
+
+                    jogo.getJogadorB().moveCartas(jogo.getJogadorA());
+                }
+                verificaVencedor(event, vencedor);
+            }
+        });
     }
 
     private void setLabel() {
@@ -170,11 +461,26 @@ public class JogoController implements Initializable {
         }
     }
 
+    private void pegaTopo() {
+        if (tipo.equals("Personagem")) {
+            this.topoA = (Personagem) jogo.getJogadorA().getCartas().get(0);
+            this.topoB = (Personagem) jogo.getJogadorB().getCartas().get(0);
+        } else if (tipo.equals("Gato")) {
+            this.topoA = (Gato) jogo.getJogadorA().getCartas().get(0);
+            this.topoB = (Gato) jogo.getJogadorB().getCartas().get(0);
+        } else {
+            this.topoA = (LinguagensProgramacao) jogo.getJogadorA().getCartas().get(0);
+            this.topoB = (LinguagensProgramacao) jogo.getJogadorB().getCartas().get(0);
+        }
+    }
+
     private void mostrarCartaA() {
         nomeA.setText(topoA.getNome());
         classificacaoA.setText(topoA.getClassificacao().toString());
         imagemA.setImage(new Image(topoA.getImagem()));
         qtdCartasA.setText(String.valueOf(jogo.getJogadorA().getCartas().size()));
+        superA.setVisible(topoA.isSuperTrunfo());
+        b_superA.setDisable(!topoA.isSuperTrunfo());
 
         if (tipo.equals("Personagem")) {
             valorA1.setText(((Personagem) topoA).getInteligencia().toString());
@@ -194,7 +500,7 @@ public class JogoController implements Initializable {
             valorA2.setText(((LinguagensProgramacao) topoA).getLegibilidade().toString());
             valorA3.setText(((LinguagensProgramacao) topoA).getConfiabilidade().toString());
             valorA4.setText(((LinguagensProgramacao) topoA).getCusto().toString());
-            valorA5.setText(((LinguagensProgramacao) topoA).getSalarioSenior().toString());
+            valorA5.setText("R$ " + ((LinguagensProgramacao) topoA).getSalarioSenior().toString());
         }
     }
 
@@ -203,6 +509,8 @@ public class JogoController implements Initializable {
         classificacaoB.setText(topoB.getClassificacao().toString());
         imagemB.setImage(new Image(topoB.getImagem()));
         qtdCartasB.setText(String.valueOf(jogo.getJogadorB().getCartas().size()));
+        superB.setVisible(topoB.isSuperTrunfo());
+        b_superB.setDisable(!topoB.isSuperTrunfo());
 
         if (tipo.equals("Personagem")) {
             valorB1.setText(((Personagem) topoB).getInteligencia().toString());
@@ -222,20 +530,156 @@ public class JogoController implements Initializable {
             valorB2.setText(((LinguagensProgramacao) topoB).getLegibilidade().toString());
             valorB3.setText(((LinguagensProgramacao) topoB).getConfiabilidade().toString());
             valorB4.setText(((LinguagensProgramacao) topoB).getCusto().toString());
-            valorB5.setText(((LinguagensProgramacao) topoB).getSalarioSenior().toString());
+            valorB5.setText("R$ " + ((LinguagensProgramacao) topoB).getSalarioSenior().toString());
         }
     }
 
-    private void pegaTopo() {
-        if (tipo.equals("Personagem")) {
-            this.topoA = (Personagem) jogo.getJogadorA().getCartas().get(0);
-            this.topoB = (Personagem) jogo.getJogadorB().getCartas().get(0);
-        } else if (tipo.equals("Gato")) {
-            this.topoA = (Gato) jogo.getJogadorA().getCartas().get(0);
-            this.topoB = (Gato) jogo.getJogadorB().getCartas().get(0);
+    private void setTurno() {
+        rodada++;
+        turno.setText("Turno: " + rodada);
+        if (rodada % 2 == 1) {
+            //Habilitando botões do jogador A
+            b_caracteristicaA1.setDisable(false);
+            b_caracteristicaA2.setDisable(false);
+            b_caracteristicaA3.setDisable(false);
+            b_caracteristicaA4.setDisable(false);
+            b_caracteristicaA5.setDisable(false);
+
+            //Desabilitando botões do jogador B
+            b_caracteristicaB1.setDisable(true);
+            b_caracteristicaB2.setDisable(true);
+            b_caracteristicaB3.setDisable(true);
+            b_caracteristicaB4.setDisable(true);
+            b_caracteristicaB5.setDisable(true);
+            b_superB.setDisable(true);
         } else {
-            this.topoA = (LinguagensProgramacao) jogo.getJogadorA().getCartas().get(0);
-            this.topoB = (LinguagensProgramacao) jogo.getJogadorB().getCartas().get(0);
+            //Desabilitando botões do jogador A
+            b_caracteristicaA1.setDisable(true);
+            b_caracteristicaA2.setDisable(true);
+            b_caracteristicaA3.setDisable(true);
+            b_caracteristicaA4.setDisable(true);
+            b_caracteristicaA5.setDisable(true);
+            b_superA.setDisable(true);
+
+            //Habilitando botões do jogador B
+            b_caracteristicaB1.setDisable(false);
+            b_caracteristicaB2.setDisable(false);
+            b_caracteristicaB3.setDisable(false);
+            b_caracteristicaB4.setDisable(false);
+            b_caracteristicaB5.setDisable(false);
+        }
+    }
+
+    private Jogador vencedorRodadaC1() {
+        int compara;
+        if (tipo.equals("Personagem"))
+            compara = ((Personagem) topoA).comparaInteligencia((Personagem) topoB);
+        else if (tipo.equals("Gato"))
+            compara = ((Gato) topoA).comparaAgilidade((Gato) topoB);
+        else
+            compara = ((LinguagensProgramacao) topoA).comparaEscritabilidade((LinguagensProgramacao) topoB);
+
+        if (compara > 0)
+            return jogo.getJogadorA();
+        else if (compara < 0)
+            return jogo.getJogadorB();
+        else
+            return null;
+
+    }
+
+    private Jogador vencedorRodadaC2() {
+        int compara;
+        if (tipo.equals("Personagem"))
+            compara = ((Personagem) topoA).comparaForca((Personagem) topoB);
+        else if (tipo.equals("Gato"))
+            compara = ((Gato) topoA).comparaFofura((Gato) topoB);
+        else
+            compara = ((LinguagensProgramacao) topoA).comparaLegibilidade((LinguagensProgramacao) topoB);
+
+        if (compara > 0)
+            return jogo.getJogadorA();
+        else if (compara < 0)
+            return jogo.getJogadorB();
+        else
+            return null;
+    }
+
+    private Jogador vencedorRodadaC3() {
+        int compara;
+        if (tipo.equals("Personagem"))
+            compara = ((Personagem) topoA).comparaCoragem((Personagem) topoB);
+        else if (tipo.equals("Gato"))
+            compara = ((Gato) topoA).comparaVida((Gato) topoB);
+        else
+            compara = ((LinguagensProgramacao) topoA).comparaConfiabilidade((LinguagensProgramacao) topoB);
+
+        if (compara > 0)
+            return jogo.getJogadorA();
+        else if (compara < 0)
+            return jogo.getJogadorB();
+        else
+            return null;
+    }
+
+    private Jogador vencedorRodadaC4() {
+        int compara;
+        if (tipo.equals("Personagem"))
+            compara = ((Personagem) topoA).comparaAparicao((Personagem) topoB);
+        else if (tipo.equals("Gato"))
+            compara = ((Gato) topoA).comparaAgressividade((Gato) topoB);
+        else
+            compara = ((LinguagensProgramacao) topoA).comparaCusto((LinguagensProgramacao) topoB);
+
+        if (compara > 0)
+            return jogo.getJogadorA();
+        else if (compara < 0)
+            return jogo.getJogadorB();
+        else
+            return null;
+    }
+
+    private Jogador vencedorRodadaC5() {
+        int compara;
+        if (tipo.equals("Personagem"))
+            compara = ((Personagem) topoA).comparaAltura((Personagem) topoB);
+        else if (tipo.equals("Gato"))
+            compara = ((Gato) topoA).comparaPeso((Gato) topoB);
+        else
+            compara = ((LinguagensProgramacao) topoA).comparaSalario((LinguagensProgramacao) topoB);
+
+        if (compara > 0)
+            return jogo.getJogadorA();
+        else if (compara < 0)
+            return jogo.getJogadorB();
+        else
+            return null;
+    }
+
+    private void verificaVencedor(ActionEvent event, Jogador vencedor) {
+        //Informa quem venceu o truno
+        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+        if (vencedor != null) {
+            alerta.setTitle("Vencedor");
+            alerta.setContentText("Vencedor: " + vencedor.getNome() + "!");
+        } else {
+            alerta.setTitle("Empate");
+            alerta.setContentText("Essa rodada empatou!");
+        }
+
+        alerta.showAndWait();
+
+        if (jogo.getJogadorA().getCartas().size() == 0) {
+            DBUtils.setJogadores(jogo.getJogadorB(), jogo.getJogadorA());
+            DBUtils.changeScene(event, "vencedor.fxml", "MENU");
+        } else if (jogo.getJogadorB().getCartas().size() == 0) {
+            DBUtils.setJogadores(jogo.getJogadorA(), jogo.getJogadorB());
+            DBUtils.changeScene(event, "vencedor.fxml", "MENU");
+        } else {
+            pegaTopo();
+            mostrarCartaA();
+            mostrarCartaB();
+            setTurno();
         }
     }
 }

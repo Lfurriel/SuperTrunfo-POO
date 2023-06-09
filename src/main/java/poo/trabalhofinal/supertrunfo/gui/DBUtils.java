@@ -20,6 +20,21 @@ public class DBUtils {
     private static Jogo jogo;
     private static String tipoJogo;
 
+    private static Jogador vencedor;
+    private static Jogador perdedor;
+
+    public static void setJogadores(Jogador a, Jogador b){
+        vencedor = a;
+        perdedor = b;
+    }
+    public static Jogador getVencedor() {
+        return vencedor;
+    }
+
+    public static Jogador getPerdedor() {
+        return perdedor;
+    }
+
     public static <T> void iniciaJogo(Jogador<?> jogadorA, Jogador<?> jogadorB, String tipo) throws SQLException, JogoException {
         jogo = new Jogo(jogadorA, jogadorB, tipo);
         tipoJogo = tipo;

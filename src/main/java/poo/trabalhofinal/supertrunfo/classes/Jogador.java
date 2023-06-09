@@ -66,16 +66,16 @@ public class Jogador<T> {
     }
 
     public void moveCartas(Jogador derrotado) {
-        List<T> cartasJogador1 = new ArrayList<>(this.cartas);
-        List<T> cartasJogador2 = new ArrayList<>(derrotado.cartas);
+        List<T> cartasJogadorVencedor = new ArrayList<>(this.cartas);
+        List<T> cartasJogadorDerrotado = new ArrayList<>(derrotado.cartas);
 
-        T cartaVencedora = cartasJogador1.remove(0);  // Remove a carta do topo do jogador1
-        T cartaDerrotada = cartasJogador2.remove(0);  // Remove a carta do topo do jogador2
+        T cartaVencedora = cartasJogadorVencedor.remove(0);  // Remove a carta do topo do jogador1
+        T cartaDerrotada = cartasJogadorDerrotado.remove(0);  // Remove a carta do topo do jogador2
 
-        cartasJogador1.add(cartaVencedora);  // Adiciona a carta vencedora no fim da lista do jogador1
-        cartasJogador1.add(cartaDerrotada);  // Adiciona a carta derrotada no fim da lista do jogador1
+        cartasJogadorVencedor.add(cartaDerrotada);  // Adiciona a carta derrotada no fim da lista do jogador1
+        cartasJogadorVencedor.add(cartaVencedora);  // Adiciona a carta vencedora no fim da lista do jogador1
 
-        this.cartas = cartasJogador1;  // Atualiza a lista de cartas do jogador1 com as modificações
-        derrotado.cartas = cartasJogador2;  // Atualiza a lista de cartas do jogador2 com as modificações
+        this.cartas = cartasJogadorVencedor;  // Atualiza a lista de cartas do jogador1 com as modificações
+        derrotado.cartas = cartasJogadorDerrotado;  // Atualiza a lista de cartas do jogador2 com as modificações
     }
 }

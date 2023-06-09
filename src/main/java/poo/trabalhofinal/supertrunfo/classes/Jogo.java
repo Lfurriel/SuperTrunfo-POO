@@ -73,7 +73,7 @@ public class Jogo<T> {
      *
      * @return retorna o vencedor da partida
      */
-    public Jogador<T> jogarPersonagem() {
+    public Jogador<T> jogarPersonagemTerminal() {
         Scanner sc = new Scanner(System.in);
         int turno = 0;
         boolean continua = true;
@@ -168,7 +168,7 @@ public class Jogo<T> {
         return jogadorA.getCartas().size() > 0 ? jogadorA : jogadorB;
     }
 
-    public Jogador<T> jogarGato() {
+    public Jogador<T> jogarTerminalGato() {
         Scanner sc = new Scanner(System.in);
         int turno = 0;
         boolean continua = true;
@@ -263,7 +263,7 @@ public class Jogo<T> {
         return jogadorA.getCartas().size() > 0 ? jogadorA : jogadorB;
     }
 
-    public Jogador<T> jogarLinguagemProgramacao() {
+    public Jogador<T> jogarTerminalLinguagemProgramacao() {
         Scanner sc = new Scanner(System.in);
         int turno = 0;
         boolean continua = true;
