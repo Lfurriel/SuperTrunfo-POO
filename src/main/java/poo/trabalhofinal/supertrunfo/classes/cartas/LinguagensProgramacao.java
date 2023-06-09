@@ -108,6 +108,6 @@ public class LinguagensProgramacao extends Carta {
 
     @Override
     public String toString() {
-        return "Lingaguem de Programação";
+        return "Linguagem de Programação";
     }
 }

@@ -1,6 +1,5 @@
 package poo.trabalhofinal.supertrunfo.classes;
 
-import poo.trabalhofinal.supertrunfo.classes.cartas.Carta;
 import poo.trabalhofinal.supertrunfo.classes.cartas.Gato;
 import poo.trabalhofinal.supertrunfo.classes.cartas.LinguagensProgramacao;
 import poo.trabalhofinal.supertrunfo.classes.cartas.Personagem;
@@ -18,9 +17,24 @@ import java.util.Scanner;
 
 public class Jogo<T> {
     private ArrayList<T> baralho;
-    private Jogador<T> jogador1;
-    private Jogador<T> jogador2;
+    private Jogador<T> jogadorA;
+    private Jogador<T> jogadorB;
 
+    public Jogo(Jogador<T> jogadorA, Jogador<T> jogadorB, String tipo) throws SQLException, JogoException {
+        this.jogadorA = jogadorA;
+        this.jogadorB = jogadorB;
+
+        CartasRepository<T> cartasRepository = new CartasRepositoryImpl<>();
+
+        this.baralho = cartasRepository.buscaCartas(tipo);
+        Collections.shuffle(baralho);
+
+        int tamanhoBaralho = baralho.size();
+        int metade = tamanhoBaralho / 2;
+
+        this.jogadorA.setCartas(baralho.subList(0, metade));
+        this.jogadorB.setCartas(baralho.subList(metade, tamanhoBaralho));
+    }
     public Jogo(String jogo, String usuarioA, String senhaA, String usuarioB, String senhaB) throws SQLException, UsuarioNaoEncontradoException, JogoException {
         CartasRepository<T> cartasRepository = new CartasRepositoryImpl<>();
         JogadoresRepository<T> jogadoresRepository = new JogadoresRepositoryImpl<>();
@@ -29,26 +43,26 @@ public class Jogo<T> {
         Collections.shuffle(baralho);
 
 
-        this.jogador1 = jogadoresRepository.buscaJogador(usuarioA, senhaA);
-        this.jogador2 = jogadoresRepository.buscaJogador(usuarioB, senhaB);
+        this.jogadorA = jogadoresRepository.buscaJogador(usuarioA, senhaA);
+        this.jogadorB = jogadoresRepository.buscaJogador(usuarioB, senhaB);
 
         int tamanhoBaralho = baralho.size();
         int metade = tamanhoBaralho / 2;
 
-        this.jogador1.setCartas(baralho.subList(0, metade));
-        this.jogador2.setCartas(baralho.subList(metade, tamanhoBaralho));
+        this.jogadorA.setCartas(baralho.subList(0, metade));
+        this.jogadorB.setCartas(baralho.subList(metade, tamanhoBaralho));
     }
 
     public ArrayList<T> getBaralho() {
         return baralho;
     }
 
-    public Jogador<T> getJogador1() {
-        return jogador1;
+    public Jogador<T> getJogadorA() {
+        return jogadorA;
     }
 
-    public Jogador<T> getJogador2() {
-        return jogador2;
+    public Jogador<T> getJogadorB() {
+        return jogadorB;
     }
 
     public void addBaralho(ArrayList<T> baralho) {
@@ -59,15 +73,15 @@ public class Jogo<T> {
      *
      * @return retorna o vencedor da partida
      */
-    public Jogador<T> jogarPersonagem() {
+    public Jogador<T> jogarPersonagemTerminal() {
         Scanner sc = new Scanner(System.in);
         int turno = 0;
         boolean continua = true;
 
         while (continua) {
 
-            Personagem topoA = (Personagem) jogador1.getCartas().get(0);
-            Personagem topoB = (Personagem) jogador2.getCartas().get(0);
+            Personagem topoA = (Personagem) jogadorA.getCartas().get(0);
+            Personagem topoB = (Personagem) jogadorB.getCartas().get(0);
 
             int escolha = 0;
             boolean superTrunfo = false;
@@ -95,18 +109,18 @@ public class Jogo<T> {
                 }
 
                 if (superTrunfo || compara == 1) { // VENCEU ROUND
-                    jogador1.moveCartas(jogador2);
+                    jogadorA.moveCartas(jogadorB);
 
-                    jogador1.pontua(10);
-                    jogador2.pontua(-5);
+                    jogadorA.pontua(10);
+                    jogadorB.pontua(-5);
                 } else if (compara == -1) { // PERDEU ROUND
-                    jogador2.moveCartas(jogador1);
+                    jogadorB.moveCartas(jogadorA);
 
-                    jogador2.pontua(10);
-                    jogador1.pontua(-10); // Perde mais ponto pois perdeu na própria rodada
+                    jogadorB.pontua(10);
+                    jogadorA.pontua(-10); // Perde mais ponto pois perdeu na própria rodada
                 } else { // EMPATE
-                    jogador1.moveTopo();
-                    jogador2.moveTopo();
+                    jogadorA.moveTopo();
+                    jogadorB.moveTopo();
                 }
 
             } else {
@@ -132,37 +146,37 @@ public class Jogo<T> {
                 }
 
                 if (superTrunfo || compara == 1) { //VENCEU ROUND
-                    jogador2.moveCartas(jogador1);
+                    jogadorB.moveCartas(jogadorA);
 
-                    jogador2.pontua(10);
-                    jogador1.pontua(-5);
+                    jogadorB.pontua(10);
+                    jogadorA.pontua(-5);
                 } else if (compara == -1) { //PERDEU
-                    jogador1.moveCartas(jogador2);
+                    jogadorA.moveCartas(jogadorB);
 
-                    jogador1.pontua(10);
-                    jogador2.pontua(-10); //Perde mais ponto pois perdeu na propria rodada
+                    jogadorA.pontua(10);
+                    jogadorB.pontua(-10); //Perde mais ponto pois perdeu na propria rodada
                 } else { //EMPATE
-                    jogador1.moveTopo();
-                    jogador2.moveTopo();
+                    jogadorA.moveTopo();
+                    jogadorB.moveTopo();
                 }
             }
             turno+=2;
-            if (jogador1.getCartas().size() == 0 || jogador2.getCartas().size() == 0)
+            if (jogadorA.getCartas().size() == 0 || jogadorB.getCartas().size() == 0)
                 continua = false;
         }
 
-        return jogador1.getCartas().size() > 0 ? jogador1 : jogador2;
+        return jogadorA.getCartas().size() > 0 ? jogadorA : jogadorB;
     }
 
-    public Jogador<T> jogarGato() {
+    public Jogador<T> jogarTerminalGato() {
         Scanner sc = new Scanner(System.in);
         int turno = 0;
         boolean continua = true;
 
         while (continua) {
 
-            Gato topoA = (Gato) jogador1.getCartas().get(0);
-            Gato topoB = (Gato) jogador2.getCartas().get(0);
+            Gato topoA = (Gato) jogadorA.getCartas().get(0);
+            Gato topoB = (Gato) jogadorB.getCartas().get(0);
 
             int escolha = 0;
             boolean superTrunfo = false;
@@ -190,18 +204,18 @@ public class Jogo<T> {
                 }
 
                 if (superTrunfo || compara == 1) { // VENCEU ROUND
-                    jogador1.moveCartas(jogador2);
+                    jogadorA.moveCartas(jogadorB);
 
-                    jogador1.pontua(10);
-                    jogador2.pontua(-5);
+                    jogadorA.pontua(10);
+                    jogadorB.pontua(-5);
                 } else if (compara == -1) { // PERDEU ROUND
-                    jogador2.moveCartas(jogador1);
+                    jogadorB.moveCartas(jogadorA);
 
-                    jogador2.pontua(10);
-                    jogador1.pontua(-10); // Perde mais ponto pois perdeu na própria rodada
+                    jogadorB.pontua(10);
+                    jogadorA.pontua(-10); // Perde mais ponto pois perdeu na própria rodada
                 } else { // EMPATE
-                    jogador1.moveTopo();
-                    jogador2.moveTopo();
+                    jogadorA.moveTopo();
+                    jogadorB.moveTopo();
                 }
 
             } else {
@@ -227,37 +241,37 @@ public class Jogo<T> {
                 }
 
                 if (superTrunfo || compara == 1) { //VENCEU ROUND
-                    jogador2.moveCartas(jogador1);
+                    jogadorB.moveCartas(jogadorA);
 
-                    jogador2.pontua(10);
-                    jogador1.pontua(-5);
+                    jogadorB.pontua(10);
+                    jogadorA.pontua(-5);
                 } else if (compara == -1) { //PERDEU
-                    jogador1.moveCartas(jogador2);
+                    jogadorA.moveCartas(jogadorB);
 
-                    jogador1.pontua(10);
-                    jogador2.pontua(-10); //Perde mais ponto pois perdeu na propria rodada
+                    jogadorA.pontua(10);
+                    jogadorB.pontua(-10); //Perde mais ponto pois perdeu na propria rodada
                 } else { //EMPATE
-                    jogador1.moveTopo();
-                    jogador2.moveTopo();
+                    jogadorA.moveTopo();
+                    jogadorB.moveTopo();
                 }
             }
             turno++;
-            if (jogador1.getCartas().size() == 0 || jogador2.getCartas().size() == 0)
+            if (jogadorA.getCartas().size() == 0 || jogadorB.getCartas().size() == 0)
                 continua = false;
         }
 
-        return jogador1.getCartas().size() > 0 ? jogador1 : jogador2;
+        return jogadorA.getCartas().size() > 0 ? jogadorA : jogadorB;
     }
 
-    public Jogador<T> jogarLinguagemProgramacao() {
+    public Jogador<T> jogarTerminalLinguagemProgramacao() {
         Scanner sc = new Scanner(System.in);
         int turno = 0;
         boolean continua = true;
 
         while (continua) {
 
-            LinguagensProgramacao topoA = (LinguagensProgramacao) jogador1.getCartas().get(0);
-            LinguagensProgramacao topoB = (LinguagensProgramacao) jogador2.getCartas().get(0);
+            LinguagensProgramacao topoA = (LinguagensProgramacao) jogadorA.getCartas().get(0);
+            LinguagensProgramacao topoB = (LinguagensProgramacao) jogadorB.getCartas().get(0);
 
             int escolha = 0;
             boolean superTrunfo = false;
@@ -285,18 +299,18 @@ public class Jogo<T> {
                 }
 
                 if (superTrunfo || compara == 1) { // VENCEU ROUND
-                    jogador1.moveCartas(jogador2);
+                    jogadorA.moveCartas(jogadorB);
 
-                    jogador1.pontua(10);
-                    jogador2.pontua(-5);
+                    jogadorA.pontua(10);
+                    jogadorB.pontua(-5);
                 } else if (compara == -1) { // PERDEU ROUND
-                    jogador2.moveCartas(jogador1);
+                    jogadorB.moveCartas(jogadorA);
 
-                    jogador2.pontua(10);
-                    jogador1.pontua(-10); // Perde mais ponto pois perdeu na própria rodada
+                    jogadorB.pontua(10);
+                    jogadorA.pontua(-10); // Perde mais ponto pois perdeu na própria rodada
                 } else { // EMPATE
-                    jogador1.moveTopo();
-                    jogador2.moveTopo();
+                    jogadorA.moveTopo();
+                    jogadorB.moveTopo();
                 }
 
             } else {
@@ -323,25 +337,25 @@ public class Jogo<T> {
                 }
 
                 if (superTrunfo || compara == 1) { //VENCEU ROUND
-                    jogador2.moveCartas(jogador1);
+                    jogadorB.moveCartas(jogadorA);
 
-                    jogador2.pontua(10);
-                    jogador1.pontua(-5);
+                    jogadorB.pontua(10);
+                    jogadorA.pontua(-5);
                 } else if (compara == -1) { //PERDEU
-                    jogador1.moveCartas(jogador2);
+                    jogadorA.moveCartas(jogadorB);
 
-                    jogador1.pontua(10);
-                    jogador2.pontua(-10); //Perde mais ponto pois perdeu na propria rodada
+                    jogadorA.pontua(10);
+                    jogadorB.pontua(-10); //Perde mais ponto pois perdeu na propria rodada
                 } else { //EMPATE
-                    jogador1.moveTopo();
-                    jogador2.moveTopo();
+                    jogadorA.moveTopo();
+                    jogadorB.moveTopo();
                 }
             }
             turno+=2;
-            if (jogador1.getCartas().size() == 0 || jogador2.getCartas().size() == 0)
+            if (jogadorA.getCartas().size() == 0 || jogadorB.getCartas().size() == 0)
                 continua = false;
         }
 
-        return jogador1.getCartas().size() > 0 ? jogador1 : jogador2;
+        return jogadorA.getCartas().size() > 0 ? jogadorA : jogadorB;
     }
 }

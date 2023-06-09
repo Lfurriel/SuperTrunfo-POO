@@ -19,15 +19,9 @@ public class MenuController implements Initializable {
     public Button novaCarta;
     @FXML
     public Button verCartas;
-    private boolean cadastro;
-
-    public void setCadastro(boolean cadastro) {
-        this.cadastro = cadastro;
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println(cadastro);
         jogar.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
