@@ -22,32 +22,12 @@ public class MenuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        jogar.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                DBUtils.changeScene(event, "opcao.fxml", "OPÇÕES", false);
-            }
-        });
+        jogar.setOnAction(event -> DBUtils.changeScene(event, "opcao.fxml", "OPÇÕES", false));
 
-        novoJogador.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                DBUtils.changeScene(event, "cadastroUsuario.fxml", "CADASTRO");
-            }
-        });
+        novoJogador.setOnAction(event -> DBUtils.changeScene(event, "cadastroUsuario.fxml", "CADASTRO"));
 
-        novaCarta.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                DBUtils.changeScene(event, "opcao.fxml", "OPÇÕES", true);
-            }
-        });
+        novaCarta.setOnAction(event -> DBUtils.changeScene(event, "opcao.fxml", "OPÇÕES", true));
 
-        verCartas.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                DBUtils.changeScene(event, "verCartas.fxml", "CARTAS");
-            }
-        });
+        verCartas.setOnAction(event -> DBUtils.changeScene(event, "verCartas.fxml", "CARTAS"));
     }
 }

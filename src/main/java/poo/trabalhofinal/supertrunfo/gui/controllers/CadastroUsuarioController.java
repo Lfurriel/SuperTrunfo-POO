@@ -27,21 +27,18 @@ public class CadastroUsuarioController implements Initializable {
     //todo: fazer botão voltar
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        cadastrar.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                try {
-                    validaPreenchidos();
-                    JogadoresRepository<?> jogadoresRepository = new JogadoresRepositoryImpl<>();
-                    jogadoresRepository.insereNovoJogador(new Jogador<>(nome.getText(), senha.getText()));
-                    Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-                    alerta.setTitle("CADASTRO DE JOGADOR");
-                    alerta.setContentText("Jogador cadastrado com sucesso");
-                    alerta.showAndWait();
-                    DBUtils.changeScene(event, "menu.fxml", "MENU");
-                } catch (InformacaoInvalidaException | SQLException e) {
-                    alerta.setText(e.getMessage());
-                }
+        cadastrar.setOnAction(event -> {
+            try {
+                validaPreenchidos();
+                JogadoresRepository<?> jogadoresRepository = new JogadoresRepositoryImpl<>();
+                jogadoresRepository.insereNovoJogador(new Jogador<>(nome.getText(), senha.getText()));
+                Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+                alerta.setTitle("CADASTRO DE JOGADOR");
+                alerta.setContentText("Jogador cadastrado com sucesso");
+                alerta.showAndWait();
+                DBUtils.changeScene(event, "menu.fxml", "MENU");
+            } catch (InformacaoInvalidaException | SQLException e) {
+                alerta.setText(e.getMessage());
             }
         });
     }

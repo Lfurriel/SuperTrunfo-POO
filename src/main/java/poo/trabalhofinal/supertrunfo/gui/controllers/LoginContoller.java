@@ -50,65 +50,59 @@ public class LoginContoller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        login1.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                try {
-                    validaPreenchidoJogador1();
-                    JogadoresRepository<?> jogadoresRepository;
-                    if (tipo.equals("Personagem"))
-                        jogadoresRepository = new JogadoresRepositoryImpl<Personagem>();
-                    else if (tipo.equals("Gato"))
-                        jogadoresRepository = new JogadoresRepositoryImpl<Gato>();
-                    else
-                        jogadoresRepository = new JogadoresRepositoryImpl<LinguagensProgramacao>();
-                    jogador1 = jogadoresRepository.buscaJogador(nome1.getText(), senha1.getText());
+        login1.setOnAction(event -> {
+            try {
+                validaPreenchidoJogador1();
+                JogadoresRepository<?> jogadoresRepository;
+                if (tipo.equals("Personagem"))
+                    jogadoresRepository = new JogadoresRepositoryImpl<Personagem>();
+                else if (tipo.equals("Gato"))
+                    jogadoresRepository = new JogadoresRepositoryImpl<Gato>();
+                else
+                    jogadoresRepository = new JogadoresRepositoryImpl<LinguagensProgramacao>();
+                jogador1 = jogadoresRepository.buscaJogador(nome1.getText(), senha1.getText());
 
-                    validaJogador2();
+                validaJogador2();
 
-                    jogadorLogado1 = true;
-                    login1.setDisable(true);
-                    nome1.setDisable(true);
-                    senha1.setDisable(true);
-                    alerta1.setText("JOGADOR 1 LOGADO");
+                jogadorLogado1 = true;
+                login1.setDisable(true);
+                nome1.setDisable(true);
+                senha1.setDisable(true);
+                alerta1.setText("JOGADOR 1 LOGADO");
 
-                    irParaJogo(event);
-                } catch (InformacaoInvalidaException | SQLException | UsuarioNaoEncontradoException e) {
-                    alerta1.setText(e.getMessage());
-                }
-
+                irParaJogo(event);
+            } catch (InformacaoInvalidaException | SQLException | UsuarioNaoEncontradoException e) {
+                alerta1.setText(e.getMessage());
             }
+
         });
 
-        login2.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                try {
-                    validaPreenchidoJogador2();
+        login2.setOnAction(event -> {
+            try {
+                validaPreenchidoJogador2();
 
-                    JogadoresRepository<?> jogadoresRepository;
-                    if (tipo.equals("Personagem"))
-                        jogadoresRepository = new JogadoresRepositoryImpl<Personagem>();
-                    else if (tipo.equals("Gato"))
-                        jogadoresRepository = new JogadoresRepositoryImpl<Gato>();
-                    else
-                        jogadoresRepository = new JogadoresRepositoryImpl<LinguagensProgramacao>();
-                    jogador2 = jogadoresRepository.buscaJogador(nome2.getText(), senha2.getText());
+                JogadoresRepository<?> jogadoresRepository;
+                if (tipo.equals("Personagem"))
+                    jogadoresRepository = new JogadoresRepositoryImpl<Personagem>();
+                else if (tipo.equals("Gato"))
+                    jogadoresRepository = new JogadoresRepositoryImpl<Gato>();
+                else
+                    jogadoresRepository = new JogadoresRepositoryImpl<LinguagensProgramacao>();
+                jogador2 = jogadoresRepository.buscaJogador(nome2.getText(), senha2.getText());
 
-                    validaJogador1();
+                validaJogador1();
 
-                    jogadorLogado2 = true;
-                    login2.setDisable(true);
-                    nome2.setDisable(true);
-                    senha2.setDisable(true);
-                    alerta2.setText("JOGADOR 2 LOGADO");
+                jogadorLogado2 = true;
+                login2.setDisable(true);
+                nome2.setDisable(true);
+                senha2.setDisable(true);
+                alerta2.setText("JOGADOR 2 LOGADO");
 
-                    irParaJogo(event);
-                } catch (InformacaoInvalidaException | SQLException | UsuarioNaoEncontradoException e) {
-                    alerta2.setText(e.getMessage());
-                }
-
+                irParaJogo(event);
+            } catch (InformacaoInvalidaException | SQLException | UsuarioNaoEncontradoException e) {
+                alerta2.setText(e.getMessage());
             }
+
         });
     }
 
