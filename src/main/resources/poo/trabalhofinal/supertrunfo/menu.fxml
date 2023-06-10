@@ -31,6 +31,11 @@
          </font>
       </Button>
       <Button fx:id="regras" layoutX="840.0" layoutY="154.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="53.0" style="-fx-background-color: transparent;" />
+      <Label fx:id="alerta" layoutX="362.0" layoutY="169.0" prefHeight="16.0" prefWidth="431.0" textFill="RED">
+         <font>
+            <Font name="Ubuntu" size="14.0" />
+         </font>
+      </Label>
 
     </AnchorPane>
 </Pane>

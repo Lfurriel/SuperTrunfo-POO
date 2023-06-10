@@ -3,6 +3,7 @@ module com.example.supertrunfo {
     requires javafx.fxml;
     requires java.sql;
     requires jbcrypt;
+    requires java.desktop;
 
 
     opens poo.trabalhofinal.supertrunfo to javafx.fxml;
