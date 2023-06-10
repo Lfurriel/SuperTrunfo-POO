@@ -73,47 +73,39 @@ public class CadastroCartaController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        adicionar.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                try {
-                    validaPreenchidos();
-                    validaValores();
-                    if (tipo.equals("Personagem")) {
-                        CartasRepository<Personagem> cartasRepository = new CartasRepositoryImpl<Personagem>();
-                        cartasRepository.insereNovaCarta(new Personagem(nome.getText(), imagem.getText(), false, Util.stringToClassificacao(classificacao.getText()),
-                                Integer.parseInt(caracteristica1.getText()), Integer.parseInt(caracteristica2.getText()), Integer.parseInt(caracteristica3.getText()),
-                                Integer.parseInt(caracteristica4.getText()), Double.parseDouble(caracteristica5.getText())));
-                    } else if (tipo.equals("Gato")) {
-                        CartasRepository<Gato> cartasRepository = new CartasRepositoryImpl<Gato>();
-                        cartasRepository.insereNovaCarta(new Gato(nome.getText(), imagem.getText(), false, Util.stringToClassificacao(classificacao.getText()),
-                                Integer.parseInt(caracteristica1.getText()), Integer.parseInt(caracteristica2.getText()), Integer.parseInt(caracteristica3.getText()),
-                                Integer.parseInt(caracteristica4.getText()), Double.parseDouble(caracteristica5.getText())));
-                    } else {
-                        CartasRepository<LinguagensProgramacao> cartasRepository = new CartasRepositoryImpl<LinguagensProgramacao>();
-                        cartasRepository.insereNovaCarta(new LinguagensProgramacao(nome.getText(), imagem.getText(), false, Util.stringToClassificacao(classificacao.getText()),
-                                Integer.parseInt(caracteristica1.getText()), Integer.parseInt(caracteristica2.getText()), Integer.parseInt(caracteristica3.getText()),
-                                Integer.parseInt(caracteristica4.getText()), Double.parseDouble(caracteristica5.getText())));
-                    }
-                } catch (InformacaoInvalidaException | SQLException e) {
-                    nome.setText("");
-                    classificacao.setText("");
-                    caracteristica1.setText("");
-                    caracteristica2.setText("");
-                    caracteristica3.setText("");
-                    caracteristica4.setText("");
-                    caracteristica5.setText("");
-                    alerta.setText(e.getMessage());
+        adicionar.setOnAction(event -> {
+            try {
+                validaPreenchidos();
+                validaValores();
+                if (tipo.equals("Personagem")) {
+                    CartasRepository<Personagem> cartasRepository = new CartasRepositoryImpl<Personagem>();
+                    cartasRepository.insereNovaCarta(new Personagem(nome.getText(), imagem.getText(), false, Util.stringToClassificacao(classificacao.getText()),
+                            Integer.parseInt(caracteristica1.getText()), Integer.parseInt(caracteristica2.getText()), Integer.parseInt(caracteristica3.getText()),
+                            Integer.parseInt(caracteristica4.getText()), Double.parseDouble(caracteristica5.getText())));
+                } else if (tipo.equals("Gato")) {
+                    CartasRepository<Gato> cartasRepository = new CartasRepositoryImpl<Gato>();
+                    cartasRepository.insereNovaCarta(new Gato(nome.getText(), imagem.getText(), false, Util.stringToClassificacao(classificacao.getText()),
+                            Integer.parseInt(caracteristica1.getText()), Integer.parseInt(caracteristica2.getText()), Integer.parseInt(caracteristica3.getText()),
+                            Integer.parseInt(caracteristica4.getText()), Double.parseDouble(caracteristica5.getText())));
+                } else {
+                    CartasRepository<LinguagensProgramacao> cartasRepository = new CartasRepositoryImpl<LinguagensProgramacao>();
+                    cartasRepository.insereNovaCarta(new LinguagensProgramacao(nome.getText(), imagem.getText(), false, Util.stringToClassificacao(classificacao.getText()),
+                            Integer.parseInt(caracteristica1.getText()), Integer.parseInt(caracteristica2.getText()), Integer.parseInt(caracteristica3.getText()),
+                            Integer.parseInt(caracteristica4.getText()), Double.parseDouble(caracteristica5.getText())));
                 }
+            } catch (InformacaoInvalidaException | SQLException e) {
+                nome.setText("");
+                classificacao.setText("");
+                caracteristica1.setText("");
+                caracteristica2.setText("");
+                caracteristica3.setText("");
+                caracteristica4.setText("");
+                caracteristica5.setText("");
+                alerta.setText(e.getMessage());
             }
         });
 
-        voltar.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                DBUtils.changeScene(event, "menu.fxml", "MENU");
-            }
-        });
+        voltar.setOnAction(event -> DBUtils.changeScene(event, "menu.fxml", "MENU"));
     }
 
     private void validaPreenchidos() throws InformacaoInvalidaException {
