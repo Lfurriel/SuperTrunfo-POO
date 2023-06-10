@@ -27,34 +27,25 @@ public class OpcaoController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        personagem.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                if (cadastro)
-                    DBUtils.changeScene(event, "cadastroCarta.fxml", "NOVA CARTA", "Personagem", true);
-                else
-                    DBUtils.changeScene(event, "login.fxml", "LOGIN",  "Personagem", false);
-            }
+        personagem.setOnAction(event -> {
+            if (cadastro)
+                DBUtils.changeScene(event, "cadastroCarta.fxml", "NOVA CARTA", "Personagem", true);
+            else
+                DBUtils.changeScene(event, "login.fxml", "LOGIN",  "Personagem", false);
         });
 
-        gatos.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                if(cadastro)
-                    DBUtils.changeScene(event, "cadastroCarta.fxml", "NOVA CARTA", "Gato", true);
-                else
-                    DBUtils.changeScene(event, "login.fxml", "LOGIN", "Gato", false);
-            }
+        gatos.setOnAction(event -> {
+            if(cadastro)
+                DBUtils.changeScene(event, "cadastroCarta.fxml", "NOVA CARTA", "Gato", true);
+            else
+                DBUtils.changeScene(event, "login.fxml", "LOGIN", "Gato", false);
         });
 
-        linguagemProg.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                if(cadastro)
-                    DBUtils.changeScene(event, "cadastroCarta.fxml", "NOVA CARTA", "LinguagensProgramacao", true);
-                else
-                    DBUtils.changeScene(event, "login.fxml", "LOGIN", "LinguagensProgramacao", false);
-            }
+        linguagemProg.setOnAction(event -> {
+            if(cadastro)
+                DBUtils.changeScene(event, "cadastroCarta.fxml", "NOVA CARTA", "LinguagensProgramacao", true);
+            else
+                DBUtils.changeScene(event, "login.fxml", "LOGIN", "LinguagensProgramacao", false);
         });
     }
 }

@@ -21,9 +21,10 @@ public class VencedorController {
     private Button sair;
     @FXML
     private Label vencedor;
-
+    private final JogadoresRepository<?> jogadoresRepository = new JogadoresRepositoryImpl<>();
     private Jogador jogadorVencedor = DBUtils.getVencedor();
     private Jogador jogadorFracasado = DBUtils.getPerdedor();
+
 
     public void setJogadores(Jogador jogadorVencedor, Jogador jogadorFracasado) {
         this.jogadorVencedor = jogadorVencedor;
@@ -33,20 +34,16 @@ public class VencedorController {
     @FXML
     public void initialize() {
         vencedor.setText(jogadorVencedor.getNome().toUpperCase());
-        sair.setOnAction(new EventHandler<ActionEvent>() {
-            private final JogadoresRepository<?> jogadoresRepository = new JogadoresRepositoryImpl<>();
-            @Override
-            public void handle(ActionEvent event) {
-                try {
-                    jogadoresRepository.updateJogadores(jogadorVencedor, jogadorFracasado);
-                } catch (SQLException e) {
-                    Alert alerta = new Alert(Alert.AlertType.ERROR);
-                    alerta.setTitle("ERRO");
-                    alerta.setContentText(e.getMessage());
-                    alerta.showAndWait();
-                }
-                DBUtils.changeScene(event, "menu.fxml", "MENU");
+        sair.setOnAction(event -> {
+            try {
+                jogadoresRepository.updateJogadores(jogadorVencedor, jogadorFracasado);
+            } catch (SQLException e) {
+                Alert alerta = new Alert(Alert.AlertType.ERROR);
+                alerta.setTitle("ERRO");
+                alerta.setContentText(e.getMessage());
+                alerta.showAndWait();
             }
+            DBUtils.changeScene(event, "menu.fxml", "MENU");
         });
     }
 }

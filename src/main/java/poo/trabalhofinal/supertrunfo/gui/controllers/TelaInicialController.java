@@ -21,12 +21,7 @@ public class TelaInicialController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        pane.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                DBUtils.changeScene(event, "menu.fxml", "MENU");
-            }
-        });
+        pane.setOnMouseClicked(event -> DBUtils.changeScene(event, "menu.fxml", "MENU"));
 
     }
 }

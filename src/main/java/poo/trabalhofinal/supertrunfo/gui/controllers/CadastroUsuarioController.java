@@ -9,6 +9,7 @@ import poo.trabalhofinal.supertrunfo.classes.Jogador;
 import poo.trabalhofinal.supertrunfo.classes.exceptions.InformacaoInvalidaException;
 import poo.trabalhofinal.supertrunfo.classes.interfaces.JogadoresRepository;
 import poo.trabalhofinal.supertrunfo.classes.interfaces.JogadoresRepositoryImpl;
+import poo.trabalhofinal.supertrunfo.classes.utils.Util;
 import poo.trabalhofinal.supertrunfo.gui.DBUtils;
 
 import java.net.URL;
@@ -27,21 +28,18 @@ public class CadastroUsuarioController implements Initializable {
     //todo: fazer botão voltar
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        cadastrar.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                try {
-                    validaPreenchidos();
-                    JogadoresRepository<?> jogadoresRepository = new JogadoresRepositoryImpl<>();
-                    jogadoresRepository.insereNovoJogador(new Jogador<>(nome.getText(), senha.getText()));
-                    Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-                    alerta.setTitle("CADASTRO DE JOGADOR");
-                    alerta.setContentText("Jogador cadastrado com sucesso");
-                    alerta.showAndWait();
-                    DBUtils.changeScene(event, "menu.fxml", "MENU");
-                } catch (InformacaoInvalidaException | SQLException e) {
-                    alerta.setText(e.getMessage());
-                }
+        cadastrar.setOnAction(event -> {
+            try {
+                validaPreenchidos();
+                JogadoresRepository<?> jogadoresRepository = new JogadoresRepositoryImpl<>();
+                jogadoresRepository.insereNovoJogador(new Jogador<>(nome.getText(), Util.codificaSenha(senha.getText())));
+                Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+                alerta.setTitle("CADASTRO DE JOGADOR");
+                alerta.setContentText("Jogador cadastrado com sucesso");
+                alerta.showAndWait();
+                DBUtils.changeScene(event, "menu.fxml", "MENU");
+            } catch (InformacaoInvalidaException | SQLException e) {
+                alerta.setText(e.getMessage());
             }
         });
     }
