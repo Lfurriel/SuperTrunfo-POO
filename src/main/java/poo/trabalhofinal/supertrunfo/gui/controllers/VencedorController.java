@@ -21,6 +21,7 @@ public class VencedorController {
     private Button sair;
     @FXML
     private Label vencedor;
+
     private final JogadoresRepository<?> jogadoresRepository = new JogadoresRepositoryImpl<>();
     private Jogador jogadorVencedor = DBUtils.getVencedor();
     private Jogador jogadorFracasado = DBUtils.getPerdedor();

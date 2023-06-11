@@ -40,6 +40,7 @@ public class MenuController implements Initializable {
 
         novaCarta.setOnAction(event -> DBUtils.changeScene(event, "opcao.fxml", "OPÇÕES", true));
 
+
         verCartas.setOnAction(event -> DBUtils.changeScene(event, "verCartas.fxml", "CARTAS"));
 
         regras.setOnAction(event -> abrirPDF());
@@ -58,5 +59,7 @@ public class MenuController implements Initializable {
             }
         } else
             alerta.setText("Não foi possível abrir o url");
+
+        verCartas.setOnAction(event -> DBUtils.changeScene(event, "verCartas.fxml", "CARTAS"));
     }
 }

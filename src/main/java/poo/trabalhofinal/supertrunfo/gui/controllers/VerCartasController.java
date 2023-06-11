@@ -80,6 +80,7 @@ public class VerCartasController implements Initializable {
         }
 
         proximo.setOnAction(event -> {
+
             if (cartas != null && cartas.size() > 0 && i + 1 < cartas.size())
                 mostrarCartas(cartas.get(++i));
             else if (cartas != null && i + 1 >= cartas.size())
@@ -87,6 +88,7 @@ public class VerCartasController implements Initializable {
             else
                 alerta.setText("Erro ao buscar cartas");
         });
+
 
         anterior.setOnAction(event -> {
             if (cartas != null && cartas.size() > 0 && i - 1 >= 0)
