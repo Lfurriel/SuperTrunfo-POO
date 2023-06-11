@@ -60,6 +60,8 @@
             <Font name="Ubuntu" size="18.0" />
          </font>
       </Label>
+      <Button fx:id="cadastrese1" layoutX="258.0" layoutY="571.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="153.0" style="-fx-background-color: transparent;" text="CADASTRE-SE!" textFill="#0003c3" underline="true" />
+      <Button fx:id="cadastrese2" layoutX="884.0" layoutY="571.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="153.0" style="-fx-background-color: transparent;" text="CADASTRE-SE!" textFill="#0003c3" underline="true" />
 
     </AnchorPane>
 </Pane>

@@ -24,6 +24,8 @@ public class CadastroUsuarioController implements Initializable {
     @FXML
     public Button cadastrar;
     @FXML
+    public Button voltar;
+    @FXML
     public Label alerta;
     //todo: fazer botão voltar
     @Override
@@ -42,6 +44,8 @@ public class CadastroUsuarioController implements Initializable {
                 alerta.setText(e.getMessage());
             }
         });
+
+        voltar.setOnAction(event -> DBUtils.changeScene(event, "menu.fxml", "MENU"));
     }
 
     private void validaPreenchidos() throws InformacaoInvalidaException {

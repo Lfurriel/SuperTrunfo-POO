@@ -41,6 +41,7 @@ public class MenuController implements Initializable {
         novaCarta.setOnAction(event -> DBUtils.changeScene(event, "opcao.fxml", "OPÇÕES", true));
 
         verCartas.setOnAction(event -> DBUtils.changeScene(event, "verCartas.fxml", "CARTAS"));
+
         regras.setOnAction(event -> abrirPDF());
     }
 

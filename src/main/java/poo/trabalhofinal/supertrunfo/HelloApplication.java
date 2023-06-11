@@ -15,7 +15,7 @@ public class HelloApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("telaInicial.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1280, 720);
         stage.setResizable(false);
-        stage.getIcons().add(new Image(HelloApplication.class.getResource("/poo/trabalhofinal/supertrunfo/gui/super_trunfo.png").toExternalForm()));
+        stage.getIcons().add(new Image(HelloApplication.class.getResource("/poo/trabalhofinal/supertrunfo/gui/fujutrunfo.png").toExternalForm()));
         stage.setTitle("SUPER TRUNFO");
         stage.setScene(scene);
         stage.show();
