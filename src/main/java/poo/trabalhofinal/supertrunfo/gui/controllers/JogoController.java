@@ -119,7 +119,7 @@ public class JogoController implements Initializable {
     public Label turno;
     @FXML
     public ImageView fundo;
-    private final Image fundoA = new Image(HelloApplication.class.getResource("/poo/trabalhofinal/supertrunfo/gui/jogoA.jpg").toExternalForm());
+    //private final Image fundoA = new Image(HelloApplication.class.getResource("/poo/trabalhofinal/supertrunfo/gui/jogoA.jpg").toExternalForm());
     private final Image fundoB = new Image(HelloApplication.class.getResource("/poo/trabalhofinal/supertrunfo/gui/jogoB.jpg").toExternalForm());
 
     //TODO: ver se é possível mudar a imagem de fundo dependendo do turno
@@ -503,6 +503,12 @@ public class JogoController implements Initializable {
     }
 
     private void setTurno(ActionEvent event) {
+
+        final URL urlFundoA = getClass().getResource("/poo/trabalhofinal/supertrunfo/gui/jogoA.jpg");
+
+        System.out.println(urlFundoA);
+        final Image fundoA = new Image(urlFundoA != null ? urlFundoA.toExternalForm() : null);
+
         rodada++;
         if (rodada % 2 == 1) {
             try {
