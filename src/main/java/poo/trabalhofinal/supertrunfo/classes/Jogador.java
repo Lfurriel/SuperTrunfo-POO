@@ -16,7 +16,6 @@ public class Jogador<T> {
     public Jogador(String nome, String senha) {
         this.nome = nome;
         this.senha = senha;
-        //TODO: criptografar a senha -> chama da util
     }
 
     public String getNome() {

@@ -538,7 +538,7 @@ public class JogoController implements Initializable {
                 DBUtils.changeScene(event, "menu.fxml", "MENU");
             }
             turno.setText("Turno: " + rodada + " - " + jogo.getJogadorA().getNome());
-            //Habilitando botões do jogador A
+            //Habilitando os botões do jogador A
             b_caracteristicaA1.setDisable(false);
             b_caracteristicaA2.setDisable(false);
             b_caracteristicaA3.setDisable(false);
@@ -572,7 +572,7 @@ public class JogoController implements Initializable {
             b_caracteristicaA5.setDisable(true);
             b_superA.setDisable(true);
 
-            //Habilitando botões do jogador B
+            //Habilitando os botões do jogador B
             b_caracteristicaB1.setDisable(false);
             b_caracteristicaB2.setDisable(false);
             b_caracteristicaB3.setDisable(false);

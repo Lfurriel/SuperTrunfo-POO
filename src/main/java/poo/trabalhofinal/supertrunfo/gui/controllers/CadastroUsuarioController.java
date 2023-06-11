@@ -27,7 +27,6 @@ public class CadastroUsuarioController implements Initializable {
     public Button voltar;
     @FXML
     public Label alerta;
-    //todo: fazer botão voltar
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         cadastrar.setOnAction(event -> {
