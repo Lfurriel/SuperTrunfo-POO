@@ -119,10 +119,13 @@ public class JogoController implements Initializable {
     public Label turno;
     @FXML
     public ImageView fundo;
-    //private final Image fundoA = new Image(HelloApplication.class.getResource("/poo/trabalhofinal/supertrunfo/gui/jogoA.jpg").toExternalForm());
-    private final Image fundoB = new Image(HelloApplication.class.getResource("/poo/trabalhofinal/supertrunfo/gui/jogoB.jpg").toExternalForm());
 
-    //TODO: ver se é possível mudar a imagem de fundo dependendo do turno
+    final URL urlFundoA = getClass().getResource("/poo/trabalhofinal/supertrunfo/gui/jogoA.jpg");
+    final Image fundoA = new Image(urlFundoA != null ? urlFundoA.toExternalForm() : null);
+
+    final URL urlFundoB = getClass().getResource("/poo/trabalhofinal/supertrunfo/gui/jogoB.jpg");
+    final Image fundoB = new Image(urlFundoB != null ? urlFundoB.toExternalForm() : null);
+
 
     private static final String tipo = DBUtils.getTipoJogo();
     private static final Jogo jogo = DBUtils.getJogo();
@@ -443,9 +446,18 @@ public class JogoController implements Initializable {
     }
 
     private void mostrarCartaA() {
-        nomeA.setText(topoA.getNome());
+        String nome = topoA.getNome().toUpperCase();
+        nomeA.setText(nome);
         classificacaoA.setText(topoA.getClassificacao().toString());
-        imagemA.setImage(new Image(topoA.getImagem()));
+
+        try {
+            URL urlImagem = getClass().getResource(topoA.getImagem());
+            Image imagemCarta = new Image(urlImagem != null ? urlImagem.toExternalForm() : null);
+            imagemA.setImage(imagemCarta);
+        } catch (Exception e) {
+            System.out.println("Erro ao carregar imagem!");
+        }
+
         qtdCartasA.setText(String.valueOf(jogo.getJogadorA().getCartas().size()));
         superA.setVisible(topoA.isSuperTrunfo());
         b_superA.setDisable(!topoA.isSuperTrunfo());
@@ -473,9 +485,18 @@ public class JogoController implements Initializable {
     }
 
     private void mostrarCartaB() {
-        nomeB.setText(topoB.getNome());
+        String nome = topoB.getNome().toUpperCase();
+        nomeB.setText(nome);
         classificacaoB.setText(topoB.getClassificacao().toString());
-        imagemB.setImage(new Image(topoB.getImagem()));
+
+        try {
+            URL urlImagem = getClass().getResource(topoB.getImagem());
+            Image imagemCarta = new Image(urlImagem != null ? urlImagem.toExternalForm() : null);
+            imagemB.setImage(imagemCarta);
+        } catch (Exception e) {
+            System.out.println("Erro ao carregar imagem!");
+        }
+
         qtdCartasB.setText(String.valueOf(jogo.getJogadorB().getCartas().size()));
         superB.setVisible(topoB.isSuperTrunfo());
         b_superB.setDisable(!topoB.isSuperTrunfo());
@@ -503,11 +524,6 @@ public class JogoController implements Initializable {
     }
 
     private void setTurno(ActionEvent event) {
-
-        final URL urlFundoA = getClass().getResource("/poo/trabalhofinal/supertrunfo/gui/jogoA.jpg");
-
-        System.out.println(urlFundoA);
-        final Image fundoA = new Image(urlFundoA != null ? urlFundoA.toExternalForm() : null);
 
         rodada++;
         if (rodada % 2 == 1) {
