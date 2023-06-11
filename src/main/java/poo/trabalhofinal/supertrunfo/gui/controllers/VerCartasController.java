@@ -1,19 +1,15 @@
 package poo.trabalhofinal.supertrunfo.gui.controllers;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import poo.trabalhofinal.supertrunfo.classes.Jogo;
 import poo.trabalhofinal.supertrunfo.classes.cartas.Carta;
 import poo.trabalhofinal.supertrunfo.classes.cartas.Gato;
 import poo.trabalhofinal.supertrunfo.classes.cartas.LinguagensProgramacao;
 import poo.trabalhofinal.supertrunfo.classes.cartas.Personagem;
-import poo.trabalhofinal.supertrunfo.classes.exceptions.JogoException;
 import poo.trabalhofinal.supertrunfo.classes.interfaces.CartasRepository;
 import poo.trabalhofinal.supertrunfo.classes.interfaces.CartasRepositoryImpl;
 import poo.trabalhofinal.supertrunfo.gui.DBUtils;
@@ -21,8 +17,6 @@ import poo.trabalhofinal.supertrunfo.gui.DBUtils;
 import java.net.URL;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.ResourceBundle;
 
 public class VerCartasController implements Initializable {
@@ -54,6 +48,12 @@ public class VerCartasController implements Initializable {
     public Label c4;
     @FXML
     public Label c5;
+    @FXML
+    public Label descricao3;
+    @FXML
+    public Label descricao4;
+    @FXML
+    public Label descricao5;
     @FXML
     public Label tipo;
     @FXML
@@ -128,6 +128,9 @@ public class VerCartasController implements Initializable {
             caracteristica3.setText(String.valueOf(((Personagem) carta).getCoragem()));
             caracteristica4.setText(String.valueOf(((Personagem) carta).getPrimeiraAparicao()));
             caracteristica5.setText(String.valueOf(((Personagem) carta).getAltura()));
+            descricao3.setText("/100");
+            descricao4.setText("(ano)");
+            descricao5.setText("(metros)");
         } else if (carta instanceof Gato) {
             tipo.setText("Gato");
             c1.setText("Agilidade:");
@@ -141,6 +144,9 @@ public class VerCartasController implements Initializable {
             caracteristica3.setText(String.valueOf(((Gato) carta).getTempoDeVida()));
             caracteristica4.setText(String.valueOf(((Gato) carta).getAgressividade()));
             caracteristica5.setText(String.valueOf(((Gato) carta).getPeso()));
+            descricao3.setText("(meses)");
+            descricao4.setText("/100");
+            descricao5.setText("kg");
         } else {
             tipo.setText("Linguagem de programação");
             c1.setText("Escritabilidade:");
@@ -154,6 +160,9 @@ public class VerCartasController implements Initializable {
             caracteristica3.setText(String.valueOf(((LinguagensProgramacao) carta).getConfiabilidade()));
             caracteristica4.setText(String.valueOf(((LinguagensProgramacao) carta).getCusto()));
             caracteristica5.setText(String.valueOf(((LinguagensProgramacao) carta).getSalarioSenior()));
+            descricao3.setText("/100");
+            descricao4.setText("/100");
+            descricao5.setText("(reais)");
         }
     }
 }

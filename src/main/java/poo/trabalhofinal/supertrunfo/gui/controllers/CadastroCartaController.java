@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -92,6 +93,11 @@ public class CadastroCartaController implements Initializable {
                             Integer.parseInt(caracteristica1.getText()), Integer.parseInt(caracteristica2.getText()), Integer.parseInt(caracteristica3.getText()),
                             Integer.parseInt(caracteristica4.getText()), Double.parseDouble(caracteristica5.getText())));
                 }
+                Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+                alerta.setTitle("CADASTRO DE CARTA");
+                alerta.setContentText("Carta cadastrada com sucesso");
+                alerta.showAndWait();
+                DBUtils.changeScene(event, "menu.fxml", "MENU");
             } catch (InformacaoInvalidaException | SQLException e) {
                 nome.setText("");
                 classificacao.setText("");
