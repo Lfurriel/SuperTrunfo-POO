@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import poo.trabalhofinal.supertrunfo.HelloApplication;
 import poo.trabalhofinal.supertrunfo.classes.Jogador;
 import poo.trabalhofinal.supertrunfo.classes.cartas.Classificacao;
 import poo.trabalhofinal.supertrunfo.classes.Jogo;
@@ -119,9 +120,8 @@ public class JogoController implements Initializable {
     public Label turno;
     @FXML
     public ImageView fundo;
-
-    //private final Image fundoA = new Image("D:\\IdeaProjects\\SuperTrunfo\\src\\main\\resources\\poo\\trabalhofinal\\supertrunfo\\gui\\fundo.jpg");
-    //private final Image fundoB = new Image("D:\\IdeaProjects\\SuperTrunfo\\src\\main\\resources\\poo\\trabalhofinal\\supertrunfo\\gui\\menu.jpg");
+    private final Image fundoA = new Image(HelloApplication.class.getResource("/poo/trabalhofinal/supertrunfo/gui/jogoA.jpg").toExternalForm());
+    private final Image fundoB = new Image(HelloApplication.class.getResource("/poo/trabalhofinal/supertrunfo/gui/jogoB.jpg").toExternalForm());
 
     //TODO: ver se é possível mudar a imagem de fundo dependendo do turno
 
@@ -506,7 +506,7 @@ public class JogoController implements Initializable {
     private void setTurno() {
         rodada++;
         if (rodada % 2 == 1) {
-            //fundo.setImage(fundoA);
+            fundo.setImage(fundoA);
             turno.setText("Turno: " + rodada + " - " + jogo.getJogadorA().getNome());
             //Habilitando botões do jogador A
             b_caracteristicaA1.setDisable(false);
@@ -523,7 +523,7 @@ public class JogoController implements Initializable {
             b_caracteristicaB5.setDisable(true);
             b_superB.setDisable(true);
         } else {
-            //fundo.setImage(fundoB);
+            fundo.setImage(fundoB);
             turno.setText("Turno: " + rodada + " - " + jogo.getJogadorB().getNome());
             //Desabilitando botões do jogador A
             b_caracteristicaA1.setDisable(true);
