@@ -19,7 +19,7 @@ import java.sql.SQLException;
 
 public class DBUtils {
 
-    private static Image icon = new Image("https://ajuda.growgames.com.br/attachments/token/EzaE2p10cvOcRwmxq9RJ9c1MP/?name=super_trunfo.png");
+    private static Image icon = new Image(HelloApplication.class.getResource("/poo/trabalhofinal/supertrunfo/gui/fujutrunfo.png").toExternalForm());
     private static Jogo jogo;
     private static String tipoJogo;
 

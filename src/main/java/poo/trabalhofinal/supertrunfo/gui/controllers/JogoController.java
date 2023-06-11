@@ -1,7 +1,6 @@
 package poo.trabalhofinal.supertrunfo.gui.controllers;
 
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -9,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import poo.trabalhofinal.supertrunfo.HelloApplication;
 import poo.trabalhofinal.supertrunfo.classes.Jogador;
 import poo.trabalhofinal.supertrunfo.classes.cartas.Classificacao;
 import poo.trabalhofinal.supertrunfo.classes.Jogo;
@@ -119,9 +119,8 @@ public class JogoController implements Initializable {
     public Label turno;
     @FXML
     public ImageView fundo;
-
-    //private final Image fundoA = new Image("D:\\IdeaProjects\\SuperTrunfo\\src\\main\\resources\\poo\\trabalhofinal\\supertrunfo\\gui\\fundo.jpg");
-    //private final Image fundoB = new Image("D:\\IdeaProjects\\SuperTrunfo\\src\\main\\resources\\poo\\trabalhofinal\\supertrunfo\\gui\\menu.jpg");
+    private final Image fundoA = new Image(HelloApplication.class.getResource("/poo/trabalhofinal/supertrunfo/gui/jogoA.jpg").toExternalForm());
+    private final Image fundoB = new Image(HelloApplication.class.getResource("/poo/trabalhofinal/supertrunfo/gui/jogoB.jpg").toExternalForm());
 
     //TODO: ver se é possível mudar a imagem de fundo dependendo do turno
 
@@ -137,7 +136,7 @@ public class JogoController implements Initializable {
         pegaTopo();
         mostrarCartaA();
         mostrarCartaB();
-        setTurno();
+        setTurno(new ActionEvent());
 
         //Botões de A
         b_superA.setOnAction(event -> {
@@ -503,10 +502,19 @@ public class JogoController implements Initializable {
         }
     }
 
-    private void setTurno() {
+    private void setTurno(ActionEvent event) {
         rodada++;
         if (rodada % 2 == 1) {
-            //fundo.setImage(fundoA);
+            try {
+                fundo.setImage(fundoA);
+            } catch (Exception e) {
+                Alert alerta = new Alert(Alert.AlertType.ERROR);
+                alerta.setTitle("ERRO AO CARREGAR IMAGEM DE FUNDO");
+                alerta.setContentText(e.getLocalizedMessage());
+                alerta.showAndWait();
+
+                DBUtils.changeScene(event, "menu.fxml", "MENU");
+            }
             turno.setText("Turno: " + rodada + " - " + jogo.getJogadorA().getNome());
             //Habilitando botões do jogador A
             b_caracteristicaA1.setDisable(false);
@@ -523,7 +531,16 @@ public class JogoController implements Initializable {
             b_caracteristicaB5.setDisable(true);
             b_superB.setDisable(true);
         } else {
-            //fundo.setImage(fundoB);
+            try {
+                fundo.setImage(fundoB);
+            } catch (Exception e) {
+                Alert alerta = new Alert(Alert.AlertType.ERROR);
+                alerta.setTitle("ERRO AO CARREGAR IMAGEM DE FUNDO");
+                alerta.setContentText(e.getLocalizedMessage());
+                alerta.showAndWait();
+
+                DBUtils.changeScene(event, "menu.fxml", "MENU");
+            }
             turno.setText("Turno: " + rodada + " - " + jogo.getJogadorB().getNome());
             //Desabilitando botões do jogador A
             b_caracteristicaA1.setDisable(true);
@@ -652,7 +669,7 @@ public class JogoController implements Initializable {
             pegaTopo();
             mostrarCartaA();
             mostrarCartaB();
-            setTurno();
+            setTurno(event);
         }
     }
 }

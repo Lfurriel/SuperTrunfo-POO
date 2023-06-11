@@ -9,6 +9,7 @@ import poo.trabalhofinal.supertrunfo.classes.Jogador;
 import poo.trabalhofinal.supertrunfo.classes.exceptions.InformacaoInvalidaException;
 import poo.trabalhofinal.supertrunfo.classes.interfaces.JogadoresRepository;
 import poo.trabalhofinal.supertrunfo.classes.interfaces.JogadoresRepositoryImpl;
+import poo.trabalhofinal.supertrunfo.classes.utils.Util;
 import poo.trabalhofinal.supertrunfo.gui.DBUtils;
 
 import java.net.URL;
@@ -23,6 +24,8 @@ public class CadastroUsuarioController implements Initializable {
     @FXML
     public Button cadastrar;
     @FXML
+    public Button voltar;
+    @FXML
     public Label alerta;
     //todo: fazer botão voltar
     @Override
@@ -31,7 +34,7 @@ public class CadastroUsuarioController implements Initializable {
             try {
                 validaPreenchidos();
                 JogadoresRepository<?> jogadoresRepository = new JogadoresRepositoryImpl<>();
-                jogadoresRepository.insereNovoJogador(new Jogador<>(nome.getText(), senha.getText()));
+                jogadoresRepository.insereNovoJogador(new Jogador<>(nome.getText(), Util.codificaSenha(senha.getText())));
                 Alert alerta = new Alert(Alert.AlertType.INFORMATION);
                 alerta.setTitle("CADASTRO DE JOGADOR");
                 alerta.setContentText("Jogador cadastrado com sucesso");
@@ -41,6 +44,8 @@ public class CadastroUsuarioController implements Initializable {
                 alerta.setText(e.getMessage());
             }
         });
+
+        voltar.setOnAction(event -> DBUtils.changeScene(event, "menu.fxml", "MENU"));
     }
 
     private void validaPreenchidos() throws InformacaoInvalidaException {

@@ -38,6 +38,11 @@ public class LoginContoller implements Initializable {
     public Label alerta1;
     @FXML
     public Label alerta2;
+    @FXML
+    public Button cadastrese1;
+    @FXML
+    public Button cadastrese2;
+
     private String tipo;
     private boolean jogadorLogado1 = false;
     private boolean jogadorLogado2 = false;
@@ -104,6 +109,9 @@ public class LoginContoller implements Initializable {
             }
 
         });
+
+        cadastrese1.setOnAction(event -> DBUtils.changeScene(event, "cadastroUsuario.fxml", "CADASTRO"));
+        cadastrese2.setOnAction(event -> DBUtils.changeScene(event, "cadastroUsuario.fxml", "CADASTRO"));
     }
 
     private void validaJogador1() throws InformacaoInvalidaException {

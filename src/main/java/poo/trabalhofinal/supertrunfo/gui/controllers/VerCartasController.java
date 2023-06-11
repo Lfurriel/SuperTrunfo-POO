@@ -79,7 +79,8 @@ public class VerCartasController implements Initializable {
             alerta.setText(e.getMessage());
         }
 
-        proximo.setOnAction(actionEvent -> {
+        proximo.setOnAction(event -> {
+
             if (cartas != null && cartas.size() > 0 && i + 1 < cartas.size())
                 mostrarCartas(cartas.get(++i));
             else if (cartas != null && i + 1 >= cartas.size())
@@ -88,7 +89,8 @@ public class VerCartasController implements Initializable {
                 alerta.setText("Erro ao buscar cartas");
         });
 
-        anterior.setOnAction(actionEvent -> {
+
+        anterior.setOnAction(event -> {
             if (cartas != null && cartas.size() > 0 && i - 1 >= 0)
                 mostrarCartas(cartas.get(--i));
             else if (cartas != null && i - 1 < 0)

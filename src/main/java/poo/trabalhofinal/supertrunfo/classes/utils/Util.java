@@ -1,8 +1,13 @@
 package poo.trabalhofinal.supertrunfo.classes.utils;
 
 import poo.trabalhofinal.supertrunfo.classes.cartas.Classificacao;
-
+import org.mindrot.jbcrypt.BCrypt;
 public class Util {
+
+    public static String codificaSenha(String senha) {
+        return BCrypt.hashpw(senha, BCrypt.gensalt());
+    }
+
     public static Classificacao stringToClassificacao(String str) {
         switch (str) {
             //As

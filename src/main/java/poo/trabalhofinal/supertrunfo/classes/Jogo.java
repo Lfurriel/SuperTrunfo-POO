@@ -3,6 +3,7 @@ package poo.trabalhofinal.supertrunfo.classes;
 import poo.trabalhofinal.supertrunfo.classes.cartas.Gato;
 import poo.trabalhofinal.supertrunfo.classes.cartas.LinguagensProgramacao;
 import poo.trabalhofinal.supertrunfo.classes.cartas.Personagem;
+import poo.trabalhofinal.supertrunfo.classes.exceptions.InformacaoInvalidaException;
 import poo.trabalhofinal.supertrunfo.classes.exceptions.JogoException;
 import poo.trabalhofinal.supertrunfo.classes.exceptions.UsuarioNaoEncontradoException;
 import poo.trabalhofinal.supertrunfo.classes.interfaces.CartasRepository;
@@ -35,7 +36,8 @@ public class Jogo<T> {
         this.jogadorA.setCartas(baralho.subList(0, metade));
         this.jogadorB.setCartas(baralho.subList(metade, tamanhoBaralho));
     }
-    public Jogo(String jogo, String usuarioA, String senhaA, String usuarioB, String senhaB) throws SQLException, UsuarioNaoEncontradoException, JogoException {
+
+    public Jogo(String jogo, String usuarioA, String senhaA, String usuarioB, String senhaB) throws SQLException, UsuarioNaoEncontradoException, JogoException, InformacaoInvalidaException {
         CartasRepository<T> cartasRepository = new CartasRepositoryImpl<>();
         JogadoresRepository<T> jogadoresRepository = new JogadoresRepositoryImpl<>();
 
@@ -45,6 +47,7 @@ public class Jogo<T> {
 
         this.jogadorA = jogadoresRepository.buscaJogador(usuarioA, senhaA);
         this.jogadorB = jogadoresRepository.buscaJogador(usuarioB, senhaB);
+
 
         int tamanhoBaralho = baralho.size();
         int metade = tamanhoBaralho / 2;
@@ -70,7 +73,6 @@ public class Jogo<T> {
     }
 
     /**
-     *
      * @return retorna o vencedor da partida
      */
     public Jogador<T> jogarPersonagemTerminal() {
@@ -160,7 +162,7 @@ public class Jogo<T> {
                     jogadorB.moveTopo();
                 }
             }
-            turno+=2;
+            turno += 2;
             if (jogadorA.getCartas().size() == 0 || jogadorB.getCartas().size() == 0)
                 continua = false;
         }
@@ -351,7 +353,7 @@ public class Jogo<T> {
                     jogadorB.moveTopo();
                 }
             }
-            turno+=2;
+            turno += 2;
             if (jogadorA.getCartas().size() == 0 || jogadorB.getCartas().size() == 0)
                 continua = false;
         }

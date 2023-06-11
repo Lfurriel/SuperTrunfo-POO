@@ -26,6 +26,7 @@ public class VencedorController {
     private Jogador jogadorVencedor = DBUtils.getVencedor();
     private Jogador jogadorFracasado = DBUtils.getPerdedor();
 
+
     public void setJogadores(Jogador jogadorVencedor, Jogador jogadorFracasado) {
         this.jogadorVencedor = jogadorVencedor;
         this.jogadorFracasado = jogadorFracasado;

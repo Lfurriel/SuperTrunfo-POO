@@ -26,7 +26,7 @@
             </font>
         </Label>
         <ImageView fx:id="imagemA" fitHeight="190.0" fitWidth="190.0" layoutX="235.0" layoutY="197.0" pickOnBounds="true" smooth="false">
-            <Image url="@gui/jogo.jpg" />
+            <Image url="@gui/jogoA.jpg" />
         </ImageView>
         <Label fx:id="classificacaoA" alignment="CENTER" layoutX="142.0" layoutY="141.0" prefHeight="28.0" prefWidth="51.0" text="A2" textAlignment="CENTER" textFill="#ff764d">
             <font>
@@ -48,11 +48,6 @@
                 <Font name="Ubuntu Bold" size="18.0" />
             </font>
         </Label>
-        <Button fx:id="b_caracteristicaA2" layoutX="166.0" layoutY="436.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="328.0" style="-fx-background-color: transparent;" textFill="#ebd8d8">
-            <font>
-                <Font name="Ubuntu Bold" size="18.0" />
-            </font>
-        </Button>
         <Label fx:id="valorA2" alignment="CENTER_RIGHT" layoutX="409.0" layoutY="439.0" prefHeight="28.0" prefWidth="51.0" text="90" textAlignment="CENTER">
             <font>
                 <Font name="Ubuntu Bold" size="18.0" />
@@ -63,11 +58,6 @@
                 <Font name="Ubuntu Bold" size="18.0" />
             </font>
         </Label>
-        <Button fx:id="b_caracteristicaA3" layoutX="168.0" layoutY="477.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="328.0" style="-fx-background-color: transparent;" textFill="#ebd8d8">
-            <font>
-                <Font name="Ubuntu Bold" size="18.0" />
-            </font>
-        </Button>
         <Label fx:id="valorA3" alignment="CENTER_RIGHT" layoutX="411.0" layoutY="480.0" prefHeight="28.0" prefWidth="51.0" text="120" textAlignment="CENTER">
             <font>
                 <Font name="Ubuntu Bold" size="18.0" />
@@ -78,11 +68,6 @@
                 <Font name="Ubuntu Bold" size="18.0" />
             </font>
         </Label>
-        <Button fx:id="b_caracteristicaA4" layoutX="164.0" layoutY="517.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="335.0" style="-fx-background-color: TRANSPARENT;" textFill="#ebd8d8">
-            <font>
-                <Font name="Ubuntu Bold" size="18.0" />
-            </font>
-        </Button>
         <Label fx:id="valorA4" alignment="CENTER_RIGHT" layoutX="413.0" layoutY="520.0" prefHeight="28.0" prefWidth="51.0" text="2012" textAlignment="CENTER">
             <font>
                 <Font name="Ubuntu Bold" size="18.0" />
@@ -93,11 +78,6 @@
                 <Font name="Ubuntu Bold" size="18.0" />
             </font>
         </Label>
-        <Button fx:id="b_caracteristicaA5" layoutX="168.0" layoutY="556.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="328.0" style="-fx-background-color: TRANSPARENT;" textFill="#ebd8d8">
-            <font>
-                <Font name="Ubuntu Bold" size="18.0" />
-            </font>
-        </Button>
         <Label fx:id="valorA5" alignment="CENTER_RIGHT" layoutX="334.0" layoutY="559.0" prefHeight="28.0" prefWidth="130.0" text="R$ 130000,00" textAlignment="CENTER">
             <font>
                 <Font name="Ubuntu Bold" size="18.0" />
@@ -109,7 +89,7 @@
             </font>
         </Label>
         <ImageView fx:id="imagemB" fitHeight="190.0" fitWidth="190.0" layoutX="868.0" layoutY="197.0" pickOnBounds="true">
-            <Image url="@gui/jogo.jpg" />
+            <Image url="@gui/jogoA.jpg" />
         </ImageView>
         <Label fx:id="classificacaoB" alignment="CENTER" layoutX="763.0" layoutY="141.0" prefHeight="28.0" prefWidth="51.0" text="A2" textAlignment="CENTER" textFill="#ff764d">
             <font>
@@ -131,11 +111,6 @@
                 <Font name="Ubuntu Bold" size="18.0" />
             </font>
         </Label>
-        <Button fx:id="b_caracteristicaB2" layoutX="790.0" layoutY="433.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="335.0" style="-fx-background-color: TRANSPARENT;" textFill="#ebd8d8">
-            <font>
-                <Font name="Ubuntu Bold" size="18.0" />
-            </font>
-        </Button>
         <Label fx:id="valorB2" alignment="CENTER_RIGHT" layoutX="1035.0" layoutY="436.0" prefHeight="28.0" prefWidth="51.0" text="90" textAlignment="CENTER">
             <font>
                 <Font name="Ubuntu Bold" size="18.0" />
@@ -146,11 +121,6 @@
                 <Font name="Ubuntu Bold" size="18.0" />
             </font>
         </Label>
-        <Button fx:id="b_caracteristicaB3" layoutX="789.0" layoutY="475.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="335.0" style="-fx-background-color: transparent;" textFill="#ebd8d8">
-            <font>
-                <Font name="Ubuntu Bold" size="18.0" />
-            </font>
-        </Button>
         <Label fx:id="valorB3" alignment="CENTER_RIGHT" layoutX="1037.0" layoutY="477.0" prefHeight="28.0" prefWidth="51.0" text="120" textAlignment="CENTER">
             <font>
                 <Font name="Ubuntu Bold" size="18.0" />
@@ -161,11 +131,6 @@
                 <Font name="Ubuntu Bold" size="18.0" />
             </font>
         </Label>
-        <Button fx:id="b_caracteristicaB4" layoutX="790.0" layoutY="515.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="335.0" style="-fx-background-color: transparent;" textFill="#ebd8d8">
-            <font>
-                <Font name="Ubuntu Bold" size="18.0" />
-            </font>
-        </Button>
         <Label fx:id="valorB4" alignment="CENTER_RIGHT" layoutX="1039.0" layoutY="517.0" prefHeight="28.0" prefWidth="51.0" text="2012" textAlignment="CENTER">
             <font>
                 <Font name="Ubuntu Bold" size="18.0" />
@@ -176,13 +141,8 @@
                 <Font name="Ubuntu Bold" size="18.0" />
             </font>
         </Label>
-        <Button fx:id="b_caracteristicaB5" layoutX="791.0" layoutY="554.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="335.0" style="-fx-background-color: transparent;" textFill="#ebd8d8">
-            <font>
-                <Font name="Ubuntu Bold" size="18.0" />
-            </font>
-        </Button>
-        <ImageView fx:id="superA" fitHeight="49.0" fitWidth="62.0" layoutX="394.0" layoutY="199.0" pickOnBounds="true" preserveRatio="true">
-            <Image url="@gui/supertrunfo.png" />
+        <ImageView fx:id="superA" fitHeight="49.0" fitWidth="62.0" layoutX="390.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@gui/fujutrunfo.png" />
         </ImageView>
         <Label fx:id="valorB5" alignment="CENTER_RIGHT" layoutX="962.0" layoutY="557.0" prefHeight="28.0" prefWidth="130.0" text="R$ 130000,00" textAlignment="CENTER">
             <font>
@@ -199,11 +159,11 @@
                 <Font name="Ubuntu Bold" size="18.0" />
             </font>
         </Label>
-      <Button fx:id="b_superA" layoutX="394.0" layoutY="199.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="62.0" style="-fx-background-color: transparent;" />
-        <ImageView fx:id="superB" fitHeight="49.0" fitWidth="62.0" layoutX="1021.0" layoutY="199.0" pickOnBounds="true" preserveRatio="true">
-            <Image url="@gui/supertrunfo.png" />
+      <Button fx:id="b_superA" layoutX="390.0" layoutY="190.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="51.0" style="-fx-background-color: transparent;" />
+        <ImageView fx:id="superB" fitHeight="49.0" fitWidth="62.0" layoutX="1025.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@gui/fujutrunfo.png" />
         </ImageView>
-      <Button fx:id="b_superB" layoutX="1020.0" layoutY="199.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="62.0" style="-fx-background-color: transparent;" />
+      <Button fx:id="b_superB" layoutX="1024.0" layoutY="190.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="49.0" style="-fx-background-color: transparent;" />
       <Label fx:id="turno" alignment="CENTER" contentDisplay="CENTER" layoutX="494.0" layoutY="14.0" prefHeight="84.0" prefWidth="345.0" text="Turno: 12">
          <font>
             <Font name="Impact" size="52.0" />
@@ -214,7 +174,47 @@
                 <Font name="Ubuntu Bold" size="18.0" />
             </font>
         </Button>
+        <Button fx:id="b_caracteristicaA2" layoutX="166.0" layoutY="436.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="328.0" style="-fx-background-color: transparent;" textFill="#ebd8d8">
+            <font>
+                <Font name="Ubuntu Bold" size="18.0" />
+            </font>
+        </Button>
+        <Button fx:id="b_caracteristicaA3" layoutX="168.0" layoutY="477.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="328.0" style="-fx-background-color: transparent;" textFill="#ebd8d8">
+            <font>
+                <Font name="Ubuntu Bold" size="18.0" />
+            </font>
+        </Button>
+        <Button fx:id="b_caracteristicaA4" layoutX="164.0" layoutY="517.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="335.0" style="-fx-background-color: TRANSPARENT;" textFill="#ebd8d8">
+            <font>
+                <Font name="Ubuntu Bold" size="18.0" />
+            </font>
+        </Button>
+        <Button fx:id="b_caracteristicaA5" layoutX="168.0" layoutY="556.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="328.0" style="-fx-background-color: TRANSPARENT;" textFill="#ebd8d8">
+            <font>
+                <Font name="Ubuntu Bold" size="18.0" />
+            </font>
+        </Button>
         <Button fx:id="b_caracteristicaB1" layoutX="789.0" layoutY="394.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="335.0" style="-fx-background-color: TRANSPARENT;" textFill="#ebd8d8">
+            <font>
+                <Font name="Ubuntu Bold" size="18.0" />
+            </font>
+        </Button>
+        <Button fx:id="b_caracteristicaB2" layoutX="790.0" layoutY="433.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="335.0" style="-fx-background-color: TRANSPARENT;" textFill="#ebd8d8">
+            <font>
+                <Font name="Ubuntu Bold" size="18.0" />
+            </font>
+        </Button>
+        <Button fx:id="b_caracteristicaB3" layoutX="789.0" layoutY="475.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="335.0" style="-fx-background-color: transparent;" textFill="#ebd8d8">
+            <font>
+                <Font name="Ubuntu Bold" size="18.0" />
+            </font>
+        </Button>
+        <Button fx:id="b_caracteristicaB4" layoutX="790.0" layoutY="515.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="335.0" style="-fx-background-color: transparent;" textFill="#ebd8d8">
+            <font>
+                <Font name="Ubuntu Bold" size="18.0" />
+            </font>
+        </Button>
+        <Button fx:id="b_caracteristicaB5" layoutX="791.0" layoutY="554.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="335.0" style="-fx-background-color: transparent;" textFill="#ebd8d8">
             <font>
                 <Font name="Ubuntu Bold" size="18.0" />
             </font>

@@ -1,6 +1,8 @@
 package poo.trabalhofinal.supertrunfo.classes.interfaces;
 
+import org.mindrot.jbcrypt.BCrypt;
 import poo.trabalhofinal.supertrunfo.classes.Jogador;
+import poo.trabalhofinal.supertrunfo.classes.exceptions.InformacaoInvalidaException;
 import poo.trabalhofinal.supertrunfo.classes.exceptions.UsuarioNaoEncontradoException;
 
 import java.sql.*;
@@ -8,7 +10,7 @@ import java.sql.*;
 public class JogadoresRepositoryImpl<T> implements JogadoresRepository {
 
     @Override
-    public final Jogador<T> buscaJogador(String usuario, String senha) throws SQLException, UsuarioNaoEncontradoException {
+    public final Jogador<T> buscaJogador(String usuario, String senha) throws SQLException, UsuarioNaoEncontradoException, InformacaoInvalidaException {
         Connection conexao = null;
         PreparedStatement query;
         ResultSet resultSet = null;
@@ -21,14 +23,17 @@ public class JogadoresRepositoryImpl<T> implements JogadoresRepository {
             resultSet = query.executeQuery();
 
             if (resultSet.next()) {
-                String nome = resultSet.getString("usuario");
-                jogador.setNome(nome);
-                jogador.setPontuacao(resultSet.getInt("pontuacao"));
-                jogador.setSenha(resultSet.getString("senha"));
+                if (BCrypt.checkpw(senha, resultSet.getString("senha"))) {
 
-                //TODO: decodificar a senha bonita que vc ta a 5 meses ja pra fazer essa porra e então validar se ta correto
+                    String nome = resultSet.getString("usuario");
+                    jogador.setNome(nome);
+                    jogador.setPontuacao(resultSet.getInt("pontuacao"));
+                    jogador.setSenha(resultSet.getString("senha"));
 
-                return jogador;
+
+                    return jogador;
+                } else
+                    throw new InformacaoInvalidaException("Senha incorreta");
             } else {
                 throw new UsuarioNaoEncontradoException("Usuário " + usuario + " não encontrado!");
             }
