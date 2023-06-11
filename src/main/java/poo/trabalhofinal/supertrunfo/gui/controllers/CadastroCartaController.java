@@ -99,14 +99,17 @@ public class CadastroCartaController implements Initializable {
                 alerta.showAndWait();
                 DBUtils.changeScene(event, "menu.fxml", "MENU");
             } catch (InformacaoInvalidaException | SQLException e) {
-                nome.setText("");
-                classificacao.setText("");
-                caracteristica1.setText("");
-                caracteristica2.setText("");
-                caracteristica3.setText("");
-                caracteristica4.setText("");
-                caracteristica5.setText("");
-                alerta.setText(e.getMessage());
+                if (!e.getMessage().contains("Preencha")) {
+                    nome.setText("");
+                    classificacao.setText("");
+                    caracteristica1.setText("");
+                    caracteristica2.setText("");
+                    caracteristica3.setText("");
+                    caracteristica4.setText("");
+                    caracteristica5.setText("");
+                    imagem.setText("");
+                    alerta.setText(e.getMessage());
+                }
             }
         });
 
@@ -121,11 +124,28 @@ public class CadastroCartaController implements Initializable {
     }
 
     private void validaValores() throws InformacaoInvalidaException {
-        if (Integer.parseInt(caracteristica1.getText()) > 100 || Integer.parseInt(caracteristica1.getText()) < 0 ||
-                Integer.parseInt(caracteristica2.getText()) > 100 || Integer.parseInt(caracteristica2.getText()) < 0 ||
-                Integer.parseInt(caracteristica3.getText()) > 100 || Integer.parseInt(caracteristica3.getText()) < 0 ||
-                Integer.parseInt(caracteristica4.getText()) > 100 || Integer.parseInt(caracteristica4.getText()) < 0 ||
-                Double.parseDouble(caracteristica5.getText()) < 0)
-            throw new InformacaoInvalidaException("Valores inválidos.");
+        if(tipo.equals("Personagem")) {
+            if (Integer.parseInt(caracteristica1.getText()) > 100 || Integer.parseInt(caracteristica1.getText()) < 0 ||
+                    Integer.parseInt(caracteristica2.getText()) > 100 || Integer.parseInt(caracteristica2.getText()) < 0 ||
+                    Integer.parseInt(caracteristica3.getText()) > 100 || Integer.parseInt(caracteristica3.getText()) < 0 ||
+                    Integer.parseInt(caracteristica4.getText()) > 2023 || Integer.parseInt(caracteristica4.getText()) < 1000 ||
+                    Double.parseDouble(caracteristica5.getText()) < 0)
+                throw new InformacaoInvalidaException("Valores inválidos.");
+
+        } else if(tipo.equals("Gato")) {
+            if (Integer.parseInt(caracteristica1.getText()) > 100 || Integer.parseInt(caracteristica1.getText()) < 0 ||
+                    Integer.parseInt(caracteristica2.getText()) > 100 || Integer.parseInt(caracteristica2.getText()) < 0 ||
+                    Integer.parseInt(caracteristica3.getText()) > 230 || Integer.parseInt(caracteristica3.getText()) < 0 ||
+                    Integer.parseInt(caracteristica4.getText()) > 100 || Integer.parseInt(caracteristica4.getText()) < 0 ||
+                    Double.parseDouble(caracteristica5.getText()) < 0)
+                throw new InformacaoInvalidaException("Valores inválidos.");
+        } else {
+            if (Integer.parseInt(caracteristica1.getText()) > 100 || Integer.parseInt(caracteristica1.getText()) < 0 ||
+                    Integer.parseInt(caracteristica2.getText()) > 100 || Integer.parseInt(caracteristica2.getText()) < 0 ||
+                    Integer.parseInt(caracteristica3.getText()) > 100 || Integer.parseInt(caracteristica3.getText()) < 0 ||
+                    Integer.parseInt(caracteristica4.getText()) > 100 || Integer.parseInt(caracteristica4.getText()) < 0 ||
+                    Double.parseDouble(caracteristica5.getText()) < 0)
+                throw new InformacaoInvalidaException("Valores inválidos.");
+        }
     }
 }
