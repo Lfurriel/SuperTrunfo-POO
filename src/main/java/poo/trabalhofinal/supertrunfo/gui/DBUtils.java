@@ -17,7 +17,12 @@ import poo.trabalhofinal.supertrunfo.gui.controllers.*;
 import java.io.IOException;
 import java.sql.SQLException;
 
-
+/**
+ * <h1>Classe DBUtils</h1>
+ * <p>
+ *
+ * </p>
+ */
 public class DBUtils {
 
     private static Image icon = new Image(HelloApplication.class.getResource("/poo/trabalhofinal/supertrunfo/gui/fujutrunfo.png").toExternalForm());

@@ -1,14 +1,11 @@
 package poo.trabalhofinal.supertrunfo.gui.controllers;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import poo.trabalhofinal.supertrunfo.classes.cartas.Classificacao;
 import poo.trabalhofinal.supertrunfo.classes.cartas.Gato;
 import poo.trabalhofinal.supertrunfo.classes.cartas.LinguagensProgramacao;
 import poo.trabalhofinal.supertrunfo.classes.cartas.Personagem;
@@ -22,32 +19,87 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+/**
+ * <h1>Classe CadastroCartaController <h1/>
+ * <p>
+ *  Classe responsável por intermediar a relação entre a interface (GUI) da <i>Tela de cadastro de carta</i> e o programa.
+ *  </p>
+ *  <p>
+ *  Recebe as solicitações da interface e trata os eventos de acordo com o esperado no programa.
+ *  Permite que o usuário faça cadastro de uma nova carta para poder jogar com ela depois, armazenando seus dados no banco de dados de cartas.
+ *  </p>
+ *  <p>
+ *  Implementa a interface <i>Initializable</i> do JavaFX, que define a assinatura do método de inicialização de um
+ *  controller da tela.
+ * </p>
+ */
 public class CadastroCartaController implements Initializable {
+    /**
+     * Elemento FXML que pega o nome da carta por meio da GUI.
+     */
     @FXML
     public TextField nome;
+    /**
+     * Elemento FXML que pega a classificação da carta por meio da GUI.
+     */
     @FXML
     public TextField classificacao;
+    /**
+     * Elemento FXML que pega a primeira característica da carta por meio da GUI.
+     */
     @FXML
     public TextField caracteristica1;
+    /**
+     * Elemento FXML que pega a segunda característica da carta por meio da GUI.
+     */
     @FXML
     public TextField caracteristica2;
+    /**
+     * Elemento FXML que pega a terceira característica da carta por meio da GUI.
+     */
     @FXML
     public TextField caracteristica3;
+    /**
+     * Elemento FXML que pega a quarta característica da carta por meio da GUI.
+     */
     @FXML
     public TextField caracteristica4;
+    /**
+     * Elemento FXML que pega a quinta característica da carta por meio da GUI.
+     */
     @FXML
     public TextField caracteristica5;
-
+    /**
+     * Elemento FXML que pega a url da imagem da carta por meio da GUI.
+     */
     @FXML
     public TextField imagem;
+    /**
+     * Elemento FXML que coloca uma mensagem de erro na tela caso haja algum problema na hora de cadastrar a carta.
+     * Mostra que o usuário conseguiu cadastrar também.
+     */
     @FXML
     public Label alerta;
+    /**
+     * Elemento FXML (botão) que ao ser clicado permite que a carta seja cadastrada no banco de dados.
+     */
     @FXML
     public Button adicionar;
+    /**
+     * Elemento FXML (botão) que ao ser clicado permite que o usuário retorne ao menu.
+     */
     @FXML
     public Button voltar;
+    /**
+     * ('String') atributo privado que indica o tipo de jogo (baralho).
+     */
     String tipo;
 
+    /**
+     * Método que modifca o texto presente no prompt do Text Field de acordo com o tipo da carta, colcoando
+     * cada característica do respectivo tipo de carta.
+     * @param tipo ('String') que representa o tipo de jogo (baralho).
+     */
     public void setDados(String tipo) {
         this.tipo = tipo;
         if (tipo.equals("Personagem")) {
@@ -71,6 +123,19 @@ public class CadastroCartaController implements Initializable {
         }
     }
 
+    /**
+     *  Método sobrescrito oriundo da interface <i>Initializable</i>.
+     *  <p>
+     *  Método que verifica o tipo e chama o método de conexão com banco da dados de carta, presente na classe CartasRepositoryImpl.
+     *  Coloca um alerta na tela caso tenha havido algum erro ou mensagem de cadastrado com sucesso.
+     *  </p>
+     *  <p>
+     *  Chama um método que verifica se todos os campos estão preenchidos, caso não estejam e haja erro, limpam o que já foi preenchido para usuário
+     *  preencher novamente.
+     *  </p>
+     * @param url (URL) do elemento fxml que está sendo carregado.
+     * @param resourceBundle (ResourceBundle) é fornecido como convenção para permitir o acesso a recursos adicionais.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         adicionar.setOnAction(event -> {
@@ -116,6 +181,10 @@ public class CadastroCartaController implements Initializable {
         voltar.setOnAction(event -> DBUtils.changeScene(event, "menu.fxml", "MENU"));
     }
 
+    /**
+     * Método que valida se todos os campos foram preenchidos.
+     * @throws InformacaoInvalidaException Caso um dos campos não tenham sido preenchidos.
+     */
     private void validaPreenchidos() throws InformacaoInvalidaException {
         if (nome.getText().equals("") && classificacao.getText().equals("") && caracteristica1.getText().equals("")
                 && caracteristica2.getText().equals("") && caracteristica3.getText().equals("") && caracteristica4.getText().equals("")
@@ -123,6 +192,10 @@ public class CadastroCartaController implements Initializable {
             throw new InformacaoInvalidaException("Preencha todos os campos.");
     }
 
+    /**
+     * Método que valida se os dados inseridos nos campos estão válidos.
+     * @throws InformacaoInvalidaException Caso um dos dados sejam inválidos.
+     */
     private void validaValores() throws InformacaoInvalidaException {
         if(tipo.equals("Personagem")) {
             if (Integer.parseInt(caracteristica1.getText()) > 100 || Integer.parseInt(caracteristica1.getText()) < 0 ||
