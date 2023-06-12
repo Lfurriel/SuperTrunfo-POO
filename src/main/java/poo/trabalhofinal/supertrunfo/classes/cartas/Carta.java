@@ -1,15 +1,44 @@
 package poo.trabalhofinal.supertrunfo.classes.cartas;
 
+/**
+ * <h1>Classe Carta<h1/>
+ * <p>
+ * Classe abstrata que contém os campos gerais compartilhados por todas as classes que herdam ela.
+ * Possui as características compartilhadas por todos os baralhos, independentemente do tipo.
+ * <p/>
+ */
 public abstract class Carta {
-
+    /**
+     * 'String' nome: atributo privado que indica o nome da carta.
+     */
     private String nome;
+    /**
+     * ‘String’ url: atributo privado que indica a url da imagem da carta.
+     */
     private String imagem;
+    /**
+     * boolean superTrunfo: atributo privado que indica se a carta é ou não super trunfo.
+     */
     private boolean superTrunfo;
+    /**
+     * Classificação classificacao: atributo privado que indica a classificação da carta.
+     */
     private Classificacao classificacao;
 
+    /**
+     * Construtor vazio para a classe. Usado quando não há parâmetros para serem passados.
+     * Construtor <i>default<i/>.
+     */
     public Carta() {
     }
 
+    /**
+     * Construtor da superclasse abstrata, que recebe como parâmetros elementos que serão atribuídos a cada atributo.
+     * @param nome (‘String’) representa o nome atribuído a essa carta.
+     * @param imagem (‘String’) representa a url da imagem que será colocada na carta.
+     * @param superTrunfo (boolean) elemento que indica se a carta é um supertrunfo ou não.
+     * @param classificacao (Classificação) indica a classificação da carta em relação a uma ordem de classificações.
+     */
     public Carta(String nome, String imagem, boolean superTrunfo, Classificacao classificacao) {
         this.nome = nome;
         this.imagem = imagem;
@@ -17,34 +46,64 @@ public abstract class Carta {
         this.classificacao = classificacao;
     }
 
+    /**
+     * Método público que permite acessar o valor do atributo privado <i>nome<i/>.
+     * @return (‘String’) nome associado à carta.
+     */
     public String getNome() {
         return nome;
     }
 
+    /**
+     * Método público que permite modificar o valor do atributo privado <i>nome<i/>.
+     * @param nome (‘String’) novo nome associado à carta.
+     */
     public void setNome(String nome) {
         this.nome = nome;
     }
 
+    /**
+     * Método público que permite acessar o valor do atributo privado <i>imagem</i>.
+     * @return (‘String’) url da imagem associada à carta.
+     */
     public String getImagem() {
         return imagem;
     }
-
+    /**
+     * Método público que permite modificar o valor do atributo privado <i>imagem<i/>.
+     * @param imagem (‘String’) nova url da imagem associada à carta.
+     */
     public void setImagem(String imagem) {
         this.imagem = imagem;
     }
-
+    /**
+     * Método público que permite acessar o valor do atributo privado <i>supertrunfo</i>.
+     * @return (boolean) supertrunfo.
+     */
     public boolean isSuperTrunfo() {
         return superTrunfo;
     }
-
+    /**
+     * Método público que permite modificar o valor do atributo privado <i>supertrunfo<i/>.
+     * @param superTrunfo (boolean) nova url da imagem associada à carta.
+     */
     public void setSuperTrunfo(String superTrunfo) {
         this.superTrunfo = superTrunfo.equals("t");
     }
 
+    /**
+     * Método público que permite acessar o valor do atributo privado <i>classificacao</i>.
+     * @return (Classificação) tipo enum que representa a classificação da carta.
+     */
     public Classificacao getClassificacao() {
         return classificacao;
     }
 
+    /**
+     * Método que recebe uma 'String' representando a classificação e a transforma em um tipo enum Classificacao.
+     * A análise para a transformação é feita através de um switch...case.
+     * @param classificacao (‘String’) classificação da carta, para ser analisada e salvada como um tipo Classificacao.
+     */
     public void setClassificacao(String classificacao) {
         switch (classificacao) {
             //As

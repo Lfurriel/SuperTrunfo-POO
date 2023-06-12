@@ -1,10 +1,11 @@
 package poo.trabalhofinal.supertrunfo.classes.cartas;
 
 /**
- * Classe que representa a classificacão da carta, sendo D5 o mais fraco e A1
- * o mehor classificado
+ * <h1>Classe Classificação (tipo enum)<h1/>
+ * Classe que representa a classificação de uma carta de forma ordenada.
+ * D5 e o mais fraco e A1 é o mais forte.
+ * Classificação crescente.
  */
-
 public enum Classificacao {
     D5, D4, D3, D2, D1,
     C5, C4, C3, C2, C1,

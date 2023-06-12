@@ -2,12 +2,30 @@ package poo.trabalhofinal.supertrunfo.classes.utils;
 
 import poo.trabalhofinal.supertrunfo.classes.cartas.Classificacao;
 import org.mindrot.jbcrypt.BCrypt;
-public class Util {
 
+/**
+ * <h1>Classe Util</h1>
+ * <p>
+ *  Classe com funcionalidades/métodos utilitários para diferentes contextos (terefas).
+ *  Fornece métodos estáticos que podem ser acessados sem a necessidade de crinstanciar a classe.
+ * </p>
+ */
+public class Util {
+    /**
+     * Método responsável por codificar a senha.
+     * Utiliza a biblioteca BCrypt para criptografar a senha.
+     * @param senha ('String') senha que o usuário digitou.
+     * @return senha codificada.
+     */
     public static String codificaSenha(String senha) {
         return BCrypt.hashpw(senha, BCrypt.gensalt());
     }
 
+    /**
+     * Método para transformar uma 'String' que representa uma classificação em um tipo Classificacao(enum).
+     * @param str ('String') que representa a classificação.
+     * @return (Classificação) classificação convertida no tipo enum.
+     */
     public static Classificacao stringToClassificacao(String str) {
         switch (str) {
             //As

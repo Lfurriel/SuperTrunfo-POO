@@ -7,8 +7,25 @@ import poo.trabalhofinal.supertrunfo.classes.exceptions.UsuarioNaoEncontradoExce
 
 import java.sql.*;
 
+/**
+ * <h1>Classe JogadoresRepositoryImpl<T></h1>
+ * Classe que faz a conexão com o banco de dados de jogadores para cadastrar, logar e poder atualizar seus dados.
+ * <p>
+ * Implementa a interface JogadoresRepository, colocando o corpo dos métodos do contrato estabelecido com a interface.
+ * </p>
+ * @param <T> tipo genérico que representa o tipo de carta que foi escolhido para ser jogado pelo jogador.
+ */
 public class JogadoresRepositoryImpl<T> implements JogadoresRepository {
 
+    /**
+     * Método responsável por logar o jogador.
+     * @param usuario ('String') nome do usuário.
+     * @param senha ('String') senha do usuário.
+     * @return (Jogador<T>) jogador encontrado no banco de dados (caso os dados fornecidos para ‘login’ sejam válidos e existam no banco de dados).
+     * @throws SQLException Se houver erro ao tentar conectar com o banco de dados.
+     * @throws UsuarioNaoEncontradoException Se o usuário não for encontrado no banco de dados.
+     * @throws InformacaoInvalidaException Se as informações fornecidas pelo jogador forem inválidas.
+     */
     @Override
     public final Jogador<T> buscaJogador(String usuario, String senha) throws SQLException, UsuarioNaoEncontradoException, InformacaoInvalidaException {
         Connection conexao = null;
@@ -23,7 +40,7 @@ public class JogadoresRepositoryImpl<T> implements JogadoresRepository {
             resultSet = query.executeQuery();
 
             if (resultSet.next()) {
-                if (BCrypt.checkpw(senha, resultSet.getString("senha"))) {
+                if (BCrypt.checkpw(senha, resultSet.getString("senha"))) { // Codificação da senha → verificar se a senha está orreta
 
                     String nome = resultSet.getString("usuario");
                     jogador.setNome(nome);
@@ -49,6 +66,12 @@ public class JogadoresRepositoryImpl<T> implements JogadoresRepository {
         }
     }
 
+    /**
+     * Método para cadastrar um novo jogador e inserí-lo no banco de dados.
+     * Verifica se o jogador já existe (só pode ter um usuário com um tipo de dados específico).
+     * @param novoJogador (Jogador) que será inserido (cadastrado).
+     * @throws SQLException  Se houver erro ao tentar conectar com o banco de dados.
+     */
     @Override
     public final void insereNovoJogador(Jogador novoJogador) throws SQLException {
         Connection conexao = null;
@@ -75,6 +98,12 @@ public class JogadoresRepositoryImpl<T> implements JogadoresRepository {
         }
     }
 
+    /**
+     * Método responsável por atualizar a pontuação de cada jogador após o jogo.
+     * @param jogadorA (Jogador) um dos jogadores para atualizar os dados após a jogada.
+     * @param jogadorB (Jogador) um dos jogadores para atualizar os dados após a jogada.
+     * @throws SQLException Se houver erro ao tentar conectar com o banco de dados.
+     */
     @Override
     public final void updateJogadores(Jogador jogadorA, Jogador jogadorB) throws SQLException {
         Connection conexao = null;

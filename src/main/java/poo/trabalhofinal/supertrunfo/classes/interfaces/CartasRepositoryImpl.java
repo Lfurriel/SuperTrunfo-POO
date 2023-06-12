@@ -9,7 +9,22 @@ import poo.trabalhofinal.supertrunfo.classes.exceptions.JogoException;
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * <h1>Classe CartasRepositoryImpl<T></h1>
+ * Classe que faz a conexão com o banco de dados de cartas para buscar cartas, ver cartas e inserir cartas ou modificar o banco de dados.
+ * <p>
+ * Implementa a interface CartasRepository, colocando o corpo dos métodos do contrato estabelecido com a interface.
+ * </p>
+ * @param <T> tipo genérico que representa o tipo de cartas que serão utilizadas.
+ */
 public class CartasRepositoryImpl<T> implements CartasRepository {
+    /**
+     * Busca o baralho de cartas de um tipo ('String') jogo no banco de dados, para as cartas poderem ser utilizadas no jogo.
+     * @param jogo ('String') que representa o tipo de baralho que está sendo jogado.
+     * @return (ArrayList<T>) lista que representa o baralho de cartas de um tipo.
+     * @throws SQLException Se houver falha na conexão com o banco de dados.
+     * @throws JogoException Se a 'String' jogo fornecida for inválida (não achar um jogo/baralho daquele tipo).
+     */
     @Override
     public final ArrayList<T> buscaCartas(String jogo) throws SQLException, JogoException {
         Connection conexao = null;
@@ -86,6 +101,11 @@ public class CartasRepositoryImpl<T> implements CartasRepository {
         }
     }
 
+    /**
+     * Método para inserir uma nova carta no baralho de Personagem (inserir no banco de dados).
+     * @param novaCarta (Personagem) nova carta a ser inserida no baralho.
+     * @throws SQLException Se houver erro ao tentar conectar com o banco de dados.
+     */
     @Override
     public final void insereNovaCarta(Personagem novaCarta) throws SQLException {
         Connection conexao = null;
@@ -118,6 +138,11 @@ public class CartasRepositoryImpl<T> implements CartasRepository {
         }
     }
 
+    /**
+     * Método sobrecarregado para inserir uma nova carta no baralho de Gato (inserir no banco de dados).
+     * @param novaCarta (Gato) nova carta a ser inserida no baralho.
+     * @throws SQLException Se houver erro ao tentar conectar com o banco de dados.
+     */
     @Override
     public final void insereNovaCarta(Gato novaCarta) throws SQLException {
         Connection conexao = null;
@@ -150,6 +175,11 @@ public class CartasRepositoryImpl<T> implements CartasRepository {
         }
     }
 
+    /**
+     * Método sobrecarregado para inserir uma nova carta no baralho de LinguagensProgramacao (inserir no banco de dados).
+     * @param novaCarta (LinguagensProgramacao) nova carta a ser inserida no baralho.
+     * @throws SQLException Se houver erro ao tentar conectar com o banco de dados.
+     */
     @Override
     public final void insereNovaCarta(LinguagensProgramacao novaCarta) throws SQLException {
         Connection conexao = null;
@@ -182,6 +212,13 @@ public class CartasRepositoryImpl<T> implements CartasRepository {
         }
     }
 
+    /**
+     * Método que acessa o banco de dados para ver todas as cartas do jogo (todos os baralhos).
+     * Na GUI há uma tela que permite ver todas as cartas.
+     * A ordenação das cartas é feita po <i>id</i>, contador incrementado ao inserir a carta no banco de dados.
+     * @return (ArrayList<Carta>) lista de todas as cartas do jogo.
+     * @throws SQLException Se houver erro ao tentar conectar com o banco de dados.
+     */
     @Override
     public ArrayList<Carta> buscaTodasCartas() throws SQLException {
         ArrayList<Carta> cartas = new ArrayList<>();

@@ -4,15 +4,43 @@ package poo.trabalhofinal.supertrunfo.classes;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * <h1>Classe Jogador <T></h1>
+ * <p>
+ * Classe responsável por aramazenar os dados de cada jogador e guardar dados como o baralho do  jogador que está jogando,
+ * fazer o movimento do topo do baralho e pontuar a cada partida / rodada.
+ * </p>
+ *
+ * @param <T> Generics que representa o tipo de jogo escolhido (baralho que está sendo utilizado).
+ */
 public class Jogador<T> {
+    /**
+     * 'String' nome: nome do jogador.
+     */
     private String nome;
+    /**
+     * 'String' se4nha: senha do jogador logado.
+     */
     private String senha;
+    /**
+     * Integer pontuacao: pontuação do jogador.
+     */
     private Integer pontuacao;
+    /**
+     * List<T> cartas: tipo genérico que representa a lista de cartas de um tipo de baralho (escolhido para o jogo) que o jogador tem.
+     */
     private List<T> cartas;
 
+    /**
+     * Construtor vazio para a classe. Usado quando não há parâmetros para serem passados.
+     * Construtor <i>default<i/>.
+     */
     public Jogador() {
     }
 
+    /**
+     * Construtor da classe que recebe como parâmetros elementos que serão atribuídos aos atributos
+     */
     public Jogador(String nome, String senha) {
         this.nome = nome;
         this.senha = senha;
@@ -49,11 +77,6 @@ public class Jogador<T> {
     public void setCartas(List<T> cartas) {
         this.cartas = cartas;
     }
-
-    public void addBaralho(ArrayList<T> cartas) {
-        this.cartas = cartas;
-    }
-
 
     public void moveTopo() {
         T topo = cartas.remove(0);
