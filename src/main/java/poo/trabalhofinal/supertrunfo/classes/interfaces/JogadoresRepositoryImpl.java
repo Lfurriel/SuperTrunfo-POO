@@ -40,7 +40,7 @@ public class JogadoresRepositoryImpl<T> implements JogadoresRepository {
             resultSet = query.executeQuery();
 
             if (resultSet.next()) {
-                if (BCrypt.checkpw(senha, resultSet.getString("senha"))) { // Codificação da senha → verificar se a senha está orreta
+                if (BCrypt.checkpw(senha, resultSet.getString("senha"))) { // Codificação da senha → verificar se a senha está correta
 
                     String nome = resultSet.getString("usuario");
                     jogador.setNome(nome);

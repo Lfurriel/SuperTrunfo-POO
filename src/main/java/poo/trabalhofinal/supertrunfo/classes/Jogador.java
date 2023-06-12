@@ -39,54 +39,106 @@ public class Jogador<T> {
     }
 
     /**
-     * Construtor da classe que recebe como parâmetros elementos que serão atribuídos aos atributos
+     * Construtor da classe que recebe como parâmetros elementos que serão atribuídos aos atributos.
+     * @param nome ('String'): nome do jogador.
+     * @param senha ('String'): senha do jogador.
      */
     public Jogador(String nome, String senha) {
         this.nome = nome;
         this.senha = senha;
     }
 
+    /**
+     * Método público que permite acessar o valor do atributo privado nome do Jogador.
+     * @return ('String') nome do jogador.
+     */
     public String getNome() {
         return nome;
     }
 
+    /**
+     * Método público que permite modificar o atributo privado nome do Jogador.
+     * @param nome ('String'): novo nome assumido pelo jogador.
+     */
     public void setNome(String nome) {
         this.nome = nome;
     }
 
+    /**
+     * Método público que permite acessar o valor do atributo privado senha do Jogador.
+     * @return ('String') senha do jogador.
+     */
     public String getSenha() {
         return senha;
     }
 
+    /**
+     * Método público que permite modificar o atributo privado senha do Jogador.
+     * @param senha ('String'): nova senha assumido pelo jogador.
+     */
     public void setSenha(String senha) {
         this.senha = senha;
     }
 
+    /**
+     * Método público que permite acessar o valor do atributo privado pontuação.
+     * @return (Integer) pontuação do jogador.
+     */
     public Integer getPontuacao() {
         return pontuacao;
     }
 
+    /**
+     * Método público que permite modificar o valor do campo privado pontuação do jogador.
+     * @param pontuacao (Integer) nova pontuação.
+     */
     public void setPontuacao(Integer pontuacao) {
         this.pontuacao = pontuacao;
     }
 
+    /**
+     * Método público que permite acessar a lista de cartas disponível para o jogador (atributo privado).
+     * @return (List<T>) baralho do jogador.
+     */
     public List<T> getCartas() {
         return cartas;
     }
 
+    /**
+     * Método público que permite modificar o atributo privado baralho do jogador.
+     * @param cartas (List<T>) nova lista de cartas do jogador.
+     */
     public void setCartas(List<T> cartas) {
         this.cartas = cartas;
     }
 
+    /**
+     * Método público que tira a carta do topo do baralho e a adiciona no final do baralho.
+     * Usado após uma partida.
+     */
     public void moveTopo() {
         T topo = cartas.remove(0);
         cartas.add(topo);
     }
 
+    /**
+     * Método que atualiza a quantidade de pontos do jogador.
+     * @param pontos (int) pontos da partida (positivo se vencer e negativo se perder).
+     */
     public void pontua(int pontos) {
         this.pontuacao += pontos;
     }
 
+    /**
+     * Método responsãvel por atualizar o baralho de cartas dos dois jogadores após uma partida.
+     * <p>
+     * Listas auxiliares são craiadas para armazenar ambos os baralhos (de ambos os jogadores).
+     * O topo do vencedor é removido e adicionado ao final do seu baralho.
+     * O topo do perdedor é removido e adicionado ao final do baralho do vencedor.
+     * Faz a atualização dos baralhos.
+     * </p>
+     * @param derrotado (Jogador) jogador que perdeu a partida em relação ao jogador desta instância (this).
+     */
     public void moveCartas(Jogador derrotado) {
         List<T> cartasJogadorVencedor = new ArrayList<>(this.cartas);
         List<T> cartasJogadorDerrotado = new ArrayList<>(derrotado.cartas);

@@ -1,9 +1,7 @@
 package poo.trabalhofinal.supertrunfo.gui.controllers;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -12,11 +10,26 @@ import poo.trabalhofinal.supertrunfo.classes.interfaces.JogadoresRepository;
 import poo.trabalhofinal.supertrunfo.classes.interfaces.JogadoresRepositoryImpl;
 import poo.trabalhofinal.supertrunfo.gui.DBUtils;
 
-import java.net.URL;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
 
+/**
+ * <h1>Classe VencedorController<h1/>
+ * <p>
+ *  Classe responsável por intermediar a relação entre a interface (GUI) da <i>Tela de vencedor</i> e o programa.
+ *  </p>
+ *  <p>
+ *  Recebe as solicitações da interface e trata os eventos de acordo com o esperado no programa.
+ *  Aqui, mostra o nome do jogador vencedor e atualiza os dados (pontuação) de ambos os jogadores.
+ *  </p>
+ *  <p>
+ *  Implementa a interface <i>Initialize</i> do JavaFX, que define a assinatura do método de inicialização de um
+ *  controller da tela.
+ * </p>
+ */
 public class VencedorController {
+    /**
+     *
+     */
     @FXML
     private Button sair;
     @FXML
