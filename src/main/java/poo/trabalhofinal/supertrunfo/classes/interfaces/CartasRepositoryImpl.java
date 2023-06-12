@@ -8,6 +8,7 @@ import poo.trabalhofinal.supertrunfo.classes.exceptions.JogoException;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 /**
  * <h1>Classe CartasRepositoryImpl<T></h1>
@@ -18,6 +19,12 @@ import java.util.ArrayList;
  * @param <T> tipo genérico que representa o tipo de cartas que serão utilizadas.
  */
 public class CartasRepositoryImpl<T> implements CartasRepository {
+
+    /**
+     * Acessa a lista recursos em "resource.properties"
+     */
+    private final ResourceBundle resources = ResourceBundle.getBundle("resources");
+
     /**
      * Busca o baralho de cartas de um tipo ('String') jogo no banco de dados, para as cartas poderem ser utilizadas no jogo.
      * @param jogo ('String') que representa o tipo de baralho que está sendo jogado.
@@ -29,10 +36,10 @@ public class CartasRepositoryImpl<T> implements CartasRepository {
     public final ArrayList<T> buscaCartas(String jogo) throws SQLException, JogoException {
         Connection conexao = null;
         PreparedStatement query;
-        ResultSet resultSet = null;
+        ResultSet resultSet;
 
         try {
-            conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/DataLake", "postgres", "FurriSenha");
+            conexao = DriverManager.getConnection(resources.getString("jdbc-url"), resources.getString("user"), resources.getString("password"));
             query = conexao.prepareStatement("SELECT * FROM cartas WHERE tipo = ?");
             query.setString(1, jogo);
             resultSet = query.executeQuery();
@@ -112,7 +119,7 @@ public class CartasRepositoryImpl<T> implements CartasRepository {
         PreparedStatement query;
 
         try {
-            conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/DataLake", "postgres", "FurriSenha");
+            conexao = DriverManager.getConnection(resources.getString("jdbc-url"), resources.getString("user"), resources.getString("password"));
             query = conexao.prepareStatement("INSERT INTO cartas VALUES (nextval('cartas_id_seq'), ?, ?, ?, ?, ?,?, ?, ?, ?, ?)");
             // id, tipo, nome, imagem, super trunfo, inteligência, força, coragem, primeira aparição, altura, classificação
             query.setString(1, "Personagem");
@@ -149,7 +156,7 @@ public class CartasRepositoryImpl<T> implements CartasRepository {
         PreparedStatement query;
 
         try {
-            conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/DataLake", "postgres", "FurriSenha");
+            conexao = DriverManager.getConnection(resources.getString("jdbc-url"), resources.getString("user"), resources.getString("password"));
             query = conexao.prepareStatement("INSERT INTO cartas VALUES (nextval('cartas_id_seq'), ?, ?, ?, ?, ?,?, ?, ?, ?, ?)");
             // id, tipo, nome, imagem, super trunfo, agilidade, fofura, tempo de vida, agressividade, peso, classificação
             query.setString(1, "Gato");
@@ -186,7 +193,7 @@ public class CartasRepositoryImpl<T> implements CartasRepository {
         PreparedStatement query;
 
         try {
-            conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/DataLake", "postgres", "FurriSenha");
+            conexao = DriverManager.getConnection(resources.getString("jdbc-url"), resources.getString("user"), resources.getString("password"));
             query = conexao.prepareStatement("INSERT INTO cartas VALUES (nextval('cartas_id_seq'), ?, ?, ?, ?, ?,?, ?, ?, ?, ?)");
             // id, tipo, nome, imagem, super trunfo, escritabilidade, legibilidade, confiabilidade, custo, salario senior, classificação
             query.setString(1, "LinguagensProgramacao");
@@ -224,10 +231,10 @@ public class CartasRepositoryImpl<T> implements CartasRepository {
         ArrayList<Carta> cartas = new ArrayList<>();
         Connection conexao = null;
         PreparedStatement query;
-        ResultSet resultSet = null;
+        ResultSet resultSet;
 
         try {
-            conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/DataLake", "postgres", "FurriSenha");
+            conexao = DriverManager.getConnection(resources.getString("jdbc-url"), resources.getString("user"), resources.getString("password"));
             query = conexao.prepareStatement("SELECT * FROM cartas ORDER BY id");
             resultSet = query.executeQuery();
             String tipo;

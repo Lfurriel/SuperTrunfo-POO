@@ -16,6 +16,7 @@ import poo.trabalhofinal.supertrunfo.gui.controllers.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
 public class DBUtils {
 
@@ -62,7 +63,9 @@ public class DBUtils {
         Parent root = null;
 
         try {
-            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource(fxmlFile));
+            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource(fxmlFile),
+                    ResourceBundle.getBundle("resources"));
+
             root = loader.load();
         } catch (Exception e) {
             e.printStackTrace();
@@ -76,8 +79,8 @@ public class DBUtils {
         Parent root = null;
 
         try {
-            //FXMLLoader loader = FXMLLoader.load(Objects.requireNonNull(HelloApplication.class.getResource(fxmlFile)));
-            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource(fxmlFile));
+            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource(fxmlFile),
+                    ResourceBundle.getBundle("resources"));
 
             root = loader.load();
             if(cadastro) {
@@ -101,7 +104,9 @@ public class DBUtils {
         Parent root = null;
 
             try {
-                FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource(fxmlFile));
+                FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource(fxmlFile),
+                        ResourceBundle.getBundle("resources"));
+
                 root = loader.load();
                 if(cadastro) {
                     OpcaoController opcaoController = loader.getController();
@@ -120,7 +125,9 @@ public class DBUtils {
         Parent root = null;
 
         try {
-            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource(fxmlFile));
+            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource(fxmlFile),
+                    ResourceBundle.getBundle("resources"));
+
             root = loader.load();
         } catch (IOException e) {
             e.printStackTrace();
