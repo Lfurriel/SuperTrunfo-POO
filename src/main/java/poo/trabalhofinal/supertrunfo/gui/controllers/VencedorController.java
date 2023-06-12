@@ -22,29 +22,47 @@ import java.sql.SQLException;
  *  Aqui, mostra o nome do jogador vencedor e atualiza os dados (pontuação) de ambos os jogadores.
  *  </p>
  *  <p>
- *  Implementa a interface <i>Initialize</i> do JavaFX, que define a assinatura do método de inicialização de um
+ *  Implementa a interface <i>Initializable</i> do JavaFX, que define a assinatura do método de inicialização de um
  *  controller da tela.
  * </p>
  */
 public class VencedorController {
     /**
-     *
+     * Elemento FXML que representa um botão, que ao ser clicado, permite ao usuário sair da tela de vencedor.
      */
     @FXML
     private Button sair;
+    /**
+     * Elemento FXML Label, que mostra o nome do vencedor na tela.
+     */
     @FXML
     private Label vencedor;
-
+    /**
+     * Atributo privado que conecta ao banco de dados de jogadores e atualiza as pontuações após o jogo.
+     */
     private final JogadoresRepository<?> jogadoresRepository = new JogadoresRepositoryImpl<>();
+    /**
+     * Atributo do tipo Jogador que representa o vencedor da jogada.
+     */
     private Jogador jogadorVencedor = DBUtils.getVencedor();
+    /**
+     * Atributo do tipo Jogador que representa o perdedor da jogada.
+     */
     private Jogador jogadorFracasado = DBUtils.getPerdedor();
 
-
-    public void setJogadores(Jogador jogadorVencedor, Jogador jogadorFracasado) {
-        this.jogadorVencedor = jogadorVencedor;
-        this.jogadorFracasado = jogadorFracasado;
-    }
-
+    /**
+     * Método sobrescrito oriundo da interface <i>Initializable</i>.
+     * <p>
+     * Faz a atualização da pontuação dos jogadores no banco de dados.
+     * Caso haja algum erro ao conectar no banco de dados coloca um alerta na tela.
+     * </p>
+     * <p>
+     * Coloca na tela o nome do jogador vencedor.
+     * </p>
+     * <p>
+     * Se o usuário apertar no botão 'sair', muda a tela para a tela de <i>menu</i>.
+     * </p>
+     */
     @FXML
     public void initialize() {
         vencedor.setText(jogadorVencedor.getNome().toUpperCase());
