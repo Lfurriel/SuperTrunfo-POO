@@ -67,6 +67,8 @@ public class JogoController implements Initializable {
     public Button b_superA;
     @FXML
     public ImageView superA;
+    @FXML
+    public Label alertaA;
     //-------------------------------------
 
     //JOGADOR B ---------------------------
@@ -114,6 +116,8 @@ public class JogoController implements Initializable {
     public Button b_superB;
     @FXML
     public ImageView superB;
+    @FXML
+    public Label alertaB;
     //-------------------------------------
     @FXML
     public Label turno;
@@ -126,12 +130,14 @@ public class JogoController implements Initializable {
     final URL urlFundoB = getClass().getResource("/poo/trabalhofinal/supertrunfo/gui/jogoB.jpg");
     final Image fundoB = new Image(urlFundoB != null ? urlFundoB.toExternalForm() : null);
 
-
     private static final String tipo = DBUtils.getTipoJogo();
     private static final Jogo jogo = DBUtils.getJogo();
     private Carta topoA;
     private Carta topoB;
     private int rodada = 0;
+    private int ultimoA;
+    private int ultimoB;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -163,102 +169,127 @@ public class JogoController implements Initializable {
         });
 
         b_caracteristicaA1.setOnAction(event -> {
-            Jogador vencedor = vencedorRodadaC1();
-            if (vencedor == null) {
-                jogo.getJogadorA().moveTopo();
-                jogo.getJogadorB().moveTopo();
-            } else if (vencedor == jogo.getJogadorA()) {
-                jogo.getJogadorA().pontua(10);
-                jogo.getJogadorB().pontua(-5);
-
-                jogo.getJogadorA().moveCartas(jogo.getJogadorB());
+            if (ultimoA == 1) {
+                alertaA.setText("Você não pode jogar o mesmo atributo duas vezes");
             } else {
-                jogo.getJogadorA().pontua(-10);
-                jogo.getJogadorB().pontua(10);
+                Jogador vencedor = vencedorRodadaC1();
+                if (vencedor == null) {
+                    jogo.getJogadorA().moveTopo();
+                    jogo.getJogadorB().moveTopo();
+                } else if (vencedor == jogo.getJogadorA()) {
+                    jogo.getJogadorA().pontua(10);
+                    jogo.getJogadorB().pontua(-5);
 
-                jogo.getJogadorB().moveCartas(jogo.getJogadorA());
+                    jogo.getJogadorA().moveCartas(jogo.getJogadorB());
+                } else {
+                    jogo.getJogadorA().pontua(-10);
+                    jogo.getJogadorB().pontua(10);
+
+                    jogo.getJogadorB().moveCartas(jogo.getJogadorA());
+                }
+                ultimoA = 1;
+                verificaVencedor(event, vencedor);
             }
-            verificaVencedor(event, vencedor);
         });
 
         b_caracteristicaA2.setOnAction(event -> {
-            Jogador vencedor = vencedorRodadaC2();
-            if (vencedor == null) {
-                jogo.getJogadorA().moveTopo();
-                jogo.getJogadorB().moveTopo();
-
-            } else if (vencedor == jogo.getJogadorA()) {
-                jogo.getJogadorA().pontua(10);
-                jogo.getJogadorB().pontua(-5);
-
-                jogo.getJogadorA().moveCartas(jogo.getJogadorB());
+            if (ultimoA == 2) {
+                alertaA.setText("Você não pode jogar o mesmo atributo duas vezes");
             } else {
-                jogo.getJogadorA().pontua(-10);
-                jogo.getJogadorB().pontua(10);
+                Jogador vencedor = vencedorRodadaC2();
+                if (vencedor == null) {
+                    jogo.getJogadorA().moveTopo();
+                    jogo.getJogadorB().moveTopo();
 
-                jogo.getJogadorB().moveCartas(jogo.getJogadorA());
+                } else if (vencedor == jogo.getJogadorA()) {
+                    jogo.getJogadorA().pontua(10);
+                    jogo.getJogadorB().pontua(-5);
+
+                    jogo.getJogadorA().moveCartas(jogo.getJogadorB());
+                } else {
+                    jogo.getJogadorA().pontua(-10);
+                    jogo.getJogadorB().pontua(10);
+
+                    jogo.getJogadorB().moveCartas(jogo.getJogadorA());
+                }
+                ultimoA = 2;
+                verificaVencedor(event, vencedor);
             }
-            verificaVencedor(event, vencedor);
         });
 
         b_caracteristicaA3.setOnAction(event -> {
-            Jogador vencedor = vencedorRodadaC3();
-            if (vencedor == null) {
-                jogo.getJogadorA().moveTopo();
-                jogo.getJogadorB().moveTopo();
-
-            } else if (vencedor == jogo.getJogadorA()) {
-                jogo.getJogadorA().pontua(10);
-                jogo.getJogadorB().pontua(-5);
-
-                jogo.getJogadorA().moveCartas(jogo.getJogadorB());
+            if (ultimoA == 3) {
+                alertaA.setText("Você não pode jogar o mesmo atributo duas vezes");
             } else {
-                jogo.getJogadorA().pontua(-10);
-                jogo.getJogadorB().pontua(10);
+                Jogador vencedor = vencedorRodadaC3();
+                if (vencedor == null) {
+                    jogo.getJogadorA().moveTopo();
+                    jogo.getJogadorB().moveTopo();
 
-                jogo.getJogadorB().moveCartas(jogo.getJogadorA());
+                } else if (vencedor == jogo.getJogadorA()) {
+                    jogo.getJogadorA().pontua(10);
+                    jogo.getJogadorB().pontua(-5);
+
+                    jogo.getJogadorA().moveCartas(jogo.getJogadorB());
+                } else {
+                    jogo.getJogadorA().pontua(-10);
+                    jogo.getJogadorB().pontua(10);
+
+                    jogo.getJogadorB().moveCartas(jogo.getJogadorA());
+                }
+                ultimoA = 3;
+                verificaVencedor(event, vencedor);
             }
-            verificaVencedor(event, vencedor);
         });
 
         b_caracteristicaA4.setOnAction(event -> {
-            Jogador vencedor = vencedorRodadaC4();
-            if (vencedor == null) {
-                jogo.getJogadorA().moveTopo();
-                jogo.getJogadorB().moveTopo();
-
-            } else if (vencedor == jogo.getJogadorA()) {
-                jogo.getJogadorA().pontua(10);
-                jogo.getJogadorB().pontua(-5);
-
-                jogo.getJogadorA().moveCartas(jogo.getJogadorB());
+            if (ultimoA == 4) {
+                alertaA.setText("Você não pode jogar o mesmo atributo duas vezes");
             } else {
-                jogo.getJogadorA().pontua(-10);
-                jogo.getJogadorB().pontua(10);
+                Jogador vencedor = vencedorRodadaC4();
+                if (vencedor == null) {
+                    jogo.getJogadorA().moveTopo();
+                    jogo.getJogadorB().moveTopo();
 
-                jogo.getJogadorB().moveCartas(jogo.getJogadorA());
+                } else if (vencedor == jogo.getJogadorA()) {
+                    jogo.getJogadorA().pontua(10);
+                    jogo.getJogadorB().pontua(-5);
+
+                    jogo.getJogadorA().moveCartas(jogo.getJogadorB());
+                } else {
+                    jogo.getJogadorA().pontua(-10);
+                    jogo.getJogadorB().pontua(10);
+
+                    jogo.getJogadorB().moveCartas(jogo.getJogadorA());
+                }
+                ultimoA = 4;
+                verificaVencedor(event, vencedor);
             }
-            verificaVencedor(event, vencedor);
         });
 
         b_caracteristicaA5.setOnAction(event -> {
-            Jogador vencedor = vencedorRodadaC5();
-            if (vencedor == null) {
-                jogo.getJogadorA().moveTopo();
-                jogo.getJogadorB().moveTopo();
-
-            } else if (vencedor == jogo.getJogadorA()) {
-                jogo.getJogadorA().pontua(10);
-                jogo.getJogadorB().pontua(-5);
-
-                jogo.getJogadorA().moveCartas(jogo.getJogadorB());
+            if (ultimoA == 5) {
+                alertaA.setText("Você não pode jogar o mesmo atributo duas vezes");
             } else {
-                jogo.getJogadorA().pontua(-10);
-                jogo.getJogadorB().pontua(10);
+                Jogador vencedor = vencedorRodadaC5();
+                if (vencedor == null) {
+                    jogo.getJogadorA().moveTopo();
+                    jogo.getJogadorB().moveTopo();
 
-                jogo.getJogadorB().moveCartas(jogo.getJogadorA());
+                } else if (vencedor == jogo.getJogadorA()) {
+                    jogo.getJogadorA().pontua(10);
+                    jogo.getJogadorB().pontua(-5);
+
+                    jogo.getJogadorA().moveCartas(jogo.getJogadorB());
+                } else {
+                    jogo.getJogadorA().pontua(-10);
+                    jogo.getJogadorB().pontua(10);
+
+                    jogo.getJogadorB().moveCartas(jogo.getJogadorA());
+                }
+                ultimoA = 5;
+                verificaVencedor(event, vencedor);
             }
-            verificaVencedor(event, vencedor);
         });
 
         b_superB.setOnAction(event -> {
@@ -282,103 +313,128 @@ public class JogoController implements Initializable {
         });
 
         b_caracteristicaB1.setOnAction(event -> {
-            Jogador vencedor = vencedorRodadaC1();
-            if (vencedor == null) {
-                jogo.getJogadorA().moveTopo();
-                jogo.getJogadorB().moveTopo();
-
-            } else if (vencedor == jogo.getJogadorA()) {
-                jogo.getJogadorA().pontua(10);
-                jogo.getJogadorB().pontua(-10);
-
-                jogo.getJogadorA().moveCartas(jogo.getJogadorB());
+            if (ultimoB == 1) {
+                alertaB.setText("Você não pode jogar o mesmo atributo duas vezes");
             } else {
-                jogo.getJogadorA().pontua(-5);
-                jogo.getJogadorB().pontua(10);
+                Jogador vencedor = vencedorRodadaC1();
+                if (vencedor == null) {
+                    jogo.getJogadorA().moveTopo();
+                    jogo.getJogadorB().moveTopo();
 
-                jogo.getJogadorB().moveCartas(jogo.getJogadorA());
+                } else if (vencedor == jogo.getJogadorA()) {
+                    jogo.getJogadorA().pontua(10);
+                    jogo.getJogadorB().pontua(-10);
+
+                    jogo.getJogadorA().moveCartas(jogo.getJogadorB());
+                } else {
+                    jogo.getJogadorA().pontua(-5);
+                    jogo.getJogadorB().pontua(10);
+
+                    jogo.getJogadorB().moveCartas(jogo.getJogadorA());
+                }
+                ultimoB = 1;
+                verificaVencedor(event, vencedor);
             }
-            verificaVencedor(event, vencedor);
         });
 
         b_caracteristicaB2.setOnAction(event -> {
-            Jogador vencedor = vencedorRodadaC2();
-            if (vencedor == null) {
-                jogo.getJogadorA().moveTopo();
-                jogo.getJogadorB().moveTopo();
-
-            } else if (vencedor == jogo.getJogadorA()) {
-                jogo.getJogadorA().pontua(10);
-                jogo.getJogadorB().pontua(-10);
-
-                jogo.getJogadorA().moveCartas(jogo.getJogadorB());
+            if (ultimoB == 2) {
+                alertaB.setText("Você não pode jogar o mesmo atributo duas vezes");
             } else {
-                jogo.getJogadorA().pontua(-5);
-                jogo.getJogadorB().pontua(10);
+                Jogador vencedor = vencedorRodadaC2();
+                if (vencedor == null) {
+                    jogo.getJogadorA().moveTopo();
+                    jogo.getJogadorB().moveTopo();
 
-                jogo.getJogadorB().moveCartas(jogo.getJogadorA());
+                } else if (vencedor == jogo.getJogadorA()) {
+                    jogo.getJogadorA().pontua(10);
+                    jogo.getJogadorB().pontua(-10);
+
+                    jogo.getJogadorA().moveCartas(jogo.getJogadorB());
+                } else {
+                    jogo.getJogadorA().pontua(-5);
+                    jogo.getJogadorB().pontua(10);
+
+                    jogo.getJogadorB().moveCartas(jogo.getJogadorA());
+                }
+                ultimoB = 2;
+                verificaVencedor(event, vencedor);
             }
-            verificaVencedor(event, vencedor);
         });
 
         b_caracteristicaB3.setOnAction(event -> {
-            Jogador vencedor = vencedorRodadaC3();
-            if (vencedor == null) {
-                jogo.getJogadorA().moveTopo();
-                jogo.getJogadorB().moveTopo();
-
-            } else if (vencedor == jogo.getJogadorA()) {
-                jogo.getJogadorA().pontua(10);
-                jogo.getJogadorB().pontua(-10);
-
-                jogo.getJogadorA().moveCartas(jogo.getJogadorB());
+            if (ultimoB == 3) {
+                alertaB.setText("Você não pode jogar o mesmo atributo duas vezes");
             } else {
-                jogo.getJogadorA().pontua(-5);
-                jogo.getJogadorB().pontua(10);
+                Jogador vencedor = vencedorRodadaC3();
+                if (vencedor == null) {
+                    jogo.getJogadorA().moveTopo();
+                    jogo.getJogadorB().moveTopo();
 
-                jogo.getJogadorB().moveCartas(jogo.getJogadorA());
+                } else if (vencedor == jogo.getJogadorA()) {
+                    jogo.getJogadorA().pontua(10);
+                    jogo.getJogadorB().pontua(-10);
+
+                    jogo.getJogadorA().moveCartas(jogo.getJogadorB());
+                } else {
+                    jogo.getJogadorA().pontua(-5);
+                    jogo.getJogadorB().pontua(10);
+
+                    jogo.getJogadorB().moveCartas(jogo.getJogadorA());
+                }
+                ultimoB = 3;
+                verificaVencedor(event, vencedor);
             }
-            verificaVencedor(event, vencedor);
         });
 
         b_caracteristicaB4.setOnAction(event -> {
-            Jogador vencedor = vencedorRodadaC4();
-            if (vencedor == null) {
-                jogo.getJogadorA().moveTopo();
-                jogo.getJogadorB().moveTopo();
-
-            } else if (vencedor == jogo.getJogadorA()) {
-                jogo.getJogadorA().pontua(10);
-                jogo.getJogadorB().pontua(-10);
-
-                jogo.getJogadorA().moveCartas(jogo.getJogadorB());
+            if (ultimoB == 4) {
+                alertaB.setText("Você não pode jogar o mesmo atributo duas vezes");
             } else {
-                jogo.getJogadorA().pontua(-5);
-                jogo.getJogadorB().pontua(10);
+                Jogador vencedor = vencedorRodadaC4();
+                if (vencedor == null) {
+                    jogo.getJogadorA().moveTopo();
+                    jogo.getJogadorB().moveTopo();
 
-                jogo.getJogadorB().moveCartas(jogo.getJogadorA());
+                } else if (vencedor == jogo.getJogadorA()) {
+                    jogo.getJogadorA().pontua(10);
+                    jogo.getJogadorB().pontua(-10);
+
+                    jogo.getJogadorA().moveCartas(jogo.getJogadorB());
+                } else {
+                    jogo.getJogadorA().pontua(-5);
+                    jogo.getJogadorB().pontua(10);
+
+                    jogo.getJogadorB().moveCartas(jogo.getJogadorA());
+                }
+                ultimoB = 4;
+                verificaVencedor(event, vencedor);
             }
-            verificaVencedor(event, vencedor);
         });
 
         b_caracteristicaB5.setOnAction(event -> {
-            Jogador vencedor = vencedorRodadaC5();
-            if (vencedor == null) {
-                jogo.getJogadorA().moveTopo();
-                jogo.getJogadorB().moveTopo();
-
-            } else if (vencedor == jogo.getJogadorA()) {
-                jogo.getJogadorA().pontua(10);
-                jogo.getJogadorB().pontua(-10);
-
-                jogo.getJogadorA().moveCartas(jogo.getJogadorB());
+            if (ultimoB == 5) {
+                alertaB.setText("Você não pode jogar o mesmo atributo duas vezes");
             } else {
-                jogo.getJogadorA().pontua(-5);
-                jogo.getJogadorB().pontua(10);
+                Jogador vencedor = vencedorRodadaC5();
+                if (vencedor == null) {
+                    jogo.getJogadorA().moveTopo();
+                    jogo.getJogadorB().moveTopo();
 
-                jogo.getJogadorB().moveCartas(jogo.getJogadorA());
+                } else if (vencedor == jogo.getJogadorA()) {
+                    jogo.getJogadorA().pontua(10);
+                    jogo.getJogadorB().pontua(-10);
+
+                    jogo.getJogadorA().moveCartas(jogo.getJogadorB());
+                } else {
+                    jogo.getJogadorA().pontua(-5);
+                    jogo.getJogadorB().pontua(10);
+
+                    jogo.getJogadorB().moveCartas(jogo.getJogadorA());
+                }
+                ultimoB = 5;
+                verificaVencedor(event, vencedor);
             }
-            verificaVencedor(event, vencedor);
         });
     }
 
@@ -524,6 +580,9 @@ public class JogoController implements Initializable {
     }
 
     private void setTurno(ActionEvent event) {
+
+        alertaA.setText("");
+        alertaB.setText("");
 
         rodada++;
         if (rodada % 2 == 1) {

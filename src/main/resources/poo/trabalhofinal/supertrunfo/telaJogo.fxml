@@ -164,7 +164,7 @@
             <Image url="@gui/fujutrunfo.png" />
         </ImageView>
       <Button fx:id="b_superB" layoutX="1024.0" layoutY="190.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="49.0" style="-fx-background-color: transparent;" />
-      <Label fx:id="turno" alignment="CENTER" contentDisplay="CENTER" layoutX="494.0" layoutY="14.0" prefHeight="84.0" prefWidth="345.0" text="Turno: 12">
+      <Label fx:id="turno" alignment="CENTER" contentDisplay="CENTER" layoutX="390.0" prefHeight="84.0" prefWidth="528.0" text="Turno: 12">
          <font>
             <Font name="Impact" size="52.0" />
          </font>
@@ -219,5 +219,7 @@
                 <Font name="Ubuntu Bold" size="18.0" />
             </font>
         </Button>
+      <Label fx:id="alertaA" alignment="CENTER" contentDisplay="CENTER" layoutX="158.0" layoutY="70.0" prefHeight="18.0" prefWidth="346.0" textFill="RED" />
+      <Label fx:id="alertaB" alignment="CENTER" contentDisplay="CENTER" layoutX="789.0" layoutY="70.0" prefHeight="18.0" prefWidth="346.0" textFill="RED" />
     </AnchorPane>
 </Pane>
