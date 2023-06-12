@@ -143,8 +143,6 @@ public class JogoController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         setLabel();
         pegaTopo();
-        mostrarCartaA();
-        mostrarCartaB();
         setTurno(new ActionEvent());
 
         //Botões de A
@@ -501,7 +499,7 @@ public class JogoController implements Initializable {
         }
     }
 
-    private void mostrarCartaA() {
+    private void mostrarCartaA(boolean mostraB) {
         String nome = topoA.getNome().toUpperCase();
         nomeA.setText(nome);
         classificacaoA.setText(topoA.getClassificacao().toString());
@@ -515,7 +513,6 @@ public class JogoController implements Initializable {
         }
 
         qtdCartasA.setText(String.valueOf(jogo.getJogadorA().getCartas().size()));
-        superA.setVisible(topoA.isSuperTrunfo());
         b_superA.setDisable(!topoA.isSuperTrunfo());
 
         if (tipo.equals("Personagem")) {
@@ -538,9 +535,25 @@ public class JogoController implements Initializable {
             valorA4.setText(((LinguagensProgramacao) topoA).getCusto().toString());
             valorA5.setText("R$ " + ((LinguagensProgramacao) topoA).getSalarioSenior().toString());
         }
+
+        // Esconde ou mostra a carta do jogador B
+        nomeB.setVisible(mostraB);
+        imagemB.setVisible(mostraB);
+        classificacaoB.setVisible(mostraB);
+        superB.setVisible(mostraB && topoB.isSuperTrunfo());
+        caracteristicaB1.setVisible(mostraB);
+        valorB1.setVisible(mostraB);
+        caracteristicaB2.setVisible(mostraB);
+        valorB2.setVisible(mostraB);
+        caracteristicaB3.setVisible(mostraB);
+        valorB3.setVisible(mostraB);
+        caracteristicaB4.setVisible(mostraB);
+        valorB4.setVisible(mostraB);
+        caracteristicaB5.setVisible(mostraB);
+        valorB5.setVisible(mostraB);
     }
 
-    private void mostrarCartaB() {
+    private void mostrarCartaB(boolean mostraA) {
         String nome = topoB.getNome().toUpperCase();
         nomeB.setText(nome);
         classificacaoB.setText(topoB.getClassificacao().toString());
@@ -554,7 +567,6 @@ public class JogoController implements Initializable {
         }
 
         qtdCartasB.setText(String.valueOf(jogo.getJogadorB().getCartas().size()));
-        superB.setVisible(topoB.isSuperTrunfo());
         b_superB.setDisable(!topoB.isSuperTrunfo());
 
         if (tipo.equals("Personagem")) {
@@ -577,6 +589,22 @@ public class JogoController implements Initializable {
             valorB4.setText(((LinguagensProgramacao) topoB).getCusto().toString());
             valorB5.setText("R$ " + ((LinguagensProgramacao) topoB).getSalarioSenior().toString());
         }
+
+        // Esconde ou mostra a carta do jogador A
+        nomeA.setVisible(mostraA);
+        imagemA.setVisible(mostraA);
+        classificacaoA.setVisible(mostraA);
+        superA.setVisible(mostraA && topoA.isSuperTrunfo());
+        caracteristicaA1.setVisible(mostraA);
+        valorA1.setVisible(mostraA);
+        caracteristicaA2.setVisible(mostraA);
+        valorA2.setVisible(mostraA);
+        caracteristicaA3.setVisible(mostraA);
+        valorA3.setVisible(mostraA);
+        caracteristicaA4.setVisible(mostraA);
+        valorA4.setVisible(mostraA);
+        caracteristicaA5.setVisible(mostraA);
+        valorA5.setVisible(mostraA);
     }
 
     private void setTurno(ActionEvent event) {
@@ -588,6 +616,9 @@ public class JogoController implements Initializable {
         if (rodada % 2 == 1) {
             try {
                 fundo.setImage(fundoA);
+
+                mostrarCartaA(false);
+                mostrarCartaB(true);
             } catch (Exception e) {
                 Alert alerta = new Alert(Alert.AlertType.ERROR);
                 alerta.setTitle("ERRO AO CARREGAR IMAGEM DE FUNDO");
@@ -614,6 +645,8 @@ public class JogoController implements Initializable {
         } else {
             try {
                 fundo.setImage(fundoB);
+                mostrarCartaA(true);
+                mostrarCartaB(false);
             } catch (Exception e) {
                 Alert alerta = new Alert(Alert.AlertType.ERROR);
                 alerta.setTitle("ERRO AO CARREGAR IMAGEM DE FUNDO");
@@ -728,6 +761,9 @@ public class JogoController implements Initializable {
 
     private void verificaVencedor(ActionEvent event, Jogador vencedor) {
 
+        mostrarCartaA(true);
+        mostrarCartaB(true);
+
         if (jogo.getJogadorA().getCartas().size() == 0) {
             DBUtils.setJogadores(jogo.getJogadorB(), jogo.getJogadorA());
             DBUtils.changeScene(event, "vencedor.fxml", "VENCEDOR");
@@ -748,8 +784,6 @@ public class JogoController implements Initializable {
             alerta.showAndWait();
 
             pegaTopo();
-            mostrarCartaA();
-            mostrarCartaB();
             setTurno(event);
         }
     }
