@@ -1,12 +1,10 @@
 package poo.trabalhofinal.supertrunfo.gui.controllers;
 
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import poo.trabalhofinal.supertrunfo.classes.Jogador;
-import poo.trabalhofinal.supertrunfo.classes.Jogo;
 import poo.trabalhofinal.supertrunfo.classes.cartas.Gato;
 import poo.trabalhofinal.supertrunfo.classes.cartas.LinguagensProgramacao;
 import poo.trabalhofinal.supertrunfo.classes.cartas.Personagem;
@@ -21,6 +19,22 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+/**
+ * <h1>Classe LoginContoller<h1/>
+ * <p>
+ *  Classe responsável por intermediar a relação entre a interface (GUI) da <i>Tela de login</i> e o programa.
+ *  </p>
+ *  <p>
+ *  Classe responsável por logar o jogador para que ele possa jogar e seus dados serem alterados quando necessário.
+ *  </p>
+ *  <p>
+ *  Recebe as solicitações da interface e trata os eventos de acordo com o esperado no programa.
+ *  </p>
+ *  <p>
+ *  Implementa a interface <i>Initializable</i> do JavaFX, que define a assinatura do método de inicialização de um
+ *  controller da tela.
+ * </p>
+ */
 public class LoginContoller implements Initializable {
     @FXML
     public TextField nome1;

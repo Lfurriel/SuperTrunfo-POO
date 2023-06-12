@@ -66,9 +66,7 @@ public class OpcaoController implements Initializable {
      *  ao usuário escolher a opção jogar, mudando para tela de login.
      * </p>
      * @param url (URL) do elemento fxml que está sendo carregado.
-     * @param resourceBundle (ResourceBundle) é fornecido como convenção para permitir o acesso a recursos adicionais
-     *                 que podem ser injetados através do arquivo FXML. •> é um dos elementos do contructor do FDXMLLoader, usado em DBUtils em chageScene.
-     *                  Aqui inicializamos como null.
+     * @param resourceBundle (ResourceBundle) é fornecido como convenção para permitir o acesso a recursos adicionais.
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

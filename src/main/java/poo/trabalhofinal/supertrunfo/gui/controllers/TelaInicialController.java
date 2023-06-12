@@ -17,7 +17,7 @@ import java.util.ResourceBundle;
  *  Recebe as solicitações da interface e trata os eventos de acordo com o esperado no programa.
  *  </p>
  *  <p>
- *  Implementa a interface <i>Initialize</i> do JavaFX, que define a assinatura do método de inicialização de um
+ *  Implementa a interface <i>Initializable</i> do JavaFX, que define a assinatura do método de inicialização de um
  *  controller da tela.
  * </p>
  */
@@ -35,9 +35,7 @@ public class TelaInicialController implements Initializable {
      *  Define que ao clicar com mouse na tela (AnchorPane) o evento seja capturado e a tela mude para a tela de menu.
      * </p>
      * @param location (URL) do elemento fxml que está sendo carregado.
-     * @param resources (ResourceBundle) é fornecido como convenção para permitir o acesso a recursos adicionais
-     *                 que podem ser injetados através do arquivo FXML. •> é um dos elementos do contructor do FDXMLLoader, usado em DBUtils em chageScene.
-     *                  Aqui inicializamos como null.
+     * @param resources (ResourceBundle) é fornecido como convenção para permitir o acesso a recursos adicionais.
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
