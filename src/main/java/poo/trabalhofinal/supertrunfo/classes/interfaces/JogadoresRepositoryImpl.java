@@ -6,6 +6,7 @@ import poo.trabalhofinal.supertrunfo.classes.exceptions.InformacaoInvalidaExcept
 import poo.trabalhofinal.supertrunfo.classes.exceptions.UsuarioNaoEncontradoException;
 
 import java.sql.*;
+import java.util.ResourceBundle;
 
 /**
  * <h1>Classe JogadoresRepositoryImpl<T></h1>
@@ -16,6 +17,11 @@ import java.sql.*;
  * @param <T> tipo genérico que representa o tipo de carta que foi escolhido para ser jogado pelo jogador.
  */
 public class JogadoresRepositoryImpl<T> implements JogadoresRepository {
+
+    /**
+     * Acessa a lista recursos em "resource.properties"
+     */
+    private final ResourceBundle resources = ResourceBundle.getBundle("resources");
 
     /**
      * Método responsável por logar o jogador.
@@ -31,10 +37,9 @@ public class JogadoresRepositoryImpl<T> implements JogadoresRepository {
         Connection conexao = null;
         PreparedStatement query;
         ResultSet resultSet = null;
-
         try {
             Jogador<T> jogador = new Jogador<>();
-            conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/DataLake", "postgres", "FurriSenha");
+            conexao = DriverManager.getConnection(resources.getString("jdbc-url"), resources.getString("user"), resources.getString("password"));
             query = conexao.prepareStatement("SELECT * FROM jogadores WHERE usuario = ?");
             query.setString(1, usuario);
             resultSet = query.executeQuery();
@@ -78,7 +83,7 @@ public class JogadoresRepositoryImpl<T> implements JogadoresRepository {
         PreparedStatement query;
 
         try {
-            conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/DataLake", "postgres", "FurriSenha");
+            conexao = DriverManager.getConnection(resources.getString("jdbc-url"), resources.getString("user"), resources.getString("password"));
             query = conexao.prepareStatement("INSERT INTO jogadores VALUES (nextval('jogadores_id_seq'), ?, ?, ?)");
             query.setString(1, novoJogador.getNome());
             query.setInt(2, 0);
@@ -110,7 +115,7 @@ public class JogadoresRepositoryImpl<T> implements JogadoresRepository {
         PreparedStatement query;
 
         try {
-            conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/DataLake", "postgres", "FurriSenha");
+            conexao = DriverManager.getConnection(resources.getString("jdbc-url"), resources.getString("user"), resources.getString("password"));
             query = conexao.prepareStatement("UPDATE jogadores SET pontuacao = ? WHERE usuario = ?");
             query.setInt(1, jogadorA.getPontuacao());
             query.setString(2, jogadorA.getNome());
