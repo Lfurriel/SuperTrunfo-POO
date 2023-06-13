@@ -18,120 +18,307 @@ import poo.trabalhofinal.supertrunfo.gui.DBUtils;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-
+/**
+ * <h1>Classe JogoController<h1/>
+ * <p>
+ *  Classe responsável por intermediar a relação entre a interface (GUI) da <i>Tela de jogo</i> e o programa.
+ *  </p>
+ *  <p>
+ *  Recebe as solicitações da interface e trata os eventos de acordo com o esperado no programa.
+ *  Permite que os jogadores reecebam suas cartas e possam jogar, modificando seus dados para posteriormente eles possam ser atualizados no banco de dados
+ *  (na tela de vencedor).
+ *  </p>
+ *  <p>
+ *  Implementa a interface <i>Initializable</i> do JavaFX, que define a assinatura do método de inicialização de um
+ *  controller da tela.
+ * </p>
+ */
 public class JogoController implements Initializable {
 
     //JOGADOR A ---------------------------
+    /**
+     * Elemento FXML que representa a imagem na carta do jogador A.
+     */
     @FXML
     public ImageView imagemA;
+    /**
+     * Elemento FXML que representa a classificação na carta do jogador A.
+     */
     @FXML
     public Label classificacaoA;
+    /**
+     * Elemento FXML que representa o nome na carta do jogador A (nome do personagem, gato ou linguagem na carta).
+     */
     @FXML
     public Label nomeA;
+    /**
+     * Elemento FXML que representa a quantidade de cartas do jogador A.
+     */
     @FXML
     public Label qtdCartasA;
+    /**
+     * Elemento FXML que representa o nome do jogador A.
+     */
     @FXML
     public Label usuarioA;
+    /**
+     * Elemento FXML que representa o label da primeira característica na carta do jogador A (escreve qual é a característica).
+     */
     @FXML
     public Label caracteristicaA1;
+    /**
+     * Elemento FXML que representa o valor associado a primeira característica na carta do jogador A.
+     */
     @FXML
     public Label valorA1;
+    /**
+     * Elemento FXML que representa o botão associado a essa característica (primeira) da carta.
+     */
     @FXML
     public Button b_caracteristicaA1;
+    /**
+     * Elemento FXML que representa o label da segunda característica na carta do jogador A (escreve qual é a característica).
+     */
     @FXML
     public Label caracteristicaA2;
+    /**
+     * Elemento FXML que representa o valor associado a segunda característica na carta do jogador A.
+     */
     @FXML
     public Label valorA2;
+    /**
+     * Elemento FXML que representa o botão associado a essa característica (segunda) da carta.
+     */
     @FXML
     public Button b_caracteristicaA2;
+    /**
+     * Elemento FXML que representa o label da terceira característica na carta do jogador A (escreve qual é a característica).
+     */
     @FXML
     public Label caracteristicaA3;
+    /**
+     * Elemento FXML que representa o valor associado a terceira característica na carta do jogador A.
+     */
     @FXML
     public Label valorA3;
+    /**
+     * Elemento FXML que representa o botão associado a essa característica (terceira) da carta.
+     */
     @FXML
     public Button b_caracteristicaA3;
+    /**
+     * Elemento FXML que representa o label da quarta característica na carta do jogador A (escreve qual é a característica).
+     */
     @FXML
     public Label caracteristicaA4;
+    /**
+     * Elemento FXML que representa o valor associado a quarta característica na carta do jogador A.
+     */
     @FXML
     public Label valorA4;
+    /**
+     * Elemento FXML que representa o botão associado a essa característica (quarta) da carta.
+     */
     @FXML
     public Button b_caracteristicaA4;
+    /**
+     * Elemento FXML que representa o label da quinta característica na carta do jogador A (escreve qual é a característica).
+     */
     @FXML
     public Label caracteristicaA5;
+    /**
+     * Elemento FXML que representa o valor associado a quinta característica na carta do jogador A.
+     */
     @FXML
     public Label valorA5;
+    /**
+     * Elemento FXML que representa o botão associado a essa característica (quinta) da carta.
+     */
     @FXML
     public Button b_caracteristicaA5;
+    /**
+     * Elemento FXML que representa o botão de supertrunfo presentes em cartas supertrunfo que o jogador A pegar.
+     */
     @FXML
     public Button b_superA;
+    /**
+     * Elemento FXML que representa a imagem de uma carta supertrunfo.
+     */
     @FXML
     public ImageView superA;
     //-------------------------------------
 
     //JOGADOR B ---------------------------
+    /**
+     * Elemento FXML que representa a imagem na carta do jogador B.
+     */
     @FXML
     public ImageView imagemB;
+    /**
+     * Elemento FXML que representa a classificação na carta do jogador B.
+     */
     @FXML
     public Label classificacaoB;
+    /**
+     * Elemento FXML que representa o nome na carta do jogador B (nome do personagem, gato ou linguagem na carta).
+     */
     @FXML
     public Label nomeB;
+    /**
+     * Elemento FXML que representa a quantidade de cartas do jogador B.
+     */
     @FXML
     public Label qtdCartasB;
+    /**
+     * Elemento FXML que representa o nome do jogador B.
+     */
     @FXML
     public Label usuarioB;
+    /**
+     * Elemento FXML que representa o label da primeira característica na carta do jogador B (escreve qual é a característica).
+     */
     @FXML
     public Label caracteristicaB1;
+    /**
+     * Elemento FXML que representa o valor associado a primeira característica na carta do jogador B.
+     */
     @FXML
     public Label valorB1;
+    /**
+     * Elemento FXML que representa o botão associado a essa característica (primeira) da carta.
+     */
     @FXML
     public Button b_caracteristicaB1;
+    /**
+     * Elemento FXML que representa o label da segunda característica na carta do jogador B (escreve qual é a característica).
+     */
     @FXML
     public Label caracteristicaB2;
+    /**
+     * Elemento FXML que representa o valor associado a segunda característica na carta do jogador B.
+     */
     @FXML
     public Label valorB2;
+    /**
+     * Elemento FXML que representa o botão associado a essa característica (segunda) da carta.
+     */
     @FXML
     public Button b_caracteristicaB2;
+    /**
+     * Elemento FXML que representa o label da terceira característica na carta do jogador B (escreve qual é a característica).
+     */
     @FXML
     public Label caracteristicaB3;
+    /**
+     * Elemento FXML que representa o valor associado a terceira característica na carta do jogador B.
+     */
     @FXML
     public Label valorB3;
+    /**
+     * Elemento FXML que representa o botão associado a essa característica (terceira) da carta.
+     */
     @FXML
     public Button b_caracteristicaB3;
+    /**
+     * Elemento FXML que representa o label da quarta característica na carta do jogador B (escreve qual é a característica).
+     */
     @FXML
     public Label caracteristicaB4;
+    /**
+     * Elemento FXML que representa o valor associado a quarta característica na carta do jogador B.
+     */
     @FXML
     public Label valorB4;
+    /**
+     * Elemento FXML que representa o botão associado a essa característica (quarta) da carta.
+     */
     @FXML
     public Button b_caracteristicaB4;
+    /**
+     * Elemento FXML que representa o label da quinta característica na carta do jogador B (escreve qual é a característica).
+     */
     @FXML
     public Label caracteristicaB5;
+    /**
+     * Elemento FXML que representa o valor associado a quinta característica na carta do jogador B.
+     */
     @FXML
     public Label valorB5;
+    /**
+     * Elemento FXML que representa o botão associado a essa característica (quinta) da carta.
+     */
     @FXML
     public Button b_caracteristicaB5;
+    /**
+     * Elemento FXML que representa o botão de supertrunfo presentes em cartas supertrunfo que o jogador B pegar.
+     */
     @FXML
     public Button b_superB;
+    /**
+     * Elemento FXML que representa a imagem de uma carta supertrunfo.
+     */
     @FXML
     public ImageView superB;
     //-------------------------------------
+    /**
+     * Elemento FXML que coloca o turno na tela.
+     */
     @FXML
     public Label turno;
+    /**
+     * Elemento FXML que coloca a imagem da tela do jogo.
+     */
     @FXML
     public ImageView fundo;
-
+    /**
+     * URL do fundo quando o jogador A joga.
+     */
     final URL urlFundoA = getClass().getResource("/poo/trabalhofinal/supertrunfo/gui/jogoA.jpg");
+    /**
+     * Imagem para colocar na tela do jogo quando o jogador A joga.
+     */
     final Image fundoA = new Image(urlFundoA != null ? urlFundoA.toExternalForm() : null);
-
+    /**
+     * URL do fundo quando o jogador B joga.
+     */
     final URL urlFundoB = getClass().getResource("/poo/trabalhofinal/supertrunfo/gui/jogoB.jpg");
+    /**
+     * Imagem para colocar na tela do jogo quando o jogador B joga.
+     */
     final Image fundoB = new Image(urlFundoB != null ? urlFundoB.toExternalForm() : null);
-
-
+    /**
+     * Constante que representa o tipo do jogo.
+     */
     private static final String tipo = DBUtils.getTipoJogo();
+    /**
+     * Constante jogo, que representa o jogo que está sendo jogado (a partida inteira).
+     */
     private static final Jogo jogo = DBUtils.getJogo();
+    /**
+     * Carta do topo do jogador A (carta apresentada na tela).
+     */
     private Carta topoA;
+    /**
+     * Carta do topo do jogador B (carta apresentada na tela).
+     */
     private Carta topoB;
+    /**
+     * Contador da rodada que está → ver de quem é a vez de jogar.
+     */
     private int rodada = 0;
 
+    /**
+     * Método sobrescrito oriundo da interface <i>Initializable</i>.
+     * <p>
+     *  Apresenta as características da carta na tela e mostra a carta do jogador que está jogando a partir de outros métodos externos que são chamados.
+     * </p>
+     * <p>
+     * Define o que é feito ao jogador apertar em um dos botões da característica que ele quiser jogar.
+     * Verifica os valores das características das cartas do jogador A e do jogador B, se o jogador que escolheu a característica
+     * </p>
+     * @param location (URL) do elemento fxml que está sendo carregado.
+     * @param resources (ResourceBundle) é fornecido como convenção para permitir o acesso a recursos adicionais.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setLabel();

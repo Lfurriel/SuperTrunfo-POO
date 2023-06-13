@@ -20,7 +20,7 @@ import java.sql.SQLException;
 /**
  * <h1>Classe DBUtils</h1>
  * <p>
- *
+ *  Classe responsável por mudar as telas da aplicação GUI.
  * </p>
  */
 public class DBUtils {
