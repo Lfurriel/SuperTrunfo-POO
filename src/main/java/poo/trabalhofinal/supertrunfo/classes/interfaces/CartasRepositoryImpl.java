@@ -235,7 +235,7 @@ public class CartasRepositoryImpl<T> implements CartasRepository {
 
         try {
             conexao = DriverManager.getConnection(resources.getString("jdbc-url"), resources.getString("user"), resources.getString("password"));
-            query = conexao.prepareStatement("SELECT * FROM cartas ORDER BY id");
+            query = conexao.prepareStatement("SELECT * FROM cartas ORDER BY tipo ASC");
             resultSet = query.executeQuery();
             String tipo;
             while(resultSet.next()) {
