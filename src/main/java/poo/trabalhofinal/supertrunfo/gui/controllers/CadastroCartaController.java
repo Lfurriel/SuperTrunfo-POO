@@ -1,14 +1,14 @@
 package poo.trabalhofinal.supertrunfo.gui.controllers;
 
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import poo.trabalhofinal.supertrunfo.classes.cartas.Classificacao;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import poo.trabalhofinal.supertrunfo.classes.cartas.Gato;
 import poo.trabalhofinal.supertrunfo.classes.cartas.LinguagensProgramacao;
 import poo.trabalhofinal.supertrunfo.classes.cartas.Personagem;
@@ -73,47 +73,59 @@ public class CadastroCartaController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        adicionar.setOnAction(event -> {
-            try {
-                validaPreenchidos();
-                validaValores();
-                if (tipo.equals("Personagem")) {
-                    CartasRepository<Personagem> cartasRepository = new CartasRepositoryImpl<Personagem>();
-                    cartasRepository.insereNovaCarta(new Personagem(nome.getText(), imagem.getText(), false, Util.stringToClassificacao(classificacao.getText()),
-                            Integer.parseInt(caracteristica1.getText()), Integer.parseInt(caracteristica2.getText()), Integer.parseInt(caracteristica3.getText()),
-                            Integer.parseInt(caracteristica4.getText()), Double.parseDouble(caracteristica5.getText())));
-                } else if (tipo.equals("Gato")) {
-                    CartasRepository<Gato> cartasRepository = new CartasRepositoryImpl<Gato>();
-                    cartasRepository.insereNovaCarta(new Gato(nome.getText(), imagem.getText(), false, Util.stringToClassificacao(classificacao.getText()),
-                            Integer.parseInt(caracteristica1.getText()), Integer.parseInt(caracteristica2.getText()), Integer.parseInt(caracteristica3.getText()),
-                            Integer.parseInt(caracteristica4.getText()), Double.parseDouble(caracteristica5.getText())));
-                } else {
-                    CartasRepository<LinguagensProgramacao> cartasRepository = new CartasRepositoryImpl<LinguagensProgramacao>();
-                    cartasRepository.insereNovaCarta(new LinguagensProgramacao(nome.getText(), imagem.getText(), false, Util.stringToClassificacao(classificacao.getText()),
-                            Integer.parseInt(caracteristica1.getText()), Integer.parseInt(caracteristica2.getText()), Integer.parseInt(caracteristica3.getText()),
-                            Integer.parseInt(caracteristica4.getText()), Double.parseDouble(caracteristica5.getText())));
-                }
-                Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-                alerta.setTitle("CADASTRO DE CARTA");
-                alerta.setContentText("Carta cadastrada com sucesso");
-                alerta.showAndWait();
-                DBUtils.changeScene(event, "menu.fxml", "MENU");
-            } catch (InformacaoInvalidaException | SQLException e) {
-                if (!e.getMessage().contains("Preencha")) {
-                    nome.setText("");
-                    classificacao.setText("");
-                    caracteristica1.setText("");
-                    caracteristica2.setText("");
-                    caracteristica3.setText("");
-                    caracteristica4.setText("");
-                    caracteristica5.setText("");
-                    imagem.setText("");
-                    alerta.setText(e.getMessage());
-                }
-            }
+        adicionar.setOnAction(event -> adicionarCarta(event, null));
+
+        caracteristica5.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER)
+                adicionarCarta(null, event);
         });
 
         voltar.setOnAction(event -> DBUtils.changeScene(event, "menu.fxml", "MENU"));
+    }
+
+    public void adicionarCarta(ActionEvent event, KeyEvent keyEvent) {
+        try {
+            validaPreenchidos();
+            validaValores();
+            if (tipo.equals("Personagem")) {
+                CartasRepository<Personagem> cartasRepository = new CartasRepositoryImpl<Personagem>();
+                cartasRepository.insereNovaCarta(new Personagem(nome.getText(), imagem.getText(), false, Util.stringToClassificacao(classificacao.getText()),
+                        Integer.parseInt(caracteristica1.getText()), Integer.parseInt(caracteristica2.getText()), Integer.parseInt(caracteristica3.getText()),
+                        Integer.parseInt(caracteristica4.getText()), Double.parseDouble(caracteristica5.getText())));
+            } else if (tipo.equals("Gato")) {
+                CartasRepository<Gato> cartasRepository = new CartasRepositoryImpl<Gato>();
+                cartasRepository.insereNovaCarta(new Gato(nome.getText(), imagem.getText(), false, Util.stringToClassificacao(classificacao.getText()),
+                        Integer.parseInt(caracteristica1.getText()), Integer.parseInt(caracteristica2.getText()), Integer.parseInt(caracteristica3.getText()),
+                        Integer.parseInt(caracteristica4.getText()), Double.parseDouble(caracteristica5.getText())));
+            } else {
+                CartasRepository<LinguagensProgramacao> cartasRepository = new CartasRepositoryImpl<LinguagensProgramacao>();
+                cartasRepository.insereNovaCarta(new LinguagensProgramacao(nome.getText(), imagem.getText(), false, Util.stringToClassificacao(classificacao.getText()),
+                        Integer.parseInt(caracteristica1.getText()), Integer.parseInt(caracteristica2.getText()), Integer.parseInt(caracteristica3.getText()),
+                        Integer.parseInt(caracteristica4.getText()), Double.parseDouble(caracteristica5.getText())));
+            }
+            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+            alerta.setTitle("CADASTRO DE CARTA");
+            alerta.setContentText("Carta cadastrada com sucesso");
+            alerta.showAndWait();
+
+            if (event != null)
+                DBUtils.changeScene(event, "menu.fxml", "MENU");
+            else
+                DBUtils.changeScene(keyEvent, "menu.fxml", "MENU");
+
+        } catch (InformacaoInvalidaException | SQLException e) {
+            if (!e.getMessage().contains("Preencha")) {
+                nome.setText("");
+                classificacao.setText("");
+                caracteristica1.setText("");
+                caracteristica2.setText("");
+                caracteristica3.setText("");
+                caracteristica4.setText("");
+                caracteristica5.setText("");
+                imagem.setText("");
+                alerta.setText(e.getMessage());
+            }
+        }
     }
 
     private void validaPreenchidos() throws InformacaoInvalidaException {

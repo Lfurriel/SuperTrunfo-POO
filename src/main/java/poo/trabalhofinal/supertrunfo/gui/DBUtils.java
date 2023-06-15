@@ -6,6 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import poo.trabalhofinal.supertrunfo.HelloApplication;
@@ -66,6 +67,22 @@ public class DBUtils {
      * @param title - Titulo da cena
      */
     public static void changeScene(ActionEvent event, String fxmlFile, String title) {
+
+        Parent root = null;
+
+        try {
+            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource(fxmlFile),
+                    ResourceBundle.getBundle("resources"));
+
+            root = loader.load();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        createStage(title, root, event);
+    }
+
+    public static void changeScene(KeyEvent event, String fxmlFile, String title) {
 
         Parent root = null;
 
@@ -146,6 +163,14 @@ public class DBUtils {
     }
 
     private static void createStage(String title, Parent root, ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle(title);
+        stage.setResizable(false);
+        stage.getIcons().add(icon);
+        stage.setScene(new Scene(root, 1280, 720));
+        stage.show();
+    }
+    private static void createStage(String title, Parent root, KeyEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle(title);
         stage.setResizable(false);
