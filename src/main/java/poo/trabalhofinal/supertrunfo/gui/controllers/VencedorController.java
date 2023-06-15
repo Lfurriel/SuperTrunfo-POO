@@ -42,13 +42,17 @@ public class VencedorController {
      */
     private final JogadoresRepository<?> jogadoresRepository = new JogadoresRepositoryImpl<>();
     /**
-     * Atributo do tipo Jogador que representa o vencedor da jogada.
+     * Atributo do tipo Jogador que representa o vencedor da partida.
      */
-    private Jogador jogadorVencedor = DBUtils.getVencedor();
+    private final Jogador jogadorVencedor = DBUtils.getVencedor();
     /**
-     * Atributo do tipo Jogador que representa o perdedor da jogada.
+     * Atributo do tipo Jogador que representa o perdedor da partida.
      */
-    private Jogador jogadorFracasado = DBUtils.getPerdedor();
+    private final Jogador jogadorFracasado = DBUtils.getPerdedor();
+    /**
+     * Atributo do tipo booleano que indica se houve um empate na partida.
+     */
+    private final boolean empate = DBUtils.getEmpate();
 
     /**
      * Método sobrescrito oriundo da interface <i>Initializable</i>.
@@ -65,7 +69,10 @@ public class VencedorController {
      */
     @FXML
     public void initialize() {
-        vencedor.setText(jogadorVencedor.getNome().toUpperCase());
+        if (empate)
+            vencedor.setText("EMPATOU!");
+        else
+            vencedor.setText(jogadorVencedor.getNome().toUpperCase());
         sair.setOnAction(event -> {
             try {
                 jogadoresRepository.updateJogadores(jogadorVencedor, jogadorFracasado);

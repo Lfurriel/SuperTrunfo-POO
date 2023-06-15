@@ -8,7 +8,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import poo.trabalhofinal.supertrunfo.HelloApplication;
 import poo.trabalhofinal.supertrunfo.classes.Jogador;
 import poo.trabalhofinal.supertrunfo.classes.cartas.Classificacao;
 import poo.trabalhofinal.supertrunfo.classes.Jogo;
@@ -123,6 +122,12 @@ public class JogoController implements Initializable {
     public Label turno;
     @FXML
     public ImageView fundo;
+    @FXML
+    public Button render;
+    @FXML
+    public Button encerrar;
+    @FXML
+    public Button empatar;
 
     final URL urlFundoA = getClass().getResource("/poo/trabalhofinal/supertrunfo/gui/jogoA.jpg");
     final Image fundoA = new Image(urlFundoA != null ? urlFundoA.toExternalForm() : null);
@@ -433,6 +438,29 @@ public class JogoController implements Initializable {
                 ultimoB = 5;
                 verificaVencedor(event, vencedor);
             }
+        });
+
+        render.setOnAction(event -> {
+            if (rodada % 2 == 1) //Jogador A se rendeu
+                DBUtils.setFimPartida(jogo.getJogadorB(), jogo.getJogadorA(), false);
+            else //Jogador B se rendeu
+                DBUtils.setFimPartida(jogo.getJogadorA(), jogo.getJogadorB(), false);
+            DBUtils.changeScene(event, "vencedor.fxml", "VENCEDOR");
+        });
+
+        encerrar.setOnAction(event -> {
+            if (jogo.getJogadorB().getCartas().size() > jogo.getJogadorA().getCartas().size()) //Jogador A se rendeu
+                DBUtils.setFimPartida(jogo.getJogadorB(), jogo.getJogadorA(), false);
+            else if (jogo.getJogadorA().getCartas().size() > jogo.getJogadorB().getCartas().size()) //Jogador B se rendeu
+                DBUtils.setFimPartida(jogo.getJogadorA(), jogo.getJogadorB(), false);
+            else
+                DBUtils.setFimPartida(jogo.getJogadorA(), jogo.getJogadorB(), true);
+            DBUtils.changeScene(event, "vencedor.fxml", "VENCEDOR");
+        });
+
+        empatar.setOnAction(event -> {
+            DBUtils.setFimPartida(jogo.getJogadorA(), jogo.getJogadorB(), true);
+            DBUtils.changeScene(event, "vencedor.fxml", "VENCEDOR");
         });
     }
 
@@ -765,10 +793,10 @@ public class JogoController implements Initializable {
         mostrarCartaB(true);
 
         if (jogo.getJogadorA().getCartas().size() == 0) {
-            DBUtils.setJogadores(jogo.getJogadorB(), jogo.getJogadorA());
+            DBUtils.setFimPartida(jogo.getJogadorB(), jogo.getJogadorA(), false);
             DBUtils.changeScene(event, "vencedor.fxml", "VENCEDOR");
         } else if (jogo.getJogadorB().getCartas().size() == 0) {
-            DBUtils.setJogadores(jogo.getJogadorA(), jogo.getJogadorB());
+            DBUtils.setFimPartida(jogo.getJogadorA(), jogo.getJogadorB(), false);
             DBUtils.changeScene(event, "vencedor.fxml", "VENCEDOR");
         } else {
             //Informa quem venceu o truno

@@ -27,10 +27,12 @@ public class DBUtils {
 
     private static Jogador vencedor;
     private static Jogador perdedor;
+    private static boolean empatou;
 
-    public static void setJogadores(Jogador a, Jogador b){
+    public static void setFimPartida(Jogador a, Jogador b, boolean empate){
         vencedor = a;
         perdedor = b;
+        empatou = empate;
     }
     public static Jogador getVencedor() {
         return vencedor;
@@ -38,6 +40,10 @@ public class DBUtils {
 
     public static Jogador getPerdedor() {
         return perdedor;
+    }
+
+    public static boolean getEmpate() {
+        return empatou;
     }
 
     public static <T> void iniciaJogo(Jogador<?> jogadorA, Jogador<?> jogadorB, String tipo) throws SQLException, JogoException {
