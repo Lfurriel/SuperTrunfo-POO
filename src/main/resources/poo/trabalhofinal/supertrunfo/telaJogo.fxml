@@ -221,5 +221,8 @@
         </Button>
       <Label fx:id="alertaA" alignment="CENTER" contentDisplay="CENTER" layoutX="158.0" layoutY="70.0" prefHeight="18.0" prefWidth="346.0" textFill="RED" />
       <Label fx:id="alertaB" alignment="CENTER" contentDisplay="CENTER" layoutX="789.0" layoutY="70.0" prefHeight="18.0" prefWidth="346.0" textFill="RED" />
+      <Button fx:id="render" layoutX="598.0" layoutY="180.0" mnemonicParsing="false" prefHeight="120.0" prefWidth="112.0" text="RENDER" />
+      <Button fx:id="encerrar" layoutX="598.0" layoutY="314.0" mnemonicParsing="false" prefHeight="114.0" prefWidth="112.0" text="ENCERRAR" />
+      <Button fx:id="empatar" layoutX="598.0" layoutY="444.0" mnemonicParsing="false" prefHeight="114.0" prefWidth="112.0" text="EMPATAR" />
     </AnchorPane>
 </Pane>
