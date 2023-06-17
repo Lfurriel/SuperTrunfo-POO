@@ -19,7 +19,12 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-
+/**
+ * <h1>Classe DBUtils</h1>
+ * <p>
+ *  Classe responsável por mudar as telas da aplicação GUI.
+ * </p>
+ */
 public class DBUtils {
 
     private static Image icon = new Image(HelloApplication.class.getResource("/poo/trabalhofinal/supertrunfo/gui/fujutrunfo.png").toExternalForm());

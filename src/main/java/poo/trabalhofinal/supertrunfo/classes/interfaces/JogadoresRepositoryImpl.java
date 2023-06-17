@@ -86,7 +86,7 @@ public class JogadoresRepositoryImpl<T> implements JogadoresRepository {
             conexao = DriverManager.getConnection(resources.getString("jdbc-url"), resources.getString("user"), resources.getString("password"));
             query = conexao.prepareStatement("INSERT INTO jogadores VALUES (nextval('jogadores_id_seq'), ?, ?, ?)");
             query.setString(1, novoJogador.getNome());
-            query.setInt(2, 0);
+            query.setInt(2, 0); // Pontuação inicial é 0
             query.setString(3, novoJogador.getSenha());
             query.executeUpdate();
 

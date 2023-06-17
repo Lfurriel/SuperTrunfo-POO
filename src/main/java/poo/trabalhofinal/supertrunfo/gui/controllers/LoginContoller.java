@@ -36,37 +36,106 @@ import java.util.ResourceBundle;
  * </p>
  */
 public class LoginContoller implements Initializable {
+    /**
+     * Elemento FXML que pega o nome do primeiro usuário por meio da GUI.
+     */
     @FXML
     public TextField nome1;
+    /**
+     * Elemento FXML que pega o nome do segundo usuário por meio da GUI.
+     */
     @FXML
     public TextField nome2;
+    /**
+     * Elemento FXML que pega a senha do primeiro usuário por meio da GUI.
+     */
     @FXML
     public PasswordField senha1;
+    /**
+     * Elemento FXML que pega a senha do segundo usuário por meio da GUI.
+     */
     @FXML
     public PasswordField senha2;
+    /**
+     * Elemento FXML (botão) que, ao ser clicado, permite que o primeiro usuário faça ‘login’ (se os dados estiverem corretos).
+     */
     @FXML
     public Button login1;
+    /**
+     * Elemento FXML (botão) que, ao ser clicado, permite que o segundo usuário faça ‘login’ (se os dados estiverem corretos).
+     */
     @FXML
     public Button login2;
+    /**
+     * Elemento FXML que coloca uma mensagem de erro na tela (para ‘login’ do usuário 1), caso haja problema para logar.
+     * Mostra que o usuário conseguiu logar também.
+     */
     @FXML
     public Label alerta1;
+    /**
+     * Elemento FXML que coloca uma mensagem de erro na tela (para ‘login’ do usuário 2), caso haja problema para logar.
+     * Mostra que o usuário conseguiu logar também.
+     */
     @FXML
     public Label alerta2;
+    /**
+     * Elemento FXML (botão) que ao ser clicado leva à tela de cadastro de usuário (fica na parte de ‘login’ de primeiro usuário).
+     */
     @FXML
     public Button cadastrese1;
+    /**
+     * Elemento FXML (botão) que ao ser clicado leva à tela de cadastro de usuário (fica na parte de ‘login’ de segundo usuário).
+     */
     @FXML
     public Button cadastrese2;
-
+    /**
+     * ('String') que representa o tipo de jogo (baralho).
+     */
     private String tipo;
+    /**
+     * (boolean) que representa se o primeiro jogador foi logado.
+     */
     private boolean jogadorLogado1 = false;
+    /**
+     * (boolean) que representa se o segundo jogador foi logado.
+     */
     private boolean jogadorLogado2 = false;
+    /**
+     * (Jogador<?>) atributo que representa o primeiro jogador logado.
+     */
     private Jogador<?> jogador1;
+    /**
+     * (Jogador<?>) atributo que representa o segundo jogador logado.
+     */
     private Jogador<?> jogador2;
 
+    /**
+     * Método público que modifica o valor do atributo privado tipo, que representa o tipo do jogo.
+     * @param tipo ('String') tipo do jogo.
+     */
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 
+    /**
+     * Método sobrescrito oriundo da interface <i>Initializable</i>.
+     * <p>
+     *  Analiza o tipo do jogo e inicializa (instancia) a classe JogadoresRepositoryImpl de acordo com o tipo do jogo.
+     *  Assim, por métodos dessa classe, faz conexão com o banco de dados e tenta logar os jogadores (alerta na tela se der erro).
+     *  Se der certo o alerta mostra na tela que logou.
+     * </p>
+     * <p>
+     *  Se clicar no botão de login 1, tenta logar o primeiro usuário.
+     * </p>
+     * <p>
+     *  Se clicar em login 2, tenta logar o segundo usuário.
+     * </p>
+     * <p>
+     * Se clicar em qualquer botão de cadastre-se leva o usuário à tela de cadastro.
+     * <p/>
+     * @param url (URL) do elemento fxml que está sendo carregado.
+     * @param resourceBundle (ResourceBundle) é fornecido como convenção para permitir o acesso a recursos adicionais.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         login1.setOnAction(event -> {
@@ -112,10 +181,10 @@ public class LoginContoller implements Initializable {
                 validaJogador1();
 
                 jogadorLogado2 = true;
-                login2.setDisable(true);
-                nome2.setDisable(true);
-                senha2.setDisable(true);
-                alerta2.setText("JOGADOR 2 LOGADO");
+                login2.setDisable(true); // Desabilita o botão
+                nome2.setDisable(true); // Desabilita os TextFields
+                senha2.setDisable(true);  // Desabilita os TextFields
+                alerta2.setText("JOGADOR 2 LOGADO"); // Avisaque logou
 
                 irParaJogo(event);
             } catch (InformacaoInvalidaException | SQLException | UsuarioNaoEncontradoException e) {
@@ -128,16 +197,39 @@ public class LoginContoller implements Initializable {
         cadastrese2.setOnAction(event -> DBUtils.changeScene(event, "cadastroUsuario.fxml", "CADASTRO"));
     }
 
+    /**
+     * Método que faz validação de jogador.
+     * <p>
+     * Verifica se o jogador 1 já está logado e se o nome inserido para o jogador 2 é igual o do jogador 1.
+     * Impede que o usuário logue e jogue contra si mesmo.
+     * </p>
+     * @throws InformacaoInvalidaException Se o mesmo jogador tentar logar em ambas as telas.
+     */
     private void validaJogador1() throws InformacaoInvalidaException {
         if (jogadorLogado1 && nome1.getText().equals(nome2.getText()))
             throw new InformacaoInvalidaException("Você não pode jogar contra si mesmo");
     }
-
+    /**
+     * Método que faz validação de jogador.
+     * <p>
+     * Verifica se o jogador 2 já está logado e se o nome inserido para o jogador 1 é igual o do jogador 2.
+     * Impede que o usuário logue e jogue contra si mesmo.
+     * </p>
+     * @throws InformacaoInvalidaException Se o mesmo jogador tentar logar em ambas as telas.
+     */
     private void validaJogador2() throws InformacaoInvalidaException {
         if (jogadorLogado2 && nome2.getText().equals(nome1.getText()))
             throw new InformacaoInvalidaException("Você não pode jogar contra si mesmo");
     }
 
+    /**
+     * Método que dreciona os jogadores para o jogo.
+     * Muda a tela para tela do jogo.
+     * <p>
+     *  Coloca uma mensagem de alerta caso haja algum erro ao tentar conectar ao jogo.
+     * </p>
+     * @param event (ActionEvent) evento que será enviado para tela de jogo pelo change scene.
+     */
     private void irParaJogo(ActionEvent event) {
         if (jogadorLogado1 && jogadorLogado2) {
             try {
@@ -152,11 +244,19 @@ public class LoginContoller implements Initializable {
         }
     }
 
+    /**
+     * Verifica se o jogador 1 preencheu todos os campos.
+     * @throws InformacaoInvalidaException Caso um dos campos não tenha sido preenchidos ao clicar em logar.
+     */
     private void validaPreenchidoJogador1() throws InformacaoInvalidaException {
         if (nome1.getText().equals("") || senha1.getText().equals(""))
             throw new InformacaoInvalidaException("Jogador 1, preencha todos os campos");
     }
 
+    /**
+     * Verifica se o jogador 2 preencheu todos os campos.
+     * @throws InformacaoInvalidaException Caso um dos campos não tenha sido preenchidos ao clicar em logar.
+     */
     private void validaPreenchidoJogador2() throws InformacaoInvalidaException {
         if (nome2.getText().equals("") || senha2.getText().equals(""))
             throw new InformacaoInvalidaException("Jogador 2, preencha todos os campos");
