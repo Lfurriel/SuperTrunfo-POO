@@ -169,7 +169,7 @@
             <Font name="Impact" size="52.0" />
          </font>
       </Label>
-        <Button fx:id="b_caracteristicaA1" layoutX="161.0" layoutY="397.0" mnemonicParsing="false" prefHeight="4.0" prefWidth="335.0" style="-fx-background-color: transparent;" textFill="#ebd8d8">
+        <Button fx:id="b_caracteristicaA1" layoutX="167.0" layoutY="397.0" mnemonicParsing="false" prefHeight="4.0" prefWidth="335.0" style="-fx-background-color: transparent;" textFill="#ebd8d8">
             <font>
                 <Font name="Ubuntu Bold" size="18.0" />
             </font>

@@ -150,7 +150,12 @@ public class CadastroCartaController implements Initializable {
 
         voltar.setOnAction(event -> DBUtils.changeScene(event, "menu.fxml", "MENU"));
     }
-  
+
+    /**
+     * Método para cadastrar as cartas, verificando o tipo de carta escolhido e adicionando a nova carta no banco de dados.
+     * @param event (ActionEvent) botão clicado (cadastrar).
+     * @param keyEvent (KeyEvent) quando aperta ENTER também faz o cadastro.
+     */
     public void adicionarCarta(ActionEvent event, KeyEvent keyEvent) {
         try {
             validaPreenchidos();
