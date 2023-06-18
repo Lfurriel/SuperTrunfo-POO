@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import poo.trabalhofinal.supertrunfo.gui.DBUtils;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -97,16 +98,16 @@ public class MenuController implements Initializable {
      * Método responsável por direcionar o usuário para um link.
      * Verifica se o ambiente desktop atual suporta a classe Desktop, que faz operações de integração com a área de trabalho do ambiente.
      * Caso não suporte, manda um alerta na tela.
-     * Caso seja Desktop SUpported, ele tenta abrir o link da url. Se der erro mostra uma mensagem de alerta.
+     * Caso seja Desktop Supported, ele tenta abrir o link da url. Se der erro mostra uma mensagem de alerta.
      */
     private void abrirPDF() {
-        String url ="https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+        URL url = getClass().getResource("/files/telaDeExplicacao.pdf");
         if (Desktop.isDesktopSupported()) {
             Desktop desktop = Desktop.getDesktop();
             try {
-                if (desktop.isSupported(Desktop.Action.BROWSE))
-                    desktop.browse(new URI(url));
-            } catch (IOException | URISyntaxException e) {
+                File file = new File(String.valueOf(url));
+                desktop.open(file);
+            } catch (IOException e) {
                 alerta.setText("Não foi possível abrir o url");
             }
         } else
