@@ -327,7 +327,14 @@ public class JogoController implements Initializable {
      * </p>
      * <p>
      * Define o que é feito ao jogador apertar em um dos botões da característica que ele quiser jogar.
-     * Verifica os valores das características das cartas do jogador A e do jogador B, se o jogador que escolheu a característica
+     * Verifica os valores das características das cartas do jogador A e do jogador B.
+     * Se o jogador perder na rodada dele, ele perde mais pontos que o normal.
+     * </p>
+     * <p>
+     *  Verifica a rodada e qual jogador pode escolher as características na rodada.
+     * </p>
+     * <p>
+     * Um ponto importante é que uma mesma característica não pode ser jogada e escolhida duas vezes seguidas.
      * </p>
      * @param location (URL) do elemento fxml que está sendo carregado.
      * @param resources (ResourceBundle) é fornecido como convenção para permitir o acesso a recursos adicionais.
@@ -652,6 +659,11 @@ public class JogoController implements Initializable {
         });
     }
 
+    /**
+     * Função responsável por verificar o tipo do jogo e modificar as labels conforme as características presentes
+     * nesse tipo de carta.
+     */
+
     private void setLabel() {
         usuarioA.setText(jogo.getJogadorA().getNome());
         usuarioB.setText(jogo.getJogadorB().getNome());
@@ -702,6 +714,9 @@ public class JogoController implements Initializable {
         }
     }
 
+    /**
+     * Função que pega a carta do topo para ela ser mostrada na tela.
+     */
     private void pegaTopo() {
         if (tipo.equals("Personagem")) {
             this.topoA = (Personagem) jogo.getJogadorA().getCartas().get(0);
@@ -715,6 +730,10 @@ public class JogoController implements Initializable {
         }
     }
 
+    /**
+     * Função responsável por mostrar a carta do jogador A na sua rodada. Tampando a carta do topo de B para que o jogador A não veja a carta.
+     * @param mostraB (boolean) que indica que a carta B deve ser tampada e a carta A mostrada.
+     */
     private void mostrarCartaA(boolean mostraB) {
         String nome = topoA.getNome().toUpperCase();
         nomeA.setText(nome);
@@ -769,6 +788,10 @@ public class JogoController implements Initializable {
         valorB5.setVisible(mostraB);
     }
 
+    /**
+     * Função para mmostrar a carta de B na sua rodada, escondendo a carta do jogador A.
+     * @param mostraA (boolean) que indica que a carta A deve ser escondida na partida do adversário.
+     */
     private void mostrarCartaB(boolean mostraA) {
         String nome = topoB.getNome().toUpperCase();
         nomeB.setText(nome);
@@ -823,6 +846,11 @@ public class JogoController implements Initializable {
         valorA5.setVisible(mostraA);
     }
 
+    /**
+     * Verifica se o turno é de A ou de B.
+     * Habilita os botões dos jogadores na sua rodada e desabilita os botões do adversário.
+     * @param event (ActionEvent) botão escolhido pelo jogador.
+     */
     private void setTurno(ActionEvent event) {
 
         alertaA.setText("");
@@ -889,6 +917,13 @@ public class JogoController implements Initializable {
         }
     }
 
+    /**
+     * Verifica Qual o jogador vencedor, caso a característica escolhida tenha sido a 1.
+     * <p>
+     * Verifica o tipo do jogo, para chamar o método da classe correta para comparação.
+     * </p>
+     * @return (Jogador) jogador vencedor.
+     */
     private Jogador vencedorRodadaC1() {
         int compara;
         if (tipo.equals("Personagem"))
@@ -907,6 +942,13 @@ public class JogoController implements Initializable {
 
     }
 
+    /**
+     * Verifica Qual o jogador vencedor, caso a característica escolhida tenha sido a 2.
+     * <p>
+     * Verifica o tipo do jogo, para chamar o método da classe correta para comparação.
+     * </p>
+     * @return (Jogador) jogador vencedor.
+     */
     private Jogador vencedorRodadaC2() {
         int compara;
         if (tipo.equals("Personagem"))
@@ -924,6 +966,13 @@ public class JogoController implements Initializable {
             return null;
     }
 
+    /**
+     * Verifica Qual o jogador vencedor, caso a característica escolhida tenha sido a 3.
+     * <p>
+     * Verifica o tipo do jogo, para chamar o método da classe correta para comparação.
+     * </p>
+     * @return (Jogador) jogador vencedor.
+     */
     private Jogador vencedorRodadaC3() {
         int compara;
         if (tipo.equals("Personagem"))
@@ -941,6 +990,13 @@ public class JogoController implements Initializable {
             return null;
     }
 
+    /**
+     * Verifica Qual o jogador vencedor, caso a característica escolhida tenha sido a 4.
+     * <p>
+     * Verifica o tipo do jogo, para chamar o método da classe correta para comparação.
+     * </p>
+     * @return (Jogador) jogador vencedor.
+     */
     private Jogador vencedorRodadaC4() {
         int compara;
         if (tipo.equals("Personagem"))
@@ -958,6 +1014,13 @@ public class JogoController implements Initializable {
             return null;
     }
 
+    /**
+     * Verifica Qual o jogador vencedor, caso a característica escolhida tenha sido a 5.
+     * <p>
+     * Verifica o tipo do jogo, para chamar o método da classe correta para comparação.
+     * </p>
+     * @return (Jogador) jogador vencedor.
+     */
     private Jogador vencedorRodadaC5() {
         int compara;
         if (tipo.equals("Personagem"))
@@ -975,6 +1038,17 @@ public class JogoController implements Initializable {
             return null;
     }
 
+    /**
+     * Método responsável por verificar o vencedor da rodada.
+     * <p>
+     * Caso o jogo tenha finalizado (algum jogador ficou sem cartas), chama a tela do vencedor.
+     * </p>
+     * <p>
+     *  Caso haja empate, coloca uma mensagem na tela.
+     * </p>
+     * @param event (ActionEvent) será passado no DBUtils.
+     * @param vencedor (Jogador) aquele que venceu a partida.
+     */
     private void verificaVencedor(ActionEvent event, Jogador vencedor) {
 
         mostrarCartaA(true);

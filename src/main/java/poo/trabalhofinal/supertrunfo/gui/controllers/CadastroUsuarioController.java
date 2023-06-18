@@ -84,6 +84,11 @@ public class CadastroUsuarioController implements Initializable {
         voltar.setOnAction(event -> DBUtils.changeScene(event, "menu.fxml", "MENU"));
     }
 
+    /**
+     * Método para cadastrar o usuário, adicionando-no no banco de dados.
+     * @param event (ActionEvent) botão clicado (cadastrar).
+     * @param keyEvent (KeyEvent) quando aperta ENTER também faz o cadastro.
+     */
     private void cadastrarUsuario(ActionEvent event, KeyEvent keyEvent) {
         try {
             validaPreenchidos();
