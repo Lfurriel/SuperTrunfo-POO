@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>poo.trabalhofinal.supertrunfo.gui.controllers.CadastroCartaController</OriginalElement>
+  <nodes>
+    <node x="264.7874892377271" y="2236.7008354924246">poo.trabalhofinal.supertrunfo.classes.interfaces.JogadoresRepositoryImpl</node>
+    <node x="1052.2252832067193" y="2816.8757787455015">poo.trabalhofinal.supertrunfo.classes.exceptions.InformacaoInvalidaException</node>
+    <node x="1267.2614235536248" y="626.9467746247186">poo.trabalhofinal.supertrunfo.HelloApplication</node>
+    <node x="1234.1890192885553" y="2005.1693277415893">poo.trabalhofinal.supertrunfo.classes.Jogador</node>
+    <node x="799.6038230332939" y="2698.156081480544">poo.trabalhofinal.supertrunfo.classes.exceptions.JogoException</node>
+    <node x="1684.2639108336357" y="1307.028711381368">poo.trabalhofinal.supertrunfo.gui.controllers.MenuController</node>
+    <node x="54.180680520730704" y="2522.3687126178975">poo.trabalhofinal.supertrunfo.classes.utils.Util</node>
+    <node x="1453.8926254159492" y="2491.8381426831884">poo.trabalhofinal.supertrunfo.classes.Jogo</node>
+    <node x="1291.1856410588925" y="1216.0720072687618">poo.trabalhofinal.supertrunfo.gui.controllers.TelaInicialController</node>
+    <node x="1814.3243936553756" y="2466.00066349551">poo.trabalhofinal.supertrunfo.gui.DBUtils</node>
+    <node x="1177.7945660417963" y="850.7596621346635">poo.trabalhofinal.supertrunfo.gui.controllers.CadastroUsuarioController</node>
+    <node x="1219.055572729844" y="1380.2662653666591">poo.trabalhofinal.supertrunfo.classes.cartas.LinguagensProgramacao</node>
+    <node x="1684.8278593412379" y="1837.5884684999137">poo.trabalhofinal.supertrunfo.gui.controllers.LoginContoller</node>
+    <node x="754.3505742271813" y="1153.376803233967">poo.trabalhofinal.supertrunfo.classes.cartas.Personagem</node>
+    <node x="1576.7428121798766" y="959.5621743999309">poo.trabalhofinal.supertrunfo.gui.controllers.OpcaoController</node>
+    <node x="389.2567903534805" y="2702.59365138111">poo.trabalhofinal.supertrunfo.classes.interfaces.CartasRepositoryImpl</node>
+    <node x="1405.5573992946372" y="2803.9620214308784">poo.trabalhofinal.supertrunfo.classes.exceptions.UsuarioNaoEncontradoException</node>
+    <node x="1586.9824531110407" y="84.32596783206986">poo.trabalhofinal.supertrunfo.classes.cartas.Classificacao</node>
+    <node x="1053.2622510331512" y="2491.721060296946">poo.trabalhofinal.supertrunfo.gui.controllers.VencedorController</node>
+    <node x="708.139509081999" y="444.64739620651835">poo.trabalhofinal.supertrunfo.classes.cartas.Gato</node>
+    <node x="838.9566962066416" y="1947.339802456404">poo.trabalhofinal.supertrunfo.gui.controllers.CadastroCartaController</node>
+    <node x="429.9926990004483" y="2540.7744853425197">poo.trabalhofinal.supertrunfo.classes.interfaces.JogadoresRepository</node>
+    <node x="-153.86676612254007" y="2285.7854025332595">poo.trabalhofinal.supertrunfo.classes.interfaces.CartasRepository</node>
+    <node x="825.6863834501945" y="-283.92752593609316">poo.trabalhofinal.supertrunfo.gui.controllers.VerCartasController</node>
+    <node x="1186.9000734654464" y="161.03441737273323">poo.trabalhofinal.supertrunfo.classes.cartas.Carta</node>
+    <node x="288.0479642916027" y="408.4356128760203">poo.trabalhofinal.supertrunfo.gui.controllers.JogoController</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="poo.trabalhofinal.supertrunfo.classes.cartas.Carta" target="poo.trabalhofinal.supertrunfo.classes.cartas.Classificacao" relationship="TO_ONE">
+      <point x="161.5" y="26.791550459336634" />
+      <point x="-113.5" y="0.0" />
+    </edge>
+    <edge source="poo.trabalhofinal.supertrunfo.gui.controllers.CadastroCartaController" target="poo.trabalhofinal.supertrunfo.classes.cartas.Gato" relationship="CREATE">
+      <point x="-160.0" y="72.36103303602067" />
+      <point x="731.4926990004483" y="2244.2008354924246" />
+      <point x="-176.1468100815507" y="282.0" />
+    </edge>
+    <edge source="poo.trabalhofinal.supertrunfo.classes.cartas.LinguagensProgramacao" target="poo.trabalhofinal.supertrunfo.classes.cartas.Carta" relationship="GENERALIZATION">
+      <point x="-147.8695727298441" y="-282.00026536665905" />
+      <point x="1273.686" y="1110.26" />
+      <point x="1143.0" y="1110.26" />
+      <point x="1143.0" y="339.534" />
+      <point x="-161.50007346544635" y="-4.173727332386079E-4" />
+    </edge>
+    <edge source="poo.trabalhofinal.supertrunfo.classes.Jogo" target="poo.trabalhofinal.supertrunfo.classes.Jogador" relationship="TO_ONE">
+      <point x="3.74584050859994E-4" y="-86.50014268318819" />
+      <point x="1603.893" y="2464.0" />
+      <point x="1343.689" y="2464.0" />
+      <point x="-1.928855522237427E-5" y="212.99967225841056" />
+    </edge>
+    <edge source="poo.trabalhofinal.supertrunfo.gui.controllers.VencedorController" target="poo.trabalhofinal.supertrunfo.classes.interfaces.JogadoresRepository" relationship="TO_ONE">
+      <point x="-169.5" y="-10.446574954426069" />
+      <point x="154.5" y="0.0" />
+    </edge>
+    <edge source="poo.trabalhofinal.supertrunfo.classes.cartas.Personagem" target="poo.trabalhofinal.supertrunfo.classes.cartas.Carta" relationship="GENERALIZATION">
+      <point x="4.2577281874400796E-4" y="-281.999803233967" />
+      <point x="956.351" y="1026.147" />
+      <point x="1143.0" y="1026.147" />
+      <point x="1143.0" y="339.534" />
+      <point x="-161.50007346544635" y="-4.173727332386079E-4" />
+    </edge>
+    <edge source="poo.trabalhofinal.supertrunfo.classes.interfaces.JogadoresRepositoryImpl" target="poo.trabalhofinal.supertrunfo.classes.interfaces.JogadoresRepository" relationship="REALIZATION">
+      <point x="147.0" y="75.0" />
+      <point x="-18.20520976272121" y="-50.0" />
+    </edge>
+    <edge source="poo.trabalhofinal.supertrunfo.gui.controllers.LoginContoller" target="poo.trabalhofinal.supertrunfo.classes.Jogador" relationship="TO_ONE">
+      <point x="-29.827859341237854" y="281.9995315000865" />
+      <point x="1791.5" y="2464.0" />
+      <point x="1343.689" y="2464.0" />
+      <point x="-1.928855522237427E-5" y="212.99967225841056" />
+    </edge>
+    <edge source="poo.trabalhofinal.supertrunfo.classes.interfaces.CartasRepositoryImpl" target="poo.trabalhofinal.supertrunfo.classes.interfaces.CartasRepository" relationship="REALIZATION">
+      <point x="-172.5" y="0.0" />
+      <point x="18.63323387745993" y="2800.59365138111" />
+      <point x="0.0" y="73.0" />
+    </edge>
+    <edge source="poo.trabalhofinal.supertrunfo.gui.controllers.VerCartasController" target="poo.trabalhofinal.supertrunfo.classes.cartas.Carta" relationship="TO_MANY">
+      <point x="-3.834501944766089E-4" y="327.99952593609316" />
+      <point x="962.186" y="391.0" />
+      <point x="1158.0" y="391.0" />
+      <point x="1158.0" y="354.534" />
+      <point x="-161.50007346544635" y="14.999582627266761" />
+    </edge>
+    <edge source="poo.trabalhofinal.supertrunfo.gui.controllers.VencedorController" target="poo.trabalhofinal.supertrunfo.classes.Jogador" relationship="TO_ONE">
+      <point x="-2.510331512439734E-4" y="-109.50006029694578" />
+      <point x="1222.762" y="2464.0" />
+      <point x="1343.689" y="2464.0" />
+      <point x="-1.928855522237427E-5" y="212.99967225841056" />
+    </edge>
+    <edge source="poo.trabalhofinal.supertrunfo.gui.DBUtils" target="poo.trabalhofinal.supertrunfo.classes.Jogador" relationship="TO_ONE">
+      <point x="-221.00039365537555" y="3.365044904057868E-4" />
+      <point x="1413.057" y="2736.501" />
+      <point x="1413.057" y="2464.0" />
+      <point x="1343.689" y="2464.0" />
+      <point x="-1.928855522237427E-5" y="212.99967225841056" />
+    </edge>
+    <edge source="poo.trabalhofinal.supertrunfo.gui.controllers.JogoController" target="poo.trabalhofinal.supertrunfo.classes.cartas.Carta" relationship="TO_ONE">
+      <point x="3.570839731992237E-5" y="-879.9996128760204" />
+      <point x="452.548" y="391.0" />
+      <point x="1158.0" y="391.0" />
+      <point x="1158.0" y="354.534" />
+      <point x="-161.50007346544635" y="14.999582627266761" />
+    </edge>
+    <edge source="poo.trabalhofinal.supertrunfo.classes.cartas.Gato" target="poo.trabalhofinal.supertrunfo.classes.cartas.Carta" relationship="GENERALIZATION">
+      <point x="199.5004909180011" y="-3.962065183031882E-4" />
+      <point x="1143.0" y="726.647" />
+      <point x="1143.0" y="339.534" />
+      <point x="-161.50007346544635" y="-4.173727332386079E-4" />
+    </edge>
+    <edge source="poo.trabalhofinal.supertrunfo.gui.DBUtils" target="poo.trabalhofinal.supertrunfo.classes.Jogo" relationship="TO_ONE">
+      <point x="-221.0" y="-158.16252081232142" />
+      <point x="150.0" y="0.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.2720410628019324" showDependencies="true" x="1198.2661176470594" y="1470.3795782463926" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
