@@ -9,11 +9,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * <h1>Interface CartasRepository<T></h1>
+ * <h1>Interface CartasRepository</h1>
  * <p>
  * Interface que utiliza Generics e define o contrato (assinaturas dos métodos) que deve ser cumprido na classe <i>CartasRepositoryImpl</i>.
  * Utiliza Generics porque existem 3 tipos de cartas (tipos dos baralhos) que podem ser utilizados.
- * <p/>
+ * </p>
  * @param <T> tipo genérico que vai ser preenchido por um tipo de carta.
  */
 public interface CartasRepository<T> {

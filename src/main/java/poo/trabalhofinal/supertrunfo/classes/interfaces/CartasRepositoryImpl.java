@@ -11,14 +11,14 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
- * <h1>Classe CartasRepositoryImpl<T></h1>
+ * <h1>Classe CartasRepositoryImpl</h1>
  * Classe que faz a conexão com o banco de dados de cartas para buscar cartas, ver cartas e inserir cartas ou modificar o banco de dados.
  * <p>
  * Implementa a interface CartasRepository, colocando o corpo dos métodos do contrato estabelecido com a interface.
  * </p>
  * @param <T> tipo genérico que representa o tipo de cartas que serão utilizadas.
  */
-public class CartasRepositoryImpl<T> implements CartasRepository {
+public class CartasRepositoryImpl<T> implements CartasRepository<T> {
 
     /**
      * Acessa a lista recursos em "resource.properties"
@@ -45,55 +45,56 @@ public class CartasRepositoryImpl<T> implements CartasRepository {
             resultSet = query.executeQuery();
 
             ArrayList<T> cartas = new ArrayList<>();
-            if (jogo.equals("Personagem")) {
-                while (resultSet.next()) {
-                    Personagem personagem = new Personagem();
-                    personagem.setNome(resultSet.getString("nome"));
-                    personagem.setImagem(resultSet.getString("imagem"));
-                    personagem.setClassificacao(resultSet.getString("classificacao"));
-                    personagem.setSuperTrunfo(resultSet.getString("super_trunfo"));
-                    personagem.setInteligencia(Integer.valueOf(resultSet.getString("atributo1")));
-                    personagem.setForca(Integer.valueOf(resultSet.getString("atributo2")));
-                    personagem.setCoragem(Integer.valueOf(resultSet.getString("atributo3")));
-                    personagem.setPrimeiraAparicao(Integer.valueOf(resultSet.getString("atributo4")));
-                    personagem.setAltura(resultSet.getDouble("atributo5"));
+            switch (jogo) {
+                case "Personagem" -> {
+                    while (resultSet.next()) {
+                        Personagem personagem = new Personagem();
+                        personagem.setNome(resultSet.getString("nome"));
+                        personagem.setImagem(resultSet.getString("imagem"));
+                        personagem.setClassificacao(resultSet.getString("classificacao"));
+                        personagem.setSuperTrunfo(resultSet.getString("super_trunfo"));
+                        personagem.setInteligencia(Integer.valueOf(resultSet.getString("atributo1")));
+                        personagem.setForca(Integer.valueOf(resultSet.getString("atributo2")));
+                        personagem.setCoragem(Integer.valueOf(resultSet.getString("atributo3")));
+                        personagem.setPrimeiraAparicao(Integer.valueOf(resultSet.getString("atributo4")));
+                        personagem.setAltura(resultSet.getDouble("atributo5"));
 
-                    cartas.add((T) personagem);
+                        cartas.add((T) personagem);
+                    }
                 }
+                case "Gato" -> {
+                    while (resultSet.next()) {
+                        Gato gato = new Gato();
+                        gato.setNome(resultSet.getString("nome"));
+                        gato.setImagem(resultSet.getString("imagem"));
+                        gato.setClassificacao(resultSet.getString("classificacao"));
+                        gato.setSuperTrunfo(resultSet.getString("super_trunfo"));
+                        gato.setAgilidade(resultSet.getInt("atributo1"));
+                        gato.setFofura(resultSet.getInt("atributo2"));
+                        gato.setTempoDeVida(resultSet.getInt("atributo3"));
+                        gato.setAgressividade(resultSet.getInt("atributo4"));
+                        gato.setPeso(resultSet.getDouble("atributo5"));
 
-            } else if (jogo.equals("Gato")) {
-                while (resultSet.next()) {
-                    Gato gato = new Gato();
-                    gato.setNome(resultSet.getString("nome"));
-                    gato.setImagem(resultSet.getString("imagem"));
-                    gato.setClassificacao(resultSet.getString("classificacao"));
-                    gato.setSuperTrunfo(resultSet.getString("super_trunfo"));
-                    gato.setAgilidade(resultSet.getInt("atributo1"));
-                    gato.setFofura(resultSet.getInt("atributo2"));
-                    gato.setTempoDeVida(resultSet.getInt("atributo3"));
-                    gato.setAgressividade(resultSet.getInt("atributo4"));
-                    gato.setPeso(resultSet.getDouble("atributo5"));
-
-                    cartas.add((T) gato);
+                        cartas.add((T) gato);
+                    }
                 }
+                case "LinguagensProgramacao" -> {
+                    while (resultSet.next()) {
+                        LinguagensProgramacao linguagem = new LinguagensProgramacao();
+                        linguagem.setNome(resultSet.getString("nome"));
+                        linguagem.setImagem(resultSet.getString("imagem"));
+                        linguagem.setClassificacao(resultSet.getString("classificacao"));
+                        linguagem.setSuperTrunfo(resultSet.getString("super_trunfo"));
+                        linguagem.setEscritabilidade(resultSet.getInt("atributo1"));
+                        linguagem.setLegibilidade(resultSet.getInt("atributo2"));
+                        linguagem.setConfiabilidade(resultSet.getInt("atributo3"));
+                        linguagem.setCusto(resultSet.getInt("atributo4"));
+                        linguagem.setSalarioSenior(resultSet.getDouble("atributo5"));
 
-            } else if (jogo.equals("LinguagensProgramacao")) {
-                while (resultSet.next()) {
-                    LinguagensProgramacao linguagem = new LinguagensProgramacao();
-                    linguagem.setNome(resultSet.getString("nome"));
-                    linguagem.setImagem(resultSet.getString("imagem"));
-                    linguagem.setClassificacao(resultSet.getString("classificacao"));
-                    linguagem.setSuperTrunfo(resultSet.getString("super_trunfo"));
-                    linguagem.setEscritabilidade(resultSet.getInt("atributo1"));
-                    linguagem.setLegibilidade(resultSet.getInt("atributo2"));
-                    linguagem.setConfiabilidade(resultSet.getInt("atributo3"));
-                    linguagem.setCusto(resultSet.getInt("atributo4"));
-                    linguagem.setSalarioSenior(resultSet.getDouble("atributo5"));
-
-                    cartas.add((T) linguagem);
+                        cartas.add((T) linguagem);
+                    }
                 }
-            } else {
-                throw new JogoException("Jogo " + jogo + " não existe!");
+                default -> throw new JogoException("Jogo " + jogo + " não existe!");
             }
 
             return cartas;

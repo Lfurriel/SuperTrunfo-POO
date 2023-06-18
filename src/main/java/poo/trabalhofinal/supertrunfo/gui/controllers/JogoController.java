@@ -19,7 +19,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * <h1>Classe JogoController<h1/>
+ * <h1>Classe JogoController</h1>
  * <p>
  *  Classe responsável por intermediar a relação entre a interface (GUI) da <i>Tela de jogo</i> e o programa.
  *  </p>
@@ -146,6 +146,9 @@ public class JogoController implements Initializable {
      */
     @FXML
     public ImageView superA;
+    /**
+     * Elemento FXML que representa o alerta para o jogador A
+     */
     @FXML
     public Label alertaA;
     //-------------------------------------
@@ -261,6 +264,9 @@ public class JogoController implements Initializable {
      */
     @FXML
     public ImageView superB;
+    /**
+     * Elemento FXML que representa o alerta para o jogador A
+     */
     @FXML
     public Label alertaB;
     //-------------------------------------
@@ -274,10 +280,19 @@ public class JogoController implements Initializable {
      */
     @FXML
     public ImageView fundo;
+    /**
+     * Elemento FXML do botão de se render.
+     */
     @FXML
     public Button render;
+    /**
+     * Elemento FXML do botão de encerrar a partida como está.
+     */
     @FXML
     public Button encerrar;
+    /**
+     * Elemento FXML do botão de empatar a partida.
+     */
     @FXML
     public Button empatar;
      /**
@@ -316,7 +331,13 @@ public class JogoController implements Initializable {
      * Contador da rodada que está → ver de quem é a vez de jogar.
      */
     private int rodada = 0;
+    /**
+     * Guarda a última característica jogada por A
+     */
     private int ultimoA;
+    /**
+     * Guarda a última característica jogada por B
+     */
     private int ultimoB;
 
 

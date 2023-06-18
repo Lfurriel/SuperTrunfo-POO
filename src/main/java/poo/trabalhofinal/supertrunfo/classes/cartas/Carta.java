@@ -1,11 +1,11 @@
 package poo.trabalhofinal.supertrunfo.classes.cartas;
 
 /**
- * <h1>Classe Carta<h1/>
+ * <h1>Classe Carta</h1>
  * <p>
  * Classe abstrata que contém os campos gerais compartilhados por todas as classes que herdam ela.
  * Possui as características compartilhadas por todos os baralhos, independentemente do tipo.
- * <p/>
+ * </p>
  */
 public abstract class Carta {
     /**
@@ -27,7 +27,7 @@ public abstract class Carta {
 
     /**
      * Construtor vazio para a classe. Usado quando não há parâmetros para serem passados.
-     * Construtor <i>default<i/>.
+     * Construtor <i>default</i>.
      */
     public Carta() {
     }
@@ -47,7 +47,7 @@ public abstract class Carta {
     }
 
     /**
-     * Método público que permite acessar o valor do atributo privado <i>nome<i/>.
+     * Método público que permite acessar o valor do atributo privado <i>nome</i>.
      * @return (‘String’) nome associado à carta.
      */
     public String getNome() {
@@ -55,7 +55,7 @@ public abstract class Carta {
     }
 
     /**
-     * Método público que permite modificar o valor do atributo privado <i>nome<i/>.
+     * Método público que permite modificar o valor do atributo privado <i>nome</i>.
      * @param nome (‘String’) novo nome associado à carta.
      */
     public void setNome(String nome) {
@@ -70,7 +70,7 @@ public abstract class Carta {
         return imagem;
     }
     /**
-     * Método público que permite modificar o valor do atributo privado <i>imagem<i/>.
+     * Método público que permite modificar o valor do atributo privado <i>imagem</i>.
      * @param imagem (‘String’) nova url da imagem associada à carta.
      */
     public void setImagem(String imagem) {
@@ -84,7 +84,7 @@ public abstract class Carta {
         return superTrunfo;
     }
     /**
-     * Método público que permite modificar o valor do atributo privado <i>supertrunfo<i/>.
+     * Método público que permite modificar o valor do atributo privado <i>supertrunfo</i>.
      * @param superTrunfo (boolean) nova url da imagem associada à carta.
      */
     public void setSuperTrunfo(String superTrunfo) {

@@ -23,7 +23,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 /**
- * <h1>Classe CadastroCartaController <h1/>
+ * <h1>Classe CadastroCartaController </h1>
  * <p>
  *  Classe responsável por intermediar a relação entre a interface (GUI) da <i>Tela de cadastro de carta</i> e o programa.
  *  </p>

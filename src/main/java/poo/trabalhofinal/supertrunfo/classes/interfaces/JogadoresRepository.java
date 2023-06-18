@@ -6,11 +6,11 @@ import poo.trabalhofinal.supertrunfo.classes.exceptions.UsuarioNaoEncontradoExce
 import java.sql.SQLException;
 
 /**
- * <h1>Interface JogoRepository<T></h1>
+ * <h1>Interface JogoRepository</h1>
  * <p>
  * Interface que utiliza Generics e define o contrato (assinaturas dos métodos) que deve ser cumprido (implementação dos métodos) na classe <i>JogoRepositoryImpl</i>.
  * Utiliza Generics porque existem 3 tipos de cartas (tipos dos baralhos) que podem ser utilizados no jogo.
- * <p/>
+ * </p>
  * @param <T> tipo genérico que vai ser preenchido por um tipo de carta para o jogo.
  */
 public interface JogadoresRepository<T> {

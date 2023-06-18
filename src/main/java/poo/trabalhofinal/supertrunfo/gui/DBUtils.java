@@ -29,7 +29,7 @@ public class DBUtils {
     /**
      * (Image) ícone presente nas telas.
      */
-    private static Image icon = new Image(HelloApplication.class.getResource("/poo/trabalhofinal/supertrunfo/gui/fujutrunfo.png").toExternalForm());
+    private static final Image icon = new Image(HelloApplication.class.getResource("/poo/trabalhofinal/supertrunfo/gui/fujutrunfo.png").toExternalForm());
     /**
      * (Jogo) atributo do tipo Jogo que é passado de parâmetro em algumas mudannças de cena.
      */

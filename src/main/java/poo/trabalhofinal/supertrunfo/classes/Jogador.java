@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <h1>Classe Jogador <T></h1>
+ * <h1>Classe Jogador</h1>
  * <p>
  * Classe responsável por aramazenar os dados de cada jogador e guardar dados como o baralho do  jogador que está jogando,
  * fazer o movimento do topo do baralho e pontuar a cada partida / rodada.
@@ -33,7 +33,7 @@ public class Jogador<T> {
 
     /**
      * Construtor vazio para a classe. Usado quando não há parâmetros para serem passados.
-     * Construtor <i>default<i/>.
+     * Construtor <i>default</i>.
      */
     public Jogador() {
     }

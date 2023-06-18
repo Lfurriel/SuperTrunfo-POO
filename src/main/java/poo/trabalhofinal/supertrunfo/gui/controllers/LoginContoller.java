@@ -4,6 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import poo.trabalhofinal.supertrunfo.classes.Jogador;
 import poo.trabalhofinal.supertrunfo.classes.cartas.Gato;
 import poo.trabalhofinal.supertrunfo.classes.cartas.LinguagensProgramacao;
@@ -16,11 +18,12 @@ import poo.trabalhofinal.supertrunfo.classes.interfaces.JogadoresRepositoryImpl;
 import poo.trabalhofinal.supertrunfo.gui.DBUtils;
 
 import java.net.URL;
+import java.security.Key;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 /**
- * <h1>Classe LoginContoller<h1/>
+ * <h1>Classe LoginContoller</h1>
  * <p>
  *  Classe responsável por intermediar a relação entre a interface (GUI) da <i>Tela de login</i> e o programa.
  *  </p>
@@ -132,69 +135,95 @@ public class LoginContoller implements Initializable {
      * </p>
      * <p>
      * Se clicar em qualquer botão de cadastre-se leva o usuário à tela de cadastro.
-     * <p/>
+     * </p>
      * @param url (URL) do elemento fxml que está sendo carregado.
      * @param resourceBundle (ResourceBundle) é fornecido como convenção para permitir o acesso a recursos adicionais.
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        login1.setOnAction(event -> {
-            try {
-                validaPreenchidoJogador1();
-                JogadoresRepository<?> jogadoresRepository;
-                if (tipo.equals("Personagem"))
-                    jogadoresRepository = new JogadoresRepositoryImpl<Personagem>();
-                else if (tipo.equals("Gato"))
-                    jogadoresRepository = new JogadoresRepositoryImpl<Gato>();
-                else
-                    jogadoresRepository = new JogadoresRepositoryImpl<LinguagensProgramacao>();
-                jogador1 = jogadoresRepository.buscaJogador(nome1.getText(), senha1.getText());
+        login1.setOnAction(event -> loginJogadorA(event, null));
+        senha1.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER)
+                loginJogadorA(null, event);
+            });
 
-                validaJogador2();
-
-                jogadorLogado1 = true;
-                login1.setDisable(true);
-                nome1.setDisable(true);
-                senha1.setDisable(true);
-                alerta1.setText("JOGADOR 1 LOGADO");
-
-                irParaJogo(event);
-            } catch (InformacaoInvalidaException | SQLException | UsuarioNaoEncontradoException e) {
-                alerta1.setText(e.getMessage());
-            }
-
-        });
-
-        login2.setOnAction(event -> {
-            try {
-                validaPreenchidoJogador2();
-
-                JogadoresRepository<?> jogadoresRepository;
-                if (tipo.equals("Personagem"))
-                    jogadoresRepository = new JogadoresRepositoryImpl<Personagem>();
-                else if (tipo.equals("Gato"))
-                    jogadoresRepository = new JogadoresRepositoryImpl<Gato>();
-                else
-                    jogadoresRepository = new JogadoresRepositoryImpl<LinguagensProgramacao>();
-                jogador2 = jogadoresRepository.buscaJogador(nome2.getText(), senha2.getText());
-
-                validaJogador1();
-
-                jogadorLogado2 = true;
-                login2.setDisable(true); // Desabilita o botão
-                nome2.setDisable(true); // Desabilita os TextFields
-                senha2.setDisable(true);  // Desabilita os TextFields
-                alerta2.setText("JOGADOR 2 LOGADO"); // Avisaque logou
-
-                irParaJogo(event);
-            } catch (InformacaoInvalidaException | SQLException | UsuarioNaoEncontradoException e) {
-                alerta2.setText(e.getMessage());
-            }
-
+        login2.setOnAction(event -> loginJogadorB(event, null));
+        senha2.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER)
+                loginJogadorB(null, event);
         });
 
         cadastrese1.setOnAction(event -> DBUtils.changeScene(event, "cadastroUsuario.fxml", "CADASTRO"));
         cadastrese2.setOnAction(event -> DBUtils.changeScene(event, "cadastroUsuario.fxml", "CADASTRO"));
+    }
+
+    /**
+     * Função responsável por logar o jogador A
+     * @param event (ActionEvent) evento que será enviado para tela de jogo pelo change scene.
+     * @param keyEvent (KeyEvent) evento que será enviado para tela de jogo pelo change scene.
+     */
+    private void loginJogadorA(ActionEvent event, KeyEvent keyEvent) {
+        try {
+
+            validaPreenchidoJogador1();
+            JogadoresRepository<?> jogadoresRepository;
+            if (tipo.equals("Personagem"))
+                jogadoresRepository = new JogadoresRepositoryImpl<Personagem>();
+            else if (tipo.equals("Gato"))
+                jogadoresRepository = new JogadoresRepositoryImpl<Gato>();
+            else
+                jogadoresRepository = new JogadoresRepositoryImpl<LinguagensProgramacao>();
+            jogador1 = jogadoresRepository.buscaJogador(nome1.getText(), senha1.getText());
+
+            validaJogador2();
+
+            jogadorLogado1 = true;
+            login1.setDisable(true);
+            nome1.setDisable(true);
+            senha1.setDisable(true);
+            alerta1.setText("JOGADOR 1 LOGADO");
+            if (event != null)
+                irParaJogo(event);
+            else
+                irParaJogo(keyEvent);
+        } catch (InformacaoInvalidaException | SQLException | UsuarioNaoEncontradoException e) {
+            alerta1.setText(e.getMessage());
+        }
+    }
+
+    /**
+     * Função responsável por logar o jogador B
+     * @param event (ActionEvent) evento que será enviado para tela de jogo pelo change scene.
+     * @param keyEvent (KeyEvent) evento que será enviado para tela de jogo pelo change scene.
+     */
+    private void loginJogadorB(ActionEvent event, KeyEvent keyEvent) {
+        try {
+            validaPreenchidoJogador2();
+
+            JogadoresRepository<?> jogadoresRepository;
+            if (tipo.equals("Personagem"))
+                jogadoresRepository = new JogadoresRepositoryImpl<Personagem>();
+            else if (tipo.equals("Gato"))
+                jogadoresRepository = new JogadoresRepositoryImpl<Gato>();
+            else
+                jogadoresRepository = new JogadoresRepositoryImpl<LinguagensProgramacao>();
+            jogador2 = jogadoresRepository.buscaJogador(nome2.getText(), senha2.getText());
+
+            validaJogador1();
+
+            jogadorLogado2 = true;
+            login2.setDisable(true); // Desabilita o botão
+            nome2.setDisable(true); // Desabilita os TextFields
+            senha2.setDisable(true);  // Desabilita os TextFields
+            alerta2.setText("JOGADOR 2 LOGADO"); // Avisaque logou
+
+            if (event != null)
+                irParaJogo(event);
+            else
+                irParaJogo(keyEvent);
+        } catch (InformacaoInvalidaException | SQLException | UsuarioNaoEncontradoException e) {
+            alerta2.setText(e.getMessage());
+        }
     }
 
     /**
@@ -231,6 +260,28 @@ public class LoginContoller implements Initializable {
      * @param event (ActionEvent) evento que será enviado para tela de jogo pelo change scene.
      */
     private void irParaJogo(ActionEvent event) {
+        if (jogadorLogado1 && jogadorLogado2) {
+            try {
+                DBUtils.iniciaJogo(jogador1, jogador2, tipo);
+                DBUtils.changeScene(event, "telaJogo.fxml", "JOGO");
+            } catch (SQLException | JogoException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText(e.getMessage());
+                alert.setTitle("ERRO");
+                alert.showAndWait();
+            }
+        }
+    }
+
+    /**
+     * Método que dreciona os jogadores para o jogo.
+     * Muda a tela para tela do jogo.
+     * <p>
+     *  Coloca uma mensagem de alerta caso haja algum erro ao tentar conectar ao jogo.
+     * </p>
+     * @param event (KeyEvent) evento que será enviado para tela de jogo pelo change scene.
+     */
+    private void irParaJogo(KeyEvent event) {
         if (jogadorLogado1 && jogadorLogado2) {
             try {
                 DBUtils.iniciaJogo(jogador1, jogador2, tipo);

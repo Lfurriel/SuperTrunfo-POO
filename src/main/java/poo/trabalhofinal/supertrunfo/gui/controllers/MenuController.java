@@ -17,7 +17,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * <h1>Classe MenuController<h1/>
+ * <h1>Classe MenuController</h1>
  * <p>
  *  Classe responsável por intermediar a relação entre a interface (GUI) da <i>Tela de menu</i> e o programa.
  *  </p>
@@ -70,7 +70,7 @@ public class MenuController implements Initializable {
      * Caso a escolha seja jogar ou cadastrar cartas, chama a tela de opção. A diferença é que o primeiro envia o campo
      * cadastro como false e o segundo como true. Assim, é possível diferenciar qual botão levou à tela de opção e realizar
      * as ações corretas.
-     * <\p>
+     * </p>
      * <p>
      *  Se o usuário escolher o botão de cadastro de usuário, ele é direcionado para a tela de cadastro de jogador.
      * </p>

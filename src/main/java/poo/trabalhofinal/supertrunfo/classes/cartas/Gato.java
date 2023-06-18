@@ -1,7 +1,7 @@
 package poo.trabalhofinal.supertrunfo.classes.cartas;
 
 /**
- * <h1>Classe Gato<h1/>
+ * <h1>Classe Gato</h1>
  * Subclasse que herda atributos e métodos da superclasse abstrata Carta.
  * É um tipo específico de carta do jogo. Possui atributos e métodos próprios e inerentes a cartas do baralho de Gato.
  */
@@ -29,7 +29,7 @@ public class Gato extends Carta{
 
     /**
      * Construtor vazio para a classe. Usado quando não há parâmetros para serem passados.
-     * Construtor <i>default<i/>.
+     * Construtor <i>default</i>.
      */
     public Gato(){
     }
@@ -57,7 +57,7 @@ public class Gato extends Carta{
     }
 
     /**
-     * Método público que permite acessar o valor do atributo privado <i>agilidade<i/>.
+     * Método público que permite acessar o valor do atributo privado <i>agilidade</i>.
      * @return ('Integer') agilidade do gato.
      */
     public Integer getAgilidade() {
@@ -65,7 +65,7 @@ public class Gato extends Carta{
     }
 
     /**
-     * Método público que permite modificar o valor do atributo privado <i>agilidade<i/>.
+     * Método público que permite modificar o valor do atributo privado <i>agilidade</i>.
      * @param agilidade ('Integer') novo valor de agilidade associado à carta.
      */
     public void setAgilidade(Integer agilidade) {
@@ -73,7 +73,7 @@ public class Gato extends Carta{
     }
 
     /**
-     * Método público que permite acessar o valor do atributo privado <i>fofura<i/>.
+     * Método público que permite acessar o valor do atributo privado <i>fofura</i>.
      * @return ('Integer') fofura do gato.
      */
     public Integer getFofura() {
@@ -81,7 +81,7 @@ public class Gato extends Carta{
     }
 
     /**
-     * Método público que permite modificar o valor do atributo privado <i>fofura<i/>.
+     * Método público que permite modificar o valor do atributo privado <i>fofura</i>.
      * @param fofura ('Integer') novo valor de fofura associado à carta.
      */
     public void setFofura(Integer fofura) {
@@ -89,7 +89,7 @@ public class Gato extends Carta{
     }
 
     /**
-     * Método público que permite acessar o valor do atributo privado <i>tempoDeVida<i/>.
+     * Método público que permite acessar o valor do atributo privado <i>tempoDeVida</i>.
      * @return ('Integer') idade do gato (em meses).
      */
     public Integer getTempoDeVida() {
@@ -97,7 +97,7 @@ public class Gato extends Carta{
     }
 
     /**
-     * Método público que permite modificar o valor do atributo privado <i>tempoDeVida<i/>.
+     * Método público que permite modificar o valor do atributo privado <i>tempoDeVida</i>.
      * @param tempoDeVida ('Integer') nova idade associada à carta (em meses).
      */
     public void setTempoDeVida(Integer tempoDeVida) {
@@ -105,7 +105,7 @@ public class Gato extends Carta{
     }
 
     /**
-     * Método público que permite acessar o valor do atributo privado <i>agressividade<i/>.
+     * Método público que permite acessar o valor do atributo privado <i>agressividade</i>.
      * @return ('Integer') agressividade do gato.
      */
     public Integer getAgressividade() {
@@ -113,7 +113,7 @@ public class Gato extends Carta{
     }
 
     /**
-     * Método público que permite modificar o valor do atributo privado <i>agressividade<i/>.
+     * Método público que permite modificar o valor do atributo privado <i>agressividade</i>.
      * @param agressividade ('Integer') novo valor de agressividade associado à carta.
      */
     public void setAgressividade(Integer agressividade) {
@@ -121,7 +121,7 @@ public class Gato extends Carta{
     }
 
     /**
-     * Método público que permite acessar o valor do atributo privado <i>peso<i/>.
+     * Método público que permite acessar o valor do atributo privado <i>peso</i>.
      * @return ('Double') peso do gato (em kg).
      */
     public Double getPeso() {
@@ -129,7 +129,7 @@ public class Gato extends Carta{
     }
 
     /**
-     * Método público que permite modificar o valor do atributo privado <i>peso<i/>.
+     * Método público que permite modificar o valor do atributo privado <i>peso</i>.
      * @param peso ('Integer') novo peso associado à carta (em kg).
      */
     public void setPeso(Double peso) {

@@ -13,7 +13,7 @@ import poo.trabalhofinal.supertrunfo.gui.DBUtils;
 import java.sql.SQLException;
 
 /**
- * <h1>Classe VencedorController<h1/>
+ * <h1>Classe VencedorController</h1>
  * <p>
  *  Classe responsável por intermediar a relação entre a interface (GUI) da <i>Tela de vencedor</i> e o programa.
  *  </p>

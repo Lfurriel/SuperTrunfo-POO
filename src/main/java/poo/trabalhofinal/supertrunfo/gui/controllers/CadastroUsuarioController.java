@@ -18,7 +18,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 /**
- * <h1>Classe CadastroUsuarioController<h1/>
+ * <h1>Classe CadastroUsuarioController</h1>
  * <p>
  *  Classe responsável por intermediar a relação entre a interface (GUI) da <i>Tela de cadastro de usuário</i> e o programa.
  *  </p>

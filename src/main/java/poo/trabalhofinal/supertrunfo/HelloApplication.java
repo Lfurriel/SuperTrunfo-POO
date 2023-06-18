@@ -14,13 +14,17 @@ import java.io.IOException;
  * <p>
  * Classe responsável por inicializar os elevemtos do JavaFX. É o ponto de entrada para os aplicativos FXML.
  * </p>
+ *
+ * @author Lucas Furriel Rodrigues
+ * @author Júlia Rodrigues Marques do Nascimento
+ * @version 1.0
  */
 public class HelloApplication extends Application {
     /**
      * Classe responsável por criar um objeto FXMLLoader para carregar o arquivo FXML da tela inicial.
      * <p>
      * Carrega o arquivo FXML e cria uma cena com tamanho definido, que não é redimensionável.
-     * <p/>
+     * </p>
      * <p>
      * Coloca um ícone em todas as janelas.
      * </p>

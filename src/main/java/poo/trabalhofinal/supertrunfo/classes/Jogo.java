@@ -10,7 +10,7 @@ import java.util.Collections;
 import java.util.Scanner;
 
 /**
- * <h1>Classe Jogo<T></h1>
+ * <h1>Classe Jogo</h1>
  * <p>
  *  Classe responsável por inicializar o jogo.
  *  Esta classe representa o jogo que os usuários estão jogando.

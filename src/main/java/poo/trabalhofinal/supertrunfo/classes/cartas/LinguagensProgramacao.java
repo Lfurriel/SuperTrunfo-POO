@@ -1,7 +1,7 @@
 package poo.trabalhofinal.supertrunfo.classes.cartas;
 
 /**
- * <h1>Classe LinguagensProgramacao<h1/>
+ * <h1>Classe LinguagensProgramacao</h1>
  * Subclasse que herda atributos e métodos da superclasse abstrata Carta.
  * É um tipo específico de carta do jogo. Possui atributos e métodos próprios e inerentes a cartas do baralho de LinguagensProgramacao.
  */
@@ -34,7 +34,7 @@ public class LinguagensProgramacao extends Carta {
 
     /**
      * Construtor vazio para a classe. Usado quando não há parâmetros para serem passados.
-     * Construtor <i>default<i/>.
+     * Construtor <i>default</i>.
      */
     public LinguagensProgramacao() {
     }
@@ -61,7 +61,7 @@ public class LinguagensProgramacao extends Carta {
     }
 
     /**
-     * Método público que permite acessar o valor do atributo privado <i>escritabilidade<i/>.
+     * Método público que permite acessar o valor do atributo privado <i>escritabilidade</i>.
      * @return ('Integer') escritabilidade da linguagem de programação.
      */
     public Integer getEscritabilidade() {
@@ -69,7 +69,7 @@ public class LinguagensProgramacao extends Carta {
     }
 
     /**
-     * Método público que permite modificar o valor do atributo privado <i>escritabilidade<i/>.
+     * Método público que permite modificar o valor do atributo privado <i>escritabilidade</i>.
      * @param escritabilidade ('Integer') novo valor de escritabilidade associado à carta.
      */
     public void setEscritabilidade(Integer escritabilidade) {
@@ -77,7 +77,7 @@ public class LinguagensProgramacao extends Carta {
     }
 
     /**
-     * Método público que permite acessar o valor do atributo privado <i>legibilidade<i/>.
+     * Método público que permite acessar o valor do atributo privado <i>legibilidade</i>.
      * @return ('Integer') legibilidade da linguagem de programação.
      */
     public Integer getLegibilidade() {
@@ -85,7 +85,7 @@ public class LinguagensProgramacao extends Carta {
     }
 
     /**
-     * Método público que permite modificar o valor do atributo privado <i>legibilidade<i/>.
+     * Método público que permite modificar o valor do atributo privado <i>legibilidade</i>.
      * @param legibilidade ('Integer') novo valor de legibilidade associado à carta.
      */
     public void setLegibilidade(Integer legibilidade) {
@@ -93,7 +93,7 @@ public class LinguagensProgramacao extends Carta {
     }
 
     /**
-     * Método público que permite acessar o valor do atributo privado <i>confiabilidade<i/>.
+     * Método público que permite acessar o valor do atributo privado <i>confiabilidade</i>.
      * @return ('Integer') confiabilidade da linguagem de programação.
      */
     public Integer getConfiabilidade() {
@@ -101,7 +101,7 @@ public class LinguagensProgramacao extends Carta {
     }
 
     /**
-     * Método público que permite modificar o valor do atributo privado <i>confiabilidade<i/>.
+     * Método público que permite modificar o valor do atributo privado <i>confiabilidade</i>.
      * @param confiabilidade ('Integer') novo valor de confiabilidade associado à carta.
      */
     public void setConfiabilidade(Integer confiabilidade) {
@@ -109,7 +109,7 @@ public class LinguagensProgramacao extends Carta {
     }
 
     /**
-     * Método público que permite acessar o valor do atributo privado <i>custo<i/>.
+     * Método público que permite acessar o valor do atributo privado <i>custo</i>.
      * @return ('Integer') custo da linguagem de programação.
      */
     public Integer getCusto() {
@@ -117,7 +117,7 @@ public class LinguagensProgramacao extends Carta {
     }
 
     /**
-     * Método público que permite modificar o valor do atributo privado <i>custo<i/>.
+     * Método público que permite modificar o valor do atributo privado <i>custo</i>.
      * @param custo ('Integer') novo valor de custo associado à carta.
      */
     public void setCusto(Integer custo) {
@@ -125,7 +125,7 @@ public class LinguagensProgramacao extends Carta {
     }
 
     /**
-     * Método público que permite acessar o valor do atributo privado <i>salarioSenior<i/>.
+     * Método público que permite acessar o valor do atributo privado <i>salarioSenior</i>.
      * @return ('Double') salarioSenior da linguagem de programação (em reais).
      */
     public Double getSalarioSenior() {
@@ -133,7 +133,7 @@ public class LinguagensProgramacao extends Carta {
     }
 
     /**
-     * Método público que permite modificar o valor do atributo privado <i>salarioSenior<i/>.
+     * Método público que permite modificar o valor do atributo privado <i>salarioSenior</i>.
      * @param salarioSenior ('Double') novo valor de salarioSenior associado à carta (em reais).
      */
     public void setSalarioSenior(Double salarioSenior) {

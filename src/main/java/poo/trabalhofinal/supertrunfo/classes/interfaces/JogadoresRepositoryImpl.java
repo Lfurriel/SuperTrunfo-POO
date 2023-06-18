@@ -9,14 +9,14 @@ import java.sql.*;
 import java.util.ResourceBundle;
 
 /**
- * <h1>Classe JogadoresRepositoryImpl<T></h1>
+ * <h1>Classe JogadoresRepositoryImpl</h1>
  * Classe que faz a conexão com o banco de dados de jogadores para cadastrar, logar e poder atualizar seus dados.
  * <p>
  * Implementa a interface JogadoresRepository, colocando o corpo dos métodos do contrato estabelecido com a interface.
  * </p>
  * @param <T> tipo genérico que representa o tipo de carta que foi escolhido para ser jogado pelo jogador.
  */
-public class JogadoresRepositoryImpl<T> implements JogadoresRepository {
+public class JogadoresRepositoryImpl<T> implements JogadoresRepository<T> {
 
     /**
      * Acessa a lista recursos em "resource.properties"
@@ -36,7 +36,7 @@ public class JogadoresRepositoryImpl<T> implements JogadoresRepository {
     public final Jogador<T> buscaJogador(String usuario, String senha) throws SQLException, UsuarioNaoEncontradoException, InformacaoInvalidaException {
         Connection conexao = null;
         PreparedStatement query;
-        ResultSet resultSet = null;
+        ResultSet resultSet;
         try {
             Jogador<T> jogador = new Jogador<>();
             conexao = DriverManager.getConnection(resources.getString("jdbc-url"), resources.getString("user"), resources.getString("password"));

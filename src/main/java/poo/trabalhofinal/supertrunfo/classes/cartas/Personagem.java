@@ -1,7 +1,7 @@
 package poo.trabalhofinal.supertrunfo.classes.cartas;
 
 /**
- * <h1>Classe Personagem<h1/>
+ * <h1>Classe Personagem</h1>
  * Subclasse que herda atributos e métodos da superclasse abstrata Carta.
  * É um tipo específico de carta do jogo. Possui atributos e métodos próprios e inerentes a cartas do baralho de Personagem.
  */
@@ -29,7 +29,7 @@ public class Personagem extends Carta {
 
     /**
      * Construtor vazio para a classe. Usado quando não há parâmetros para serem passados.
-     * Construtor <i>default<i/>.
+     * Construtor <i>default</i>.
      */
     public Personagem () {
     }
@@ -57,7 +57,7 @@ public class Personagem extends Carta {
     }
 
     /**
-     * Método público que permite acessar o valor do atributo privado <i>inteligencia<i/>.
+     * Método público que permite acessar o valor do atributo privado <i>inteligencia</i>.
      * @return ('Integer') inteligencia do personagem.
      */
     public Integer getInteligencia() {
@@ -65,7 +65,7 @@ public class Personagem extends Carta {
     }
 
     /**
-     * Método público que permite modificar o valor do atributo privado <i>inteligencia<i/>.
+     * Método público que permite modificar o valor do atributo privado <i>inteligencia</i>.
      * @param inteligencia ('Integer') novo valor de inteligência associado à carta.
      */
     public void setInteligencia(Integer inteligencia) {
@@ -73,7 +73,7 @@ public class Personagem extends Carta {
     }
 
     /**
-     * Método público que permite acessar o valor do atributo privado <i>forca<i/>.
+     * Método público que permite acessar o valor do atributo privado <i>forca</i>.
      * @return ('Integer') força do personagem.
      */
     public Integer getForca() {
@@ -81,7 +81,7 @@ public class Personagem extends Carta {
     }
 
     /**
-     * Método público que permite modificar o valor do atributo privado <i>forca<i/>.
+     * Método público que permite modificar o valor do atributo privado <i>forca</i>.
      * @param forca ('Integer') novo valor de força associado à carta.
      */
     public void setForca(Integer forca) {
@@ -89,7 +89,7 @@ public class Personagem extends Carta {
     }
 
     /**
-     * Método público que permite acessar o valor do atributo privado <i>coragem<i/>.
+     * Método público que permite acessar o valor do atributo privado <i>coragem</i>.
      * @return ('Integer') coragem do personagem.
      */
     public Integer getCoragem() {
@@ -97,7 +97,7 @@ public class Personagem extends Carta {
     }
 
     /**
-     * Método público que permite modificar o valor do atributo privado <i>coragem<i/>.
+     * Método público que permite modificar o valor do atributo privado <i>coragem</i>.
      * @param coragem ('Integer') novo valor de coragem associado à carta.
      */
     public void setCoragem(Integer coragem) {
@@ -105,7 +105,7 @@ public class Personagem extends Carta {
     }
 
     /**
-     * Método público que permite acessar o valor do atributo privado <i>primeiraAparicao<i/>.
+     * Método público que permite acessar o valor do atributo privado <i>primeiraAparicao</i>.
      * @return ('Integer') primeira aparição do personagem.
      */
     public Integer getPrimeiraAparicao() {
@@ -113,7 +113,7 @@ public class Personagem extends Carta {
     }
 
     /**
-     * Método público que permite modificar o valor do atributo privado <i>primeiraAparicao<i/>.
+     * Método público que permite modificar o valor do atributo privado <i>primeiraAparicao</i>.
      * @param primeiraAparicao ('Integer') novo valor de primeiraAparicao associado à carta.
      */
     public void setPrimeiraAparicao(Integer primeiraAparicao) {
@@ -121,7 +121,7 @@ public class Personagem extends Carta {
     }
 
     /**
-     * Método público que permite acessar o valor do atributo privado <i>altura<i/>.
+     * Método público que permite acessar o valor do atributo privado <i>altura</i>.
      * @return ('Double') altura (em metros) do personagem.
      */
     public Double getAltura() {
@@ -129,7 +129,7 @@ public class Personagem extends Carta {
     }
 
     /**
-     * Método público que permite modificar o valor do atributo privado <i>altura<i/>.
+     * Método público que permite modificar o valor do atributo privado <i>altura</i>.
      * @param altura ('Double') novo valor de altura (em metros) associado à carta.
      */
     public void setAltura(Double altura) {

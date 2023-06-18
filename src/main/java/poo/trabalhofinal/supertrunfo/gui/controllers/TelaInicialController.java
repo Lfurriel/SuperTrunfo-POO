@@ -9,7 +9,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * <h1>Classe TelaInicialController<h1/>
+ * <h1>Classe TelaInicialController</h1>
  * <p>
  *  Classe responsável por intermediar a relação entre a interface (GUI) da <i>Tela Inicial</i> e o programa.
  *  </p>

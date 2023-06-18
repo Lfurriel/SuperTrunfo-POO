@@ -9,7 +9,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * <h1>Classe OpcaoController<h1/>
+ * <h1>Classe OpcaoController</h1>
  * <p>
  *  Classe responsável por intermediar a relação entre a interface (GUI) da <i>Tela de opção</i> e o programa.
  *  </p>
