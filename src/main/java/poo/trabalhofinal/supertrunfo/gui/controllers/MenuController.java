@@ -100,17 +100,27 @@ public class MenuController implements Initializable {
      * Caso não suporte, manda um alerta na tela.
      * Caso seja Desktop Supported, ele tenta abrir o link da url. Se der erro mostra uma mensagem de alerta.
      */
+
     private void abrirPDF() {
-        URL url = getClass().getResource("/files/telaDeExplicacao.pdf");
-        if (Desktop.isDesktopSupported()) {
-            Desktop desktop = Desktop.getDesktop();
-            try {
-                File file = new File(String.valueOf(url));
-                desktop.open(file);
-            } catch (IOException e) {
-                alerta.setText("Não foi possível abrir o url");
+        URL url = null;
+        try {
+            url = getClass().getResource("/files/telaDeExplicacao.pdf");
+            if (url != null) {
+                URI uri = url.toURI();
+
+                File file = new File(uri);
+
+                if (Desktop.isDesktopSupported()) {
+                    Desktop desktop = Desktop.getDesktop();
+                    desktop.open(file);
+                } else {
+                    alerta.setText("Não foi possível abrir o URL");
+                }
+            } else {
+                alerta.setText("Arquivo PDF não encontrado");
             }
-        } else
-            alerta.setText("Não foi possível abrir o url");
+        } catch (URISyntaxException | IOException e) {
+            alerta.setText("Não foi possível abrir o URL");
+        }
     }
 }
