@@ -314,11 +314,11 @@ public class JogoController implements Initializable {
     /**
      * Constante que representa o tipo do jogo.
      */
-    private static final String tipo = DBUtils.getTipoJogo();
+    private final String tipo = DBUtils.getTipoJogo();
     /**
      * Constante jogo, que representa o jogo que está sendo jogado (a partida inteira).
      */
-    private static final Jogo jogo = DBUtils.getJogo();
+    private Jogo jogo = DBUtils.getJogo();
     /**
      * Carta do topo do jogador A (carta apresentada na tela).
      */
