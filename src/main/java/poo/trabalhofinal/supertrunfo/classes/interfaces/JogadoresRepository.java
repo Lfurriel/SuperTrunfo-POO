@@ -31,7 +31,7 @@ public interface JogadoresRepository<T> {
      * @param novoJogador (Jogador) que será inserido (cadastrado).
      * @throws SQLException Se não conseguir conectar com o banco de dados.
      */
-    void insereNovoJogador(Jogador novoJogador) throws SQLException;
+    void insereNovoJogador(Jogador<T> novoJogador) throws SQLException;
 
     /**
      * Assinatura do método responsável por atualizar os dados dos jogadores após os jogos.
@@ -39,5 +39,5 @@ public interface JogadoresRepository<T> {
      * @param jogadorB (Jogador) um dos jogadores para atualizar os dados após a jogada.
      * @throws SQLException Se não conseguir conectar com o banco de dados.
      */
-    void updateJogadores(Jogador jogadorA, Jogador jogadorB) throws SQLException;
+    void updateJogadores(Jogador<T> jogadorA, Jogador<T> jogadorB) throws SQLException;
 }

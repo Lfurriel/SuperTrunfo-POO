@@ -18,7 +18,6 @@ import poo.trabalhofinal.supertrunfo.classes.interfaces.JogadoresRepositoryImpl;
 import poo.trabalhofinal.supertrunfo.gui.DBUtils;
 
 import java.net.URL;
-import java.security.Key;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 

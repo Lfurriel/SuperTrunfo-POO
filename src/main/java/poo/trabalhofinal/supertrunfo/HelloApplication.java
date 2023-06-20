@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 /**
  * <h1>Classe HelloApplication</h1>
@@ -39,7 +40,7 @@ public class HelloApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("telaInicial.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1280, 720);
         stage.setResizable(false);
-        stage.getIcons().add(new Image(HelloApplication.class.getResource("/poo/trabalhofinal/supertrunfo/gui/fujutrunfo.png").toExternalForm()));
+        stage.getIcons().add(new Image(Objects.requireNonNull(HelloApplication.class.getResource("/poo/trabalhofinal/supertrunfo/gui/fujutrunfo.png")).toExternalForm()));
         stage.setTitle("SUPER TRUNFO");
         stage.setScene(scene);
         stage.show();

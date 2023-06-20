@@ -219,7 +219,7 @@ public class VerCartasController implements Initializable {
         classificacao.setText(String.valueOf(carta.getClassificacao()));
         try {
             URL urlImagem = getClass().getResource(carta.getImagem());
-            Image imagemCarta = new Image(urlImagem != null ? urlImagem.toExternalForm() : null);
+            Image imagemCarta = new Image(urlImagem != null ? urlImagem.toExternalForm() : "");
             imagem.setImage(imagemCarta);
         } catch (Exception e) {
             alerta.setText("Erro ao carregar imagem");

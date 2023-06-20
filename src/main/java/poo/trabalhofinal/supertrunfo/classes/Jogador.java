@@ -139,7 +139,7 @@ public class Jogador<T> {
      * </p>
      * @param derrotado (Jogador) jogador que perdeu a partida em relação ao jogador desta instância (this).
      */
-    public void moveCartas(Jogador derrotado) {
+    public void moveCartas(Jogador<T> derrotado) {
         List<T> cartasJogadorVencedor = new ArrayList<>(this.cartas);
         List<T> cartasJogadorDerrotado = new ArrayList<>(derrotado.cartas);
 

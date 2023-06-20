@@ -78,7 +78,7 @@ public class JogadoresRepositoryImpl<T> implements JogadoresRepository<T> {
      * @throws SQLException  Se houver erro ao tentar conectar com o banco de dados.
      */
     @Override
-    public final void insereNovoJogador(Jogador novoJogador) throws SQLException {
+    public final void insereNovoJogador(Jogador<T> novoJogador) throws SQLException {
         Connection conexao = null;
         PreparedStatement query;
 
@@ -110,7 +110,7 @@ public class JogadoresRepositoryImpl<T> implements JogadoresRepository<T> {
      * @throws SQLException Se houver erro ao tentar conectar com o banco de dados.
      */
     @Override
-    public final void updateJogadores(Jogador jogadorA, Jogador jogadorB) throws SQLException {
+    public final void updateJogadores(Jogador<T> jogadorA, Jogador<T> jogadorB) throws SQLException {
         Connection conexao = null;
         PreparedStatement query;
 

@@ -102,7 +102,7 @@ public class MenuController implements Initializable {
      */
 
     private void abrirPDF() {
-        URL url = null;
+        URL url;
         try {
             url = getClass().getResource("/files/telaDeExplicacao.pdf");
             if (url != null) {

@@ -17,6 +17,7 @@ import poo.trabalhofinal.supertrunfo.gui.controllers.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 /**
@@ -29,7 +30,7 @@ public class DBUtils {
     /**
      * (Image) ícone presente nas telas.
      */
-    private static final Image icon = new Image(HelloApplication.class.getResource("/poo/trabalhofinal/supertrunfo/gui/fujutrunfo.png").toExternalForm());
+    private static final Image icon = new Image(Objects.requireNonNull(HelloApplication.class.getResource("/poo/trabalhofinal/supertrunfo/gui/fujutrunfo.png")).toExternalForm());
     /**
      * (Jogo) atributo do tipo Jogo que é passado de parâmetro em algumas mudannças de cena.
      */
