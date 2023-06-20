@@ -20,7 +20,7 @@ Usamos para esse projeto um banco de dados local em PostrgreSQL. As configuraç�
 - Versão jdk: 20.0.1.
 - O Projeto irá compliar e rodar normalmente com as configurações padrões do Java, porém ele como um todo não funcionará corretamente uma vez que tudo funciona pegando informações do banco de dados.
 
-  ## Observações:
+## Observações:
 - As imagens das cartas estão salvas no projeto no path *"/src/main/resources/imagens/"*
 - O projeto está todo documentado no formato Doxygen e o javadocs em formato .pdf esta no path *"/src/main/resources/files/javadocs.pdf"*
 - No path *"/src/main/resources/files/"* podem ser encontrados o arquivo de UML e e as imagens geradas todas pela IDE IntelliJ
